@@ -1,0 +1,30 @@
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (114.3ms)[0m   [0mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (234.2ms)[0m   [0;1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateOrganisations (20100524112921)
+  [4;35;1mSQL (89.5ms)[0m   [0mCREATE TABLE `organisations` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `url` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100524112921')[0m
+Migrating to CreateEvents (20100524123849)
+  [4;35;1mSQL (106.3ms)[0m   [0mCREATE TABLE `events` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `location` text, `start_time` datetime, `end_time` datetime, `url` varchar(255), `telephone` varchar(255), `email` varchar(255), `people` text, `notes` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100524123849')[0m
+Migrating to AddOrganisationRefToEvents (20100524130057)
+  [4;35;1mSQL (109.9ms)[0m   [0mALTER TABLE `events` ADD `organisation_id` int(11)[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100524130057')[0m
+Migrating to DropEndTimeFromEvents (20100525110351)
+  [4;35;1mSQL (110.1ms)[0m   [0mALTER TABLE `events` DROP `end_time`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100525110351')[0m
+Migrating to ChangeEventToIcalformat (20100525185618)
+  [4;35;1mSQL (37.3ms)[0m   [0mSHOW FIELDS FROM `events`[0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mSHOW COLUMNS FROM `events` LIKE 'start_time'[0m
+  [4;35;1mSQL (95.8ms)[0m   [0mALTER TABLE `events` CHANGE `start_time` `start_date` datetime DEFAULT NULL[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100525185618')[0m
+Migrating to AddSourceToEvents (20100526141038)
+  [4;35;1mSQL (114.0ms)[0m   [0mALTER TABLE `events` ADD `source` varchar(255)[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100526141038')[0m
+Migrating to DeviseCreatePeople (20100609130923)
+  [4;35;1mSQL (102.7ms)[0m   [0mCREATE TABLE `people` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mMysql::Error: Key column 'email' doesn't exist in table: CREATE UNIQUE INDEX `index_people_on_email` ON `people` (`email`)[0m
