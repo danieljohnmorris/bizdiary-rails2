@@ -70,9 +70,9 @@ class Event < ActiveRecord::Base
   #named_scope :published, :conditions => ["publish_state = #{Event::PUBLISHED_STATE}"]
   #named_scope :drafts, :conditions => ["publish_state = #{Event::DRAFT_STATE}"]
   
-  # rails 3 style:
-  scope :published, where("publish_state = ?", Event::PUBLISHED_STATE)
-  scope :drafts, where("publish_state = ?", Event::DRAFT_STATE)
+  # # rails 3 style:
+  # scope :published, where("publish_state = ?", Event::PUBLISHED_STATE)
+  # scope :drafts, where("publish_state = ?", Event::DRAFT_STATE)
     
   def publish
     return true if self.publish_state == PUBLISHED_STATE
