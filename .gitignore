@@ -1,0 +1,16 @@
+.DS_Store
+*/.DS_Store
+log/*.log
+tmp/**/*
+config/database.yml
+db/*.sqlite3
+db/schema.rb
+.bundle
+log/development.log
+log/cucumber.log
+log/test.log
+log/production.log
+tmp/pids/server.pid
+capybara-*.html
+vendor/cache
+relock/
