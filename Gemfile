@@ -11,10 +11,10 @@ gem "rpx_now"
 gem 'devise_rpx_connectable'
 
 # tagging
-gem 'acts-as-taggable-on', '2.0.0.rc1'
+gem 'acts-as-taggable-on'
 
 # pagination
-gem 'will_paginate', '2.3.11'
+gem 'will_paginate'
 
 # admin
 gem 'fastercsv'
