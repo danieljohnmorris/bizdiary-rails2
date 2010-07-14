@@ -1,0 +1,130 @@
+<% form_for([:admin, @event]) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+      <ul>
+		<% @event.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :publish_state %><br />
+    <%= f.select(:publish_state, event_publish_states) %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_area :location %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.datetime_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+
+<hr />
+	
+  <div class="field">
+    <%= f.label :topic_list, "Main topic" %><br />
+  	<%=
+	select(:event, :topic_list, {
+		'Finance' => 'Finance', 
+		'Workforce' => 'Workforce', 
+		'Marketing' => 'Marketing', 
+		'Operations' => 'Operations', 
+		'Sales / Lead Conversion' => 'Sales / Lead Conversion', 
+		'Legal' => 'Legal', 
+		'Planning / Business Development' => 'Planning / Business Development', 
+		'Starting up' => 'Starting up', 
+		'Internet / Online' => 'Internet / Online', 
+		'Job Hunting' => 'Job Hunting', 
+		'Personal Growth' => 'Personal Growth'
+	}, {:include_blank => true}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :type_list, "Event type" %><br />
+  	<%=
+	select(:event, :type_list, {
+		'Conference/Trade Show' => 'Conference/Trade Show',
+		'Seminar' => 'Seminar',
+		'Training Course' => 'Training Course',
+		'Networking' => 'Networking',
+		'Workshop' => 'Workshop'
+	}, {:include_blank => true}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :industry_list, "Industry" %><br />
+  	<%=
+	select(:event, :industry_list, {
+		'Agriculture' => 'Agriculture' ,
+		'Communication' => 'Communication' ,
+		'Design'                                =>   'Design'                              ,
+		'Energy'                                =>   'Energy'                              ,
+		'Engineering'                           =>   'Engineering'                         ,
+		'Fashion & textiles'                    =>   'Fashion & textiles'                  ,
+		'Finance and accounting'                =>   'Finance and accounting'              ,
+		'Food'                                  =>   'Food'                                ,
+		'Hospitality and Tourism'               =>   'Hospitality and Tourism'             ,
+		'HR and training'                       =>   'HR and training'                     ,
+		'Humanities and sociocultural'          =>   'Humanities and sociocultural'        ,
+		'IT / Technology'                       =>   'IT / Technology'                     ,
+		'Languages'                             =>   'Languages'                           ,
+		'Law & Justice'                         =>   'Law & Justice'                       ,
+		'Management'                            =>   'Management'                          ,
+		'Manufacturing'                         =>   'Manufacturing'                       ,
+		'Marketing'                             =>   'Marketing'                           ,
+		'Media & Film'                          =>   'Media & Film'                        ,
+		'Medical'                               =>   'Medical'                             ,
+		'Performing arts'                       =>   'Performing arts'                     ,
+		'Personal Growth'                       =>   'Personal Growth'                     ,
+		'Purchasing, logistics and transport'   =>   'Purchasing, logistics and transport' ,
+		'Quality, R & D and innovation'         =>   'Quality, R & D and innovation'       ,
+		'Real estate and construction'          =>   'Real estate and construction'        ,
+		'Sales'                                 =>   'Sales'                               ,
+		'Science'                               =>   'Science'                             ,
+		'Security and military'                 =>   'Security and military'               ,
+		'Sports and Recreation'                 =>   'Sports and Recreation'
+	}, {:include_blank => true}) %>
+  </div>
+
+<hr />
+
+  <div class="field">
+    <%= f.label :telephone %><br />
+    <%= f.text_field :telephone %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :source %><br />
+    <%= f.text_area :source %>
+  </div>
+  <div class="field">
+    <%= f.label :people %><br />
+    <%= f.text_area :people %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

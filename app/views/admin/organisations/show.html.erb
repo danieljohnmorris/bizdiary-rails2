@@ -1,0 +1,20 @@
+<%= render :partial => "admin/organisations/header" %>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @organisation.name.html_safe %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @organisation.url %>
+</p>
+
+
+<p class="option-bar">
+	<%= link_to 'Edit', edit_admin_organisation_path(@organisation), :class => "edit" %> |
+	<%= link_to 'Destroy', admin_organisation_path(@organisation), :confirm => 'Are you sure?', :html => { :method => :delete }, :class => "delete" %> | 
+	<%= link_to 'Back', admin_organisations_path %>
+</p>

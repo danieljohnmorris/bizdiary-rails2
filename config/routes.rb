@@ -1,4 +1,32 @@
 ActionController::Routing::Routes.draw do |map|
+  map.devise_for :admins
+  map.devise_for :people
+
+  map.connect '/admin/events/ingest', :controller => 'admin/events', :action => 'ingest'
+  map.admin_event_hide '/admin/events/hide(/:id(.:format))', :controller => 'admin/events', :action => 'hide'
+  map.admin_event_publish '/admin/events/publish(/:id(.:format))', :controller => 'admin/events', :action => 'publish'
+  map.admin_events_bulk_publish '/admin/events/bulk_publish((.:format))', :controller => 'admin/events', :action => 'bulk_publish'
+
+  map.namespace :admin do |admin|
+    admin.index '/', :controller => 'index', :action => 'index'
+    admin.resources :organisations
+    admin.resources :events 
+  end
+
+  map.resources :organisations, 
+    :only => [:index, :show], 
+    :member => { :star => :get, :unstar => :get }, 
+    :collection => { :starred => :get }
+
+  map.resources :events, 
+      :only => [:index, :show], 
+      :member => { :star => :get, :unstar => :get }, 
+      :collection => { :starred => :get }
+    
+  # map.root            :controller => 'home'
+  # map.about '/about', :controller => 'about'
+  # map.admin '/admin', :controller => 'admin'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -31,7 +59,7 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
+  map.root :controller => "home"
 
   # See how all your routes lay out with "rake routes"
 

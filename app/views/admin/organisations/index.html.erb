@@ -1,0 +1,25 @@
+<%= render :partial => "admin/organisations/header" %>
+
+<h1>Listing organisations</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Url</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @organisations.each do |organisation| %>
+  <tr>
+    <td><%= link_to organisation.name, admin_organisation_path(organisation) %></td>
+    <td><%= organisation.url %></td>
+    <td><%= link_to 'Edit', edit_admin_organisation_path(organisation), :class => "edit" %></td>
+    <td><%= link_to 'Destroy', admin_organisation_path(organisation), :confirm => 'Are you sure?', :html => { :method => :delete }, :class => "delete" %></td>
+  </tr>
+<% end %>
+</table>
+
+<p class="option-bar">
+	<%= link_to 'New Organisation', new_admin_organisation_path, :class => "new" %>
+</p>

@@ -1,0 +1,199 @@
+/* Misc
+************************/
+
+img {
+	border: none;
+}
+
+textarea {
+    height: 100px;
+    width: 400px;
+}
+
+/* Stars
+************************/
+
+.event .star {
+	display: inline-block;
+	width: 50px;
+	height: 20px;
+}
+	.event .star a {
+		display: inline-block;
+		text-decoration: none;
+		color: #aaa;
+	}
+		.event .star a:hover {
+			color: #E8B228;
+		}
+	
+.star img {
+	position: relative;
+	top: 3px;
+	width: 18px;
+}
+
+.event .star a.starred {
+	color: #FF8585;
+}
+	.event .star a.starred:hover {
+		color: red;
+	}
+                                                                                                              
+/* Floating bar
+************************/
+
+/* catfish and 'position:fixed' emulation */
+/*#catfish {
+    position:fixed;
+    bottom:0;
+    background-color: red;
+    padding:0;
+    height: 79px;
+    cursor: pointer;
+    margin: 0; 
+    width:100%;
+}
+    #catfish h3{
+        overflow:hidden;
+        background: transparent url(images/catfish.gif) no-repeat left bottom;
+        width:279px;
+        height:79px;
+        float:left
+    }
+
+    #catfish ul{
+        margin: 30px 16px 0pt 0pt; 
+        padding: 0pt; 
+        float: right; 
+        font-size: x-small; 
+        list-style-type: none;
+    }
+
+    #catfish ul li a{
+        color:#FFCC00;
+    }
+
+    #catfish p#catch{
+        margin: 40px 0pt 0pt 292px; 
+        color: #fff
+    }
+
+html {
+    padding:0 0 58px 0;
+}*/
+    
+/* Flash messages
+************************/
+
+#messages .error,
+#messages .success,
+#messages .info {
+    border: 1px solid;
+    padding: 10px;
+}
+
+#messages .error {
+    border-color: red;
+    color: red;
+}
+
+#messages .success {
+    border-color: green;
+    color: green;
+}
+
+#messages .info {
+    border-color: gray;
+    color: gray;
+}
+
+/* Event listing
+************************/
+
+.events-list {
+	padding:0;
+	margin:0;
+}
+	.events-list h4 {
+		margin:0;
+	}
+	.events-list .event .data {
+		margin:0;
+		font-size:.75em;
+	}
+	.events-list .event {
+		list-style-type:none;
+		overflow:auto;
+	}
+		.events-list .event .time {
+		}
+	.events-list .week {
+		font-size:1.4em;
+		color: #999;
+		margin: 1em 0 0.5em 0;
+		border-bottom: 1px solid #999;
+	}
+	.events-list .week .range {
+		display:block;
+		float:right;
+	}
+.event-calendar-page {
+	display:block;
+	float:right;
+	width:40px;
+	height:40px;
+	border:1px solid #ddd;
+}
+	.event-calendar-page .month,.event-calendar-page .day {
+		display:block;
+		text-align:center;
+	}
+	.event-calendar-page .month {
+		height:40%;
+		background:#2D4DCE;
+		color:#fff;
+		font-size:0.75em;
+	}
+	.event-calendar-page .day {
+		height:35%;
+		margin-top:5%;
+	}
+
+/* Event
+************************/
+
+.event {
+	position: relative;
+	margin: 0 0 6px 0;
+}
+	.event h4 {
+		font-size: 1.3em;
+		font-weight: normal;
+	}
+	.event .data {
+		display: block;
+		padding-left: 55px;
+		color: #777;
+	}
+		.event .data a {
+			color: #555;
+		}
+		.event .data .date {
+			position: absolute;
+			top: 5px;
+			right: 0px;
+			font-size: 1.5em;
+			color: #aaa;
+		}
+	
+/* Pagination
+************************/
+
+.pagination {
+	border: 2px solid #DFEDFF;
+	background-color: #EFF6FF;
+	margin: 25px 0 25px 0;
+	padding: 10px;
+	font-size: 1.3em;
+}

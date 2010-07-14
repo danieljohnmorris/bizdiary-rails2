@@ -1,0 +1,146 @@
+<% content_for :head do %>
+<script type="text/javascript">
+$(function() {
+	$("#select_all").toggle(function() {
+		$(".pub-state-checkbox").each(function() {
+			this.checked = 'checked';
+		});
+	}, function() {
+		$(".pub-state-checkbox").each(function() {
+			this.checked = '';
+		});
+	});
+});
+</script>
+<% end %>
+
+<%= render :partial => "admin/events/header" %>
+
+<script type="text/javascript" charset="utf-8">
+</script>
+
+<h1>Listing <%= @view %> events (Switch to <% if @view == "past" %><%= link_to "upcoming events", "?view=upcoming" %><% else %><%= link_to "past events", "?view=past" %><% end %>?)</h1>
+
+<form action="<%= admin_events_bulk_publish_path %>" method="get">
+	<%= will_paginate @events %>
+	<%= render :partial => "action_bar" %>
+
+	<table class="admin">
+	  <tr>
+	    <th><input type="checkbox" name="all" id="select_all" class="pub-state-checkbox" />
+		</th>
+	    <th style="width: 90px;">Publish-state</th>
+	    <th></th>
+	    <th>Title</th>
+	    <th>Topics</th>
+	    <th>Event Types</th>
+	    <th>Industries</th>
+	    <!--<th>Description</th>-->
+	    <th>Location</th>
+	    <th>Start Date</th>
+	    <th>Organisation</th>
+	    <th>Url</th>
+	    <th>Source</th>
+	    <!--<th>Telephone</th>
+	    <th>Email</th>
+	    <th>People</th>
+	    <th>Notes</th>-->
+	    <th></th>
+	  </tr>
+
+	<% @events.each do |event| %>
+	  <tr>
+		<td id="pubcheck-<%= event.id %>">
+			<input type="hidden" name="event[<%= event.id %>]" value="<%= event.id %>" class="pub-state-checkbox" />
+			<input type="checkbox" name="publish[<%= event.id %>]" <% if event.published? %>checked="checked"<% end %> class="pub-state-checkbox" />
+		</td>
+		<td id="pubstate-<%= event.id %>">
+			<% if event.published? %>
+				<%= render :partial => 'admin/events/link_hide', :locals => { :event => event } %>
+			<% else %>
+				<%= render :partial => 'admin/events/link_publish', :locals => { :event => event } %>
+			<% end %>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+	  	</td>
+	    <td><%= link_to 'Edit', edit_admin_event_path(event), :class => "edit" %></td>
+		<td><%= link_to event.title, admin_event_path(event) %></td>
+	    <!--<td><%= event.description %></td>-->
+	    <td>
+			<% unless event.topic_list.empty? %>
+			<ul>
+				<li><%= render :partial => "admin/events/topic", :collection => event.topic_list, :as => :topic, :spacer_template => "shared/separator_list" %></li>
+			</ul>
+			<% end %>
+		</td>
+	    <td>
+			<% unless event.type_list.empty? %>
+			<ul>
+				<li><%= render :partial => "admin/events/topic", :collection => event.type_list, :as => :topic, :spacer_template => "shared/separator_list" %></li>
+			</ul>
+			<% end %>
+		</td>
+	    <td>
+			<% unless event.industry_list.empty? %>
+			<ul>
+				<li><%= render :partial => "admin/events/topic", :collection => event.industry_list, :as => :topic, :spacer_template => "shared/separator_list" %></li>
+			</ul>
+			<% end %>
+		</td>
+	    <td><%= event.location.html_safe %> (<%= map_link(event.location) %>)</td>
+	    <td><%= event.start_date %></td>
+	    <td>
+			<% if event.organisation %>
+				<%= link_to event.organisation.name.html_safe, admin_organisation_path(event.organisation) %>
+			<% else %>
+				N/A
+			<% end %>
+		</td>
+	    <td>
+			<% if event.url && event.url.length > 1 %>
+				<%= link_to "#{event.url[0..20]}...", event.url %>
+			<% else %>
+				N/A
+			<% end %>
+		</td>
+	    <td>
+			<% if event.source && event.source.length > 1 %>
+				<%= event.source.html_safe %>
+			<% else %>
+				N/A
+			<% end %>
+		</td>
+	    <!--<td>
+			<% if event.telephone && event.telephone.length > 1 %>
+				<%= event.telephone.html_safe %>
+			<% else %>
+				N/A
+			<% end %>
+		</td>
+	    <td>
+			<% if event.email && event.email.length > 1 %>
+				<%= link_to event.email.html_safe, "mailto:#{event.email}" %>
+			<% else %>
+				N/A
+			<% end %>
+		</td>
+	    <td>
+			<% if event.people.html_safe && event.people.length > 1 %>
+				<%= event.people %>
+			<% else %>
+				N/A
+			<% end %>
+		</td>
+	    <td>
+			<% if event.notes.html_safe && event.notes.length > 1 %>
+				<%= event.notes %>
+			<% else %>
+				N/A
+			<% end %>
+		</td>-->
+	    <td><%= link_to 'Destroy', admin_event_path(event), :html => { :confirm => 'Are you sure?', :method => :delete }, :class => "delete" %></td>
+	  </tr>
+	<% end %>
+	</table>
+
+	<%= render :partial => "action_bar" %>
+	<%= will_paginate @events %>
+</form>

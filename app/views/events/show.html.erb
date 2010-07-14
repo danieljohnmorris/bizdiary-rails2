@@ -1,0 +1,61 @@
+<h1><%= @event.title %></h1>
+
+<p><%= @event.description.html_safe %></p>
+
+<hr />
+
+<p>
+	<strong>Topics:</strong> <%= render :partial => "events/link_topic", :collection => @event.topic_list, :as => :topic, :spacer_template => "shared/separator_comma" %>
+</p>
+
+<hr />
+
+<p>
+  <b>Location:</b>
+  <%= @event.location %>  (<%= map_link(@event.location) %>)
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @event.start_date %>
+</p>
+
+<p>
+  <b>Organisation:</b>
+  <% if @event.organisation %>
+  <%= link_to @event.organisation.name, organisation_path(@event.organisation) %>
+  <% end %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= link_to @event.url, @event.url %>
+</p>
+
+<p>
+  <b>Source:</b>
+  <%= @event.source %>
+</p>
+
+<p>
+  <b>Telephone:</b>
+  <%= @event.telephone %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @event.email %>
+</p>
+
+<p>
+  <b>People:</b>
+  <%= @event.people %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @event.notes %>
+</p>
+
+
+<%= link_to 'Back', root_path %>

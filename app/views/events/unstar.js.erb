@@ -1,0 +1,2 @@
+$("#event-<%= @event.id %> .star").html('<%=h render :partial => "link_star", :locals => { :event => @event } %>');
+$("#event-<%= @event.id %>").highlight();

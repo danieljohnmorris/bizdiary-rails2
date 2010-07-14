@@ -1,0 +1,6 @@
+<% unless person_signed_in? %>
+	<p><%= link_to_rpx "Login / Signup", person_session_url %> <span class="hide">(<%= link_to "retro sign in", new_person_session_url %> or <%= link_to "create an account", new_person_registration_url %>)</span></p>
+<% else %>
+	<p><span class="hide">Signed in as: </span><strong><%= current_person.email %></strong><br />
+	<%= link_to "Sign out?", destroy_person_session_url %></p>
+<% end %>

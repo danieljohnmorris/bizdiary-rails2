@@ -1,0 +1,3 @@
+$("#pubstate-<%= @event.id %>").html('<%=h render :partial => "link_hide", :locals => { :event => @event } %>');
+$("#pubcheck-<%= @event.id %> input").attr('checked', 'checked');
+$("#pubstate-<%= @event.id %>").parent().highlight();

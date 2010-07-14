@@ -1,0 +1,82 @@
+<%= render :partial => "admin/events/header" %>
+
+<p id="notice"><%= notice %></p>
+
+<p id="pubstate-<%= @event.id %>" class="option-bar">
+	<% if @event.published? %>
+		<%= render :partial => 'admin/events/link_hide', :locals => { :event => @event } %>
+	<% else %>
+		<%= render :partial => 'admin/events/link_publish', :locals => { :event => @event } %>
+	<% end %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @event.title.html_safe %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @event.description.html_safe %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @event.location.html_safe %> (<%= map_link(@event.location) %>)
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @event.start_date %>
+</p>
+
+<p>
+  <b>Organisation:</b>
+  <% if @event.organisation %>
+  <%= link_to @event.organisation.name.html_safe, admin_organisation_path(@event.organisation) %>
+  <% end %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= link_to @event.url, @event.url %>
+</p>
+
+<hr />
+
+<p><strong>Topic(s):</strong> <%= render :partial => "admin/events/topic", :collection => @event.topic_list, :as => :topic, :spacer_template => "shared/separator_comma" %></p>
+<p><strong>Event Type(s):</strong> <%= render :partial => "admin/events/topic", :collection => @event.type_list, :as => :topic, :spacer_template => "shared/separator_comma" %></p>
+<p><strong>Industry(s):</strong> <%= render :partial => "admin/events/topic", :collection => @event.industry_list, :as => :topic, :spacer_template => "shared/separator_comma" %></p>
+
+<hr />
+
+<p>
+  <b>Source:</b>
+  <%= @event.source.html_safe %>
+</p>
+
+<p>
+  <b>Telephone:</b>
+  <%= @event.telephone.html_safe %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @event.email.html_safe %>
+</p>
+
+<p>
+  <b>People:</b>
+  <%= @event.people.html_safe %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @event.notes.html_safe %>
+</p>
+
+<p class="option-bar">
+	<%= link_to 'Edit', edit_admin_event_path(@event), :class => "edit" %> |
+    <%= link_to 'Destroy', edit_admin_event_path(@event), :confirm => 'Are you sure?', :html => { :method => :delete }, :class => "delete" %> | 
+	<%= link_to 'Back', admin_events_path %>
+</p>

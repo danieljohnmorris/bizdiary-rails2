@@ -1,0 +1,5 @@
+<% unless admin_signed_in? %>
+	<p><%= link_to_rpx "Signin using RPX!", admin_session_url %></p>
+<% else %>
+	<p>[ADMIN] Signed in as: <strong><%= current_admin.email %></strong>, <%= link_to "Sign out?", destroy_admin_session_url %></p>
+<% end %>

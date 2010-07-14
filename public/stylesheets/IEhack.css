@@ -1,0 +1,25 @@
+/* CSS Document */
+
+#catfish {
+position: absolute;
+z-index: 100;
+overflow: hidden;
+}
+div#masthead {
+width:auto; /* ie throws horz scrollbars without this in this layout */
+}
+html, body {
+height:100%;
+overflow: hidden;
+width:auto;
+}
+
+div#zip {
+width: 100%;
+padding:0;
+margin:0;
+height: 100%;
+overflow: auto;
+position: relative;
+border:1px dashed red;
+}

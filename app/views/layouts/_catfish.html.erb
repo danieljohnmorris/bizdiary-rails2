@@ -1,0 +1,40 @@
+<% ### CATFISH STICKY FOOTER CODE FROM SITEPOINT: http://www.sitepoint.com/blogs/2005/10/18/the-catfish-part-1/
+%>
+<script type="text/javascript">
+<!--
+/* Stack up window.onload events using this function from Simon Willison - http://www.sitepoint.com/blog-post-view.php?id=171578 */
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      oldonload();
+      func();
+    }
+  }
+}
+
+function destroycatfish()
+{
+	var catfish = document.getElementById('catfish');
+	document.body.removeChild(catfish); /* clip catfish off the tree */
+	document.getElementsByTagName('html')[0].style.padding= '0'; /* reset the padding at the bottom */
+	return false;
+}
+function closeme()
+{
+	var closelink = document.getElementById('closeme');
+	closelink.onclick = destroycatfish;
+
+}
+addLoadEvent(function() {
+	closeme();
+});
+-->
+</script>
+
+<!--[if IE]>
+<link rel="stylesheet" href="/stylesheets/IEhack.css" type="text/css" />
+<script type="text/javascript" src="/javascripts/catfish.js"></script>
+<![endif]-->

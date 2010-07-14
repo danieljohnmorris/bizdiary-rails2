@@ -1,0 +1,138 @@
+body {
+	background: #eee;
+}
+
+#doc, #doc2, #doc3, #doc4 {
+	background: #fff;
+	padding: 0 10px 0 10px;
+}
+
+img.logo {
+	width: 400px;
+}
+
+#hd {
+	padding: 20px;
+}
+
+#mast h1 {
+	margin: 0;
+}
+	#strapline {
+		/*color: #545454;*/
+		color: #9a9a9a;
+		width: 400px;
+		border-top: 2px solid #eee;
+		padding: 5px 0 0 0;
+		line-height: 1em;
+		font-size: 1.4em;
+		text-align: justify;
+	}
+
+#user p {
+	text-align: right;
+	font-size: 1.2em;
+}
+	#user p a {
+	}
+		
+.hide {
+	display: none;
+}
+
+.events {
+}
+
+#messages {
+	padding: 10px;	
+}
+#messages .error, #messages .info, #messages .success {
+	padding: 10px;
+	border: 2px solid;	
+}
+	#messages .info {
+		background: #eee;
+		border-color: #ccc;
+	}
+	#messages .error {
+		background: #FFDFDF;
+		border-color: #F3AFB5;
+	}
+	#messages .success {
+		background: #C8FFBF;
+		border-color: #A2EF95;
+	}
+
+/* Event
+************************/	
+.event {
+	border-top:1px solid #E0DED6;
+	list-style:none outside none;
+	margin:0;
+	padding-top:10px;
+	overflow:hidden;
+}
+	.event:hover {
+		background-color: #FFFDED;
+	}
+	.event .title  {
+		font-size: 1.4em;
+		cursor: pointer;
+		color: #000;
+	}
+		.event .title a {
+			text-decoration: none;
+		}
+
+.expanded {
+}	
+
+/* Quick preview
+************************/
+.event .preview {
+	display: none;
+	background-color: #fff;
+	border: 6px solid #eee;
+	border-top: 0;
+	clear:both;
+	overflow:auto;
+	padding: 10px 0 10px 0;
+}
+/* Block-level proportions and macro-layout */
+	.event .preview .description
+	{
+		width: 350px;
+		float:left;
+		margin-left:20px;
+	}
+	.event .preview .comments {
+		width: 220px;
+		float:left;
+		margin-left: 20px; 
+	}
+		.event .preview .comments .commentator {
+			font-size:0.9em;
+			text-align:right;
+		}
+	.event .preview .others  {
+		margin-right: 20px;
+		width:200px;
+		float:right;
+	}
+		.event .preview h4 {
+			font-size: 1.2em;
+			border-bottom: 1px solid #ddd;
+		}
+
+
+/* Pagination
+************************/
+
+.pagination {
+	text-align: center;
+	border: 2px solid #DFEDFF;
+	background-color: #EFF6FF;
+	margin: 25px 0 25px 0;
+	padding: 10px;
+	font-size: 1.3em;
+}

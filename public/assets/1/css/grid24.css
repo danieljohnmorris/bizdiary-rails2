@@ -1,0 +1,124 @@
+
+/* ------------------------------------------------12 Col  Grid system */
+
+.grid1col {
+	width:30px;
+}
+
+.grid2col {
+	width:70px;
+}
+
+.grid3col {
+	width:110px;
+}
+
+.grid4col {
+	width:150px;
+}
+
+.grid5col {
+	width:190px;
+}
+
+.grid6col {
+	width:230px;
+}
+
+.grid7col {
+	width:270px;
+}
+
+.grid8col {
+	width:310px;
+}
+
+.grid9col {
+	width:350px;
+}
+
+.grid10col {
+	width:390px;
+}
+
+.grid11col {
+	width:430px;
+}
+
+.grid12col {
+	width:470px;
+}
+
+.grid13col {
+	width:510px;
+}
+
+.grid14col {
+	width:550px;
+}
+
+.grid15col {
+	width:590px;
+}
+
+.grid16col {
+	width:630px;
+}
+
+.grid17col {
+	width:670px;
+}
+
+.grid18col {
+	width:710px;
+}
+
+.grid19col {
+	width:750px;
+}
+
+.grid20col {
+	width:790px;
+}
+
+.grid21col {
+	width:830px;
+}
+
+.grid22col {
+	width:870px;
+}
+
+.grid23col {
+	width:910px;
+}
+
+.grid24col {
+	width:930px;
+}
+
+.marginleft {
+	margin-left:10px;
+}
+
+.marginright {
+	margin-right:10px;
+}
+
+/* ------------------------------------------------Div Modifiers */
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clearboth {
+	clear: both;
+}
+
+.alignright {
+	text-align: right;
+}

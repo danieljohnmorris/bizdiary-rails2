@@ -1,0 +1,3 @@
+<h1>Your starred events (<%= link_to "Show all events", root_path %>)</h1>
+
+<%= render :partial => 'events/events_list', :locals => { :events => @starred_events } %>

@@ -1,0 +1,177 @@
+body {
+	background-color: #fafaf7;
+	background-image:url(../images/024c.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+ul.event-list {
+	margin: 0px;
+	color: #adaca6;		
+}
+
+ul.event-list li {
+	list-style: none;
+	list-style-image: none;
+	list-style-type: none;
+	margin: 0px;
+	border-top: 1px #e0ded6 solid; 
+	padding-top: 10px;
+}
+
+ul.event-list li ul li{
+	border-top: none;
+	padding: 0px;
+}
+
+ul.tags a {
+	border: 1px solid #e0ded6;
+	letter-spacing: 0.08em;
+	padding: 2px 4px;
+	color: #adaca6;
+	font-size: 0.75em;
+	font-weight: bold;
+	text-decoration: none;
+	margin: 0 5px 5px 0;
+}
+
+ul.tags a:hover {
+	background-color: white;
+	color: #7a7a76;
+}
+
+/* ul.tags a:active, .tags a.primary-tag:active {
+	background-color: #f9fd80;
+} */
+
+.tags a.primary-tag:hover {
+	background: #fdbe80;
+	color: #383838;
+} 
+
+.tags a.primary-tag {
+	color: #383838;
+	background-color: #fd9380;
+	border: 1px solid white;
+}
+
+a.organiser {
+	color: #696761;
+	/*text-decoration: none;*/
+	font-weight: bold;
+}
+
+a.organiser:hover {
+	text-decoration: underline;
+}
+
+
+
+
+.event-list h3 {
+	color: #8c8c8c;
+	font-size: 1.4em;
+}
+
+a.attend-button, a.share-button {
+	background-position: top left;
+	display: block;
+	height: 21px;
+	letter-spacing: 0.08em;	
+	text-decoration: none;
+	font-weight: bold;
+	text-indent: 8px;
+	font-size: 0.9em;
+	line-height: 20px;
+	cursor: pointer; 
+}
+a.attend-button {
+	color: white;
+	background-image: url(../images/attend-btn.gif);
+}
+a.share-button {
+	margin-top: 3px;
+	color: #adaca6;
+	background-image: url(../images/share-btn.gif);
+}
+
+.attend-button:hover, a.share-button:hover {
+	background-position: 0px 21px;
+}
+
+.comments {
+}
+
+
+
+.small {
+	letter-spacing: 0.04em;
+}
+
+.star {
+	text-align: center;
+	border: 1px solid #e0ded6;
+	width: 22px;
+	padding: 3px;
+	-moz-border-radius: 10px; /* FF1+ */
+	-webkit-border-radius: 10px; /* Saf3+, Chrome */
+	border-radius: 10px; /* Opera 10.5, IE 9 */		
+}
+
+.star:hover {
+	background-color: white;
+}
+
+.star a {
+	background-image: url(../images/star.gif);
+	background-position: center top;
+	background-repeat: no-repeat;
+	height: 20px;
+	width: 22px;
+	display: block;
+	padding-top: 20px;
+	color: #cfccc0;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.star a.unstarred {
+	background-position: 0px -71px;
+}
+
+
+.small-star {
+	text-align: center;
+	border: 1px solid #e0ded6;
+	width: 22px;
+	margin-right: 6px;
+	font-size:12px;
+	padding:4px 0 0;
+	-moz-border-radius: 5px; /* FF1+ */
+	-webkit-border-radius: 5px; /* Saf3+, Chrome */
+	border-radius: 5px; /* Opera 10.5, IE 9 */		
+	text-indent:3px;
+}
+
+.small-star:hover {
+	background-color: white;
+}
+
+.small-star a {
+	background-image: url(../images/small-star.gif);
+	background-position: center top;
+	background-repeat: no-repeat;
+	width: 20px;
+	display: block;
+	padding-top: 9px;
+	color: #cfccc0;
+	text-decoration: none;
+}
+
+.small-star a.unstarred {
+	background-position: center -46px;
+}
+
+.subtle {
+	color: #ADACA6;
+}

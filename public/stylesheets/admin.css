@@ -1,0 +1,48 @@
+/* ADMIN STYLES */
+
+ul.big {
+	margin: 0 0 20px 0;
+	font-size: 1.5em;
+	line-height: 1.5em;
+}
+
+#bulk-add-events {
+	background-color: #eee;
+	padding: 5px 0 15px 15px;
+}
+
+a.hide:link,
+a.hide:visited,
+a.delete:link,
+a.delete:visited {
+	color: red;
+}
+
+a.publish:link,
+a.publish:visited,
+a.new:link,
+a.new:visited {
+	color: green;
+}
+
+a.edit:link,
+a.edit:visited {
+	color: orange;
+}
+
+.option-bar {
+	font-size: 1.3em;
+	padding: 10px;
+	background-color: #eee;
+	border: 2px solid #ddd;
+}
+
+
+table.admin tr td ul {
+	margin: 0 0 0 10px;
+	padding: 0;
+}
+	table.admin tr td ul li {
+		margin: 0 0 0 10px;
+		padding: 0;
+	}

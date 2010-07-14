@@ -1,0 +1,2 @@
+$("#event-<%= @event.id %> .star").html('<%=h render :partial => "link_unstar", :locals => { :event => @event } %>');
+$("#event-<%=CGI.escape(@event.title)%>").highlight();

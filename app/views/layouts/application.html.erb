@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd"
+ xmlns:fb="http://www.facebook.com/2008/fbml">
+<html>
+<head>
+   	<title>The Business Diary</title>
+	
+	<link rel="stylesheet" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
+   	<link rel="stylesheet" type="text/css" href="<%= assets %>/css/grid24.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<%= assets %>/css/j-base.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<%= assets %>/css/style.css" media="screen" /> 
+	
+	<%= stylesheet_link_tag "application2" %>
+	
+	<%= javascript_include_tag 'jquery-1.4.1-min', 'rails', 'application' %>
+	<%= javascript_include_tag 'jsl', 'rails', 'application' %>
+  
+	<script type="text/javascript" src="/fancybox/jquery.easing-1.3.pack.js"></script>
+	<script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
+	<link rel="stylesheet" href="/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen" />
+
+
+	<script type="text/javascript">
+	  //RPXNOW.loadAndRun(['Social'], function () {
+	  //  var activity = new RPXNOW.Social.Activity(
+	  //     "Share your comment",
+	  //     "commented on 'Like My New Perfume?' on cuteoverload.com",
+	  //     "http://cuteoverload.com/2009/10/26/like-my-new-perfume/");
+	  //  RPXNOW.Social.publishActivity(activity);
+	  //});
+	</script>
+		
+ 	<%
+	#= csrf_meta_tag 
+	%>
+	<%= yield :head %>
+</head>
+<body>
+<div id="fb-root"></div>
+<script>window.fbAsyncInit = function() { FB.init({ appId: "127165787323577", xfbml: true }); }; (function() { var e = document.createElement('script'); e.async = true; e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js'; document.getElementById('fb-root').appendChild(e); }());</script>
+
+<div id="doc4" class="yui-t7">
+	<div id="hd" role="banner">
+        <div class="yui-g">
+           <div class="yui-u first" id="mast">
+				<h1>
+					<a id="go-home" href="/" title="Back to the homepage" name="go-home">
+						<img class="logo" alt="The Business Diary" src="/images/logo.png">
+					</a>
+				</h1>
+				<p id="strapline">Meet. Connect. Learn.</p>
+           </div>
+           <div class="yui-u" id="user">
+				<%= render :partial => "layouts/auth_person" %>
+           </div>
+        </div>
+	</div>
+   	<div id="bd" role="main">
+		<div class="yui-g">
+	        <div id="messages">
+				
+				<%
+				# DEVISE MESSAGES
+
+				#<p class='info'>This is an info message</p>
+				#<p class='error'>This is an error message</p>
+				#<p class='success'>This is an success message</p>
+				%>
+																
+	          <% if notice -%>
+	          <p class='success'>
+	            <%=h notice %>
+	          </p>
+	          <% end -%>
+
+	          <% if alert -%>
+	          <p class='error'>
+	            <%=h alert %>
+	          </p>
+	          <% end -%>
+
+				<%
+				# FLASH MESSAGES
+				%>
+		
+	          <% if flash[:error] -%>
+	          <p class='error'>
+	            <%=h flash[:error] %>
+	          </p>
+	          <% end -%>
+          
+	          <% if flash[:success] -%>
+	          <p class='success'>
+	            <%=h flash[:success] %>
+	          </p>
+	          <% end -%>
+          
+	          <% if flash[:info] -%>
+	          <p class='info'>
+	            <%=h flash[:info] %>
+	          </p>
+	          <% end -%>
+	        </div>
+        
+	        <%= yield %>
+		</div>
+	</div>
+
+   <div id="ft" role="contentinfo"><p>Footer</p></div>
+</div>
+<%= render :partial => 'layouts/uservoice' %>
+<%= render :partial => 'layouts/google_analytics' %>
+
+<script type="text/javascript">
+  var rpxJsHost = (("https:" == document.location.protocol) ? "https://" : "http://static.");
+  document.write(unescape("%3Cscript src='" + rpxJsHost +
+"rpxnow.com/js/lib/rpx.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+  RPXNOW.overlay = true;
+  RPXNOW.language_preference = 'en';
+  RPXNOW.init({appId: 'llmkkabailmhopcajpmc', xdReceiver: '/rpx_xdcomm.html'});
+</script>
+</body>
+</html>
