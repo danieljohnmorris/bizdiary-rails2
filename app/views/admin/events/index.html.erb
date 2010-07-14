@@ -21,7 +21,7 @@ $(function() {
 
 <h1>Listing <%= @view %> events (Switch to <% if @view == "past" %><%= link_to "upcoming events", "?view=upcoming" %><% else %><%= link_to "past events", "?view=past" %><% end %>?)</h1>
 
-<form action="<%= admin_events_bulk_publish_path %>" method="get">
+<form action="<%= bulk_publish_admin_events_path %>" method="get">
 	<%= will_paginate @events %>
 	<%= render :partial => "action_bar" %>
 
