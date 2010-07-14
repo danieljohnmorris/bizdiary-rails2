@@ -1,6 +1,6 @@
 class Admin::EventsController < ApplicationController
   before_filter :authenticate_admin!
-  respond_to :html, :xml, :js
+#  respond_to :html, :xml, :js
   layout 'admin'
   
   # GET /admin_events
