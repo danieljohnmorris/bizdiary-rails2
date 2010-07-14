@@ -1,3 +1,5 @@
+require 'fastercsv'
+
 class Admin::EventsController < ApplicationController
   before_filter :authenticate_admin!
 #  respond_to :html, :xml, :js
@@ -135,7 +137,7 @@ class Admin::EventsController < ApplicationController
       flash[:success]="CSV import successful, #{saved_events.length} events ingested"
     end
       
-    redirect_to admin_path
+    redirect_to admin_index_path
   end
 
   # GET /admin/events/hide
