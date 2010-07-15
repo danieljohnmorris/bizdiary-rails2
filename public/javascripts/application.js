@@ -10,6 +10,14 @@ $(function() {
 		'transitionOut'		: 'none',				
 		'type'				: 'iframe'			
 	});
+		$(".event .map-link").fancybox({
+			'width'				: '90%',				
+			'height'			: '90%',				
+			'autoScale'			: true,				
+			'transitionIn'		: 'none',			
+			'transitionOut'		: 'none',				
+			'type'				: 'iframe'			
+		});
 		
 	// Highlight starred on hover!
 	$(".star a.starred").hover(function() {
@@ -34,7 +42,7 @@ $(function() {
 	};
 	
 	$('.event .title').toggle(function(event){
-		$('.comments', $(this).parent()).html('<fb:comments xid="event-1234" numposts="3" width="300"></fb:comments>');
+		$('.comments', $(this).parent()).html('<fb:comments xid="' + $(this).parent().attr("id") + '" numposts="3" width="300"></fb:comments>');
 		//alert(this.parent().id.replace("event", "comments"));
 		FB.XFBML.parse(document.getElementById($(this).parent().attr("id").replace("event", "comments")));
 		$(".comments", $(this).parent()).show();
