@@ -23,7 +23,11 @@ class Event < ActiveRecord::Base
   acts_as_taggable_on :saves, :topics, :types, :industries
   
   def combined_tags
-    {:topic => self.topics} + {:type => self.types} + {:industry => self.industries}
+    topics = {:topic => self.topics.to_a}
+    event_types = {:type => self.types.to_a}
+    industries = {:industry => self.industries.to_a}
+    
+    topics.merge(event_types.merge(industries)) # return as 1 hash
   end
 
   # def industry_tags   
