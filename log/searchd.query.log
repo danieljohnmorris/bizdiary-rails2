@@ -1,0 +1,7 @@
+[Thu Jul 15 16:30:22.939 2010] 0.042 sec [all/2/rel 1 (0,20)] [event_core] fun
+[Thu Jul 15 16:30:26.674 2010] 0.010 sec [all/2/rel 2 (0,20)] [event_core] times
+[Thu Jul 15 16:40:44.417 2010] 0.007 sec [scan/2/rel 2 (0,20)] [event_core]
+[Thu Jul 15 16:40:45.184 2010] 0.007 sec [scan/2/rel 2 (0,20)] [event_core]
+[Thu Jul 15 16:40:46.433 2010] 0.007 sec [scan/2/rel 2 (0,20)] [event_core]
+[Thu Jul 15 16:40:49.499 2010] 0.007 sec [scan/2/rel 2 (0,20)] [event_core]
+[Thu Jul 15 16:42:53.105 2010] 0.008 sec [scan/2/rel 2 (0,20)] [event_core]

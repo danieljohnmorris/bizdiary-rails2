@@ -2878,3 +2878,722 @@ ActionController::UnknownAction (No action responded to ingest. Actions: index, 
   /opt/local/lib/ruby/1.8/webrick/server.rb:82:in `start'
 
 Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (5.6ms)[0m   [0mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW KEYS FROM `schema_migrations`[0m
+  [4;35;1mSQL (15.2ms)[0m   [0mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateOrganisations (20100524112921)
+  [4;36;1mSQL (3.3ms)[0m   [0;1mCREATE TABLE `organisations` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `url` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (9.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100524112921')[0m
+Migrating to CreateEvents (20100524123849)
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE `events` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `location` text, `start_time` datetime, `end_time` datetime, `url` varchar(255), `telephone` varchar(255), `email` varchar(255), `people` text, `notes` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (51.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100524123849')[0m
+Migrating to AddOrganisationRefToEvents (20100524130057)
+  [4;36;1mSQL (159.5ms)[0m   [0;1mALTER TABLE `events` ADD `organisation_id` int(11)[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100524130057')[0m
+Migrating to DropEndTimeFromEvents (20100525110351)
+  [4;36;1mSQL (92.2ms)[0m   [0;1mALTER TABLE `events` DROP `end_time`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100525110351')[0m
+Migrating to ChangeEventToIcalformat (20100525185618)
+  [4;36;1mSQL (1.5ms)[0m   [0;1mSHOW FIELDS FROM `events`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW COLUMNS FROM `events` LIKE 'start_time'[0m
+  [4;36;1mSQL (96.3ms)[0m   [0;1mALTER TABLE `events` CHANGE `start_time` `start_date` datetime DEFAULT NULL[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100525185618')[0m
+Migrating to AddSourceToEvents (20100526141038)
+  [4;36;1mSQL (32.4ms)[0m   [0;1mALTER TABLE `events` ADD `source` varchar(255)[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100526141038')[0m
+Migrating to DeviseCreatePeople (20100609130923)
+  [4;36;1mSQL (5.1ms)[0m   [0;1mCREATE TABLE `people` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(128) DEFAULT '' NOT NULL, `password_salt` varchar(255) DEFAULT '' NOT NULL, `confirmation_token` varchar(255), `confirmed_at` datetime, `confirmation_sent_at` datetime, `reset_password_token` varchar(255), `remember_token` varchar(255), `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW KEYS FROM `people`[0m
+  [4;36;1mSQL (233.9ms)[0m   [0;1mCREATE UNIQUE INDEX `index_people_on_email` ON `people` (`email`)[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW KEYS FROM `people`[0m
+  [4;36;1mSQL (190.9ms)[0m   [0;1mCREATE UNIQUE INDEX `index_people_on_confirmation_token` ON `people` (`confirmation_token`)[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW KEYS FROM `people`[0m
+  [4;36;1mSQL (100.1ms)[0m   [0;1mCREATE UNIQUE INDEX `index_people_on_reset_password_token` ON `people` (`reset_password_token`)[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100609130923')[0m
+Migrating to AddSessionsTable (20100610141227)
+  [4;36;1mSQL (3.4ms)[0m   [0;1mCREATE TABLE `sessions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `session_id` varchar(255) NOT NULL, `data` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `sessions`[0m
+  [4;36;1mSQL (138.1ms)[0m   [0;1mCREATE INDEX `index_sessions_on_session_id` ON `sessions` (`session_id`)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW KEYS FROM `sessions`[0m
+  [4;36;1mSQL (97.9ms)[0m   [0;1mCREATE INDEX `index_sessions_on_updated_at` ON `sessions` (`updated_at`)[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100610141227')[0m
+Migrating to CreateAdmins (20100610151229)
+  [4;36;1mSQL (3.3ms)[0m   [0;1mCREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(128) DEFAULT '' NOT NULL, `password_salt` varchar(255) DEFAULT '' NOT NULL, `failed_attempts` int(11) DEFAULT 0, `unlock_token` varchar(255), `locked_at` datetime, `sign_in_count` int(11) DEFAULT 0, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (147.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100610151229')[0m
+Migrating to AddPublishFlagToEvents (20100615163642)
+  [4;36;1mSQL (33.2ms)[0m   [0;1mALTER TABLE `events` ADD `publish_state` int(11) DEFAULT 0[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100615163642')[0m
+Migrating to ActsAsTaggableOnMigration (20100617142031)
+  [4;36;1mSQL (2.5ms)[0m   [0;1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB[0m
+  [4;35;1mSQL (108.7ms)[0m   [0mCREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `tagger_id` int(11), `tagger_type` varchar(255), `context` varchar(255), `created_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW KEYS FROM `taggings`[0m
+  [4;35;1mSQL (154.6ms)[0m   [0mCREATE INDEX `index_taggings_on_tag_id` ON `taggings` (`tag_id`)[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `taggings`[0m
+  [4;35;1mSQL (88.2ms)[0m   [0mCREATE INDEX `index_taggings_on_taggable_id_and_taggable_type_and_context` ON `taggings` (`taggable_id`, `taggable_type`, `context`)[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100617142031')[0m
+Migrating to AddRpxIdentifierToPeople (20100621081039)
+  [4;35;1mSQL (63.8ms)[0m   [0mALTER TABLE `people` ADD `rpx_identifier` varchar(255)[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100621081039')[0m
+Migrating to AddUuidToEventsAndOrgs (20100629200210)
+  [4;35;1mSQL (82.3ms)[0m   [0mALTER TABLE `events` ADD `uuid` varchar(255)[0m
+  [4;36;1mSQL (129.0ms)[0m   [0;1mALTER TABLE `organisations` ADD `uuid` varchar(255)[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100629200210')[0m
+Migrating to AddScraperFieldsToEvents (20100630180918)
+  [4;36;1mSQL (28.3ms)[0m   [0;1mALTER TABLE `events` ADD `cost` varchar(255)[0m
+  [4;35;1mSQL (193.5ms)[0m   [0mALTER TABLE `events` ADD `intended_audience` varchar(255)[0m
+  [4;36;1mSQL (9.5ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100630180918')[0m
+Migrating to AddDescriptionToOrganisation (20100705113337)
+  [4;35;1mSQL (160.9ms)[0m   [0mALTER TABLE `organisations` ADD `description` text[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100705113337')[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `admins`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mdescribe `admins`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `admins`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `events`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mdescribe `events`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `events`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `organisations`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `organisations`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `organisations`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `people`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW KEYS FROM `people`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `sessions`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `sessions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW KEYS FROM `sessions`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `taggings`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `taggings`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW KEYS FROM `taggings`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW FIELDS FROM `tags`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `tags`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `tags`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mEvent Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `events`[0m
+  [4;35;1mOrganisation Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `organisations`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT @@global.sql_mode, @@session.sql_mode;[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mEvent Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `events`[0m
+  [4;35;1mOrganisation Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `organisations`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mEvent Create (0.4ms)[0m   [0;1mINSERT INTO `events` (`start_date`, `location`, `created_at`, `title`, `organisation_id`, `cost`, `notes`, `updated_at`, `publish_state`, `uuid`, `url`, `intended_audience`, `description`, `telephone`, `people`, `source`, `email`) VALUES('2010-07-15 16:28:12', 'Here!', '2010-07-15 16:28:12', 'Fun times', NULL, NULL, NULL, '2010-07-15 16:28:12', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)[0m
+  [4;35;1mTagging Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `taggings`[0m
+  [4;36;1mTag Load (0.5ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 1) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'saves'))) [0m
+  [4;35;1mTag Load (0.7ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 1) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'saves'))) [0m
+  [4;36;1mTagging Load (1.0ms)[0m   [0;1mSELECT * FROM `taggings` WHERE (((`taggings`.`context` = 'saves' AND `taggings`.`tag_id` IN (NULL) AND `taggings`.`tagger_id` IS NULL AND `taggings`.`tagger_type` IS NULL) AND (`taggings`.taggable_id = 1 AND `taggings`.taggable_type = 'Event')) AND (`taggings`.taggable_id = 1 AND `taggings`.taggable_type = 'Event')) [0m
+  [4;35;1mTag Load (0.2ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 1) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'topics'))) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 1) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'topics'))) [0m
+  [4;35;1mTagging Load (0.4ms)[0m   [0mSELECT * FROM `taggings` WHERE (((`taggings`.`context` = 'topics' AND `taggings`.`tag_id` IN (NULL) AND `taggings`.`tagger_id` IS NULL AND `taggings`.`tagger_type` IS NULL) AND (`taggings`.taggable_id = 1 AND `taggings`.taggable_type = 'Event')) AND (`taggings`.taggable_id = 1 AND `taggings`.taggable_type = 'Event')) [0m
+  [4;36;1mTag Load (0.2ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 1) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'types'))) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 1) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'types'))) [0m
+  [4;36;1mTagging Load (0.5ms)[0m   [0;1mSELECT * FROM `taggings` WHERE (((`taggings`.`context` = 'types' AND `taggings`.`tag_id` IN (NULL) AND `taggings`.`tagger_id` IS NULL AND `taggings`.`tagger_type` IS NULL) AND (`taggings`.taggable_id = 1 AND `taggings`.taggable_type = 'Event')) AND (`taggings`.taggable_id = 1 AND `taggings`.taggable_type = 'Event')) [0m
+  [4;35;1mTag Load (0.4ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 1) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'industries'))) [0m
+  [4;36;1mTag Load (0.1ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 1) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'industries'))) [0m
+  [4;35;1mTagging Load (0.0ms)[0m   [0mSELECT * FROM `taggings` WHERE (((`taggings`.`context` = 'industries' AND `taggings`.`tag_id` IN (NULL) AND `taggings`.`tagger_id` IS NULL AND `taggings`.`tagger_type` IS NULL) AND (`taggings`.taggable_id = 1 AND `taggings`.taggable_type = 'Event')) AND (`taggings`.taggable_id = 1 AND `taggings`.taggable_type = 'Event')) [0m
+  [4;36;1mSQL (3.9ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mBEGIN[0m
+  [4;36;1mEvent Create (0.5ms)[0m   [0;1mINSERT INTO `events` (`start_date`, `location`, `created_at`, `title`, `organisation_id`, `cost`, `notes`, `updated_at`, `publish_state`, `uuid`, `url`, `intended_audience`, `description`, `telephone`, `people`, `source`, `email`) VALUES('2010-07-15 16:28:28', 'Here!', '2010-07-15 16:28:28', 'Hard times', NULL, NULL, NULL, '2010-07-15 16:28:28', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)[0m
+  [4;35;1mTag Load (0.1ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 2) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'saves'))) [0m
+  [4;36;1mTag Load (0.1ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 2) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'saves'))) [0m
+  [4;35;1mTagging Load (0.5ms)[0m   [0mSELECT * FROM `taggings` WHERE (((`taggings`.`context` = 'saves' AND `taggings`.`tag_id` IN (NULL) AND `taggings`.`tagger_id` IS NULL AND `taggings`.`tagger_type` IS NULL) AND (`taggings`.taggable_id = 2 AND `taggings`.taggable_type = 'Event')) AND (`taggings`.taggable_id = 2 AND `taggings`.taggable_type = 'Event')) [0m
+  [4;36;1mTag Load (0.5ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 2) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'topics'))) [0m
+  [4;35;1mTag Load (0.2ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 2) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'topics'))) [0m
+  [4;36;1mTagging Load (0.8ms)[0m   [0;1mSELECT * FROM `taggings` WHERE (((`taggings`.`context` = 'topics' AND `taggings`.`tag_id` IN (NULL) AND `taggings`.`tagger_id` IS NULL AND `taggings`.`tagger_type` IS NULL) AND (`taggings`.taggable_id = 2 AND `taggings`.taggable_type = 'Event')) AND (`taggings`.taggable_id = 2 AND `taggings`.taggable_type = 'Event')) [0m
+  [4;35;1mTag Load (0.2ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 2) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'types'))) [0m
+  [4;36;1mTag Load (0.1ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 2) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'types'))) [0m
+  [4;35;1mTagging Load (0.5ms)[0m   [0mSELECT * FROM `taggings` WHERE (((`taggings`.`context` = 'types' AND `taggings`.`tag_id` IN (NULL) AND `taggings`.`tagger_id` IS NULL AND `taggings`.`tagger_type` IS NULL) AND (`taggings`.taggable_id = 2 AND `taggings`.taggable_type = 'Event')) AND (`taggings`.taggable_id = 2 AND `taggings`.taggable_type = 'Event')) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 2) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'industries'))) [0m
+  [4;35;1mTag Load (0.3ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 2) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'industries'))) [0m
+  [4;36;1mTagging Load (0.4ms)[0m   [0;1mSELECT * FROM `taggings` WHERE (((`taggings`.`context` = 'industries' AND `taggings`.`tag_id` IN (NULL) AND `taggings`.`tagger_id` IS NULL AND `taggings`.`tagger_type` IS NULL) AND (`taggings`.taggable_id = 2 AND `taggings`.taggable_type = 'Event')) AND (`taggings`.taggable_id = 2 AND `taggings`.taggable_type = 'Event')) [0m
+  [4;35;1mSQL (5.4ms)[0m   [0mCOMMIT[0m
+  [4;32;1mSphinx[0m   [0mQuerying: 'fun'[0m
+  [4;32;1mSphinx[0m   [0mQuerying: 'fun'[0m
+  [4;32;1mSphinx (0.055365s)[0m   [0mFound 1 results[0m
+  [4;36;1mEvent Load (0.1ms)[0m   [0;1mSELECT * FROM `events` WHERE (`events`.`id` IN (1)) [0m
+  [4;32;1mSphinx[0m   [0mQuerying: 'times'[0m
+  [4;32;1mSphinx (0.018795s)[0m   [0mFound 2 results[0m
+  [4;35;1mEvent Load (0.2ms)[0m   [0mSELECT * FROM `events` WHERE (`events`.`id` IN (1,2)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 10.0.2.2 at 2010-07-15 16:31:33) [GET]
+  [4;36;1mEvent Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `events`[0m
+  [4;35;1mOrganisation Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `organisations`[0m
+  [4;36;1mEvent Load (1.0ms)[0m   [0;1mSELECT * FROM `events` WHERE ((start_date >= NOW()) AND (publish_state = 1)) ORDER BY start_date ASC LIMIT 0, 30[0m
+Rendering template within layouts/application
+Rendering home/index
+Rendered events/_events_list (26.1ms)
+Rendered layouts/_auth_person (4.7ms)
+Rendered layouts/_uservoice (3.4ms)
+Rendered layouts/_google_analytics (4.1ms)
+Completed in 478ms (View: 273, DB: 3) | 200 OK [http://localhost/home]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing EventsController#show (for 10.0.2.2 at 2010-07-15 16:34:18) [GET]
+  Parameters: {"id"=>"search"}
+  [4;35;1mEvent Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `events`[0m
+  [4;36;1mOrganisation Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `organisations`[0m
+  [4;35;1mEvent Load (1.2ms)[0m   [0mSELECT * FROM `events` WHERE (`events`.`id` = 0) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Event with ID=search):
+  app/controllers/events_controller.rb:11:in `show'
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (190.7ms)
+Rendered rescues/_request_and_response (1.3ms)
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 10.0.2.2 at 2010-07-15 16:36:00) [GET]
+
+ActionController::RoutingError (No route matches "/events/search" with {:method=>:get}):
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 10.0.2.2 at 2010-07-15 16:36:02) [GET]
+
+ActionController::RoutingError (No route matches "/events/search" with {:method=>:get}):
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 10.0.2.2 at 2010-07-15 16:36:03) [GET]
+
+ActionController::RoutingError (No route matches "/events/search" with {:method=>:get}):
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 10.0.2.2 at 2010-07-15 16:36:10) [GET]
+
+ActionController::RoutingError (No route matches "/events/search" with {:method=>:get}):
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 10.0.2.2 at 2010-07-15 16:36:11) [GET]
+
+ActionController::RoutingError (No route matches "/events/search" with {:method=>:get}):
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 10.0.2.2 at 2010-07-15 16:36:11) [GET]
+
+ActionController::RoutingError (No route matches "/events/search" with {:method=>:get}):
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 10.0.2.2 at 2010-07-15 16:36:27) [GET]
+
+ActionController::RoutingError (No route matches "/events/search" with {:method=>:get}):
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 10.0.2.2 at 2010-07-15 16:36:29) [GET]
+
+ActionController::RoutingError (No route matches "/events/search" with {:method=>:get}):
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 10.0.2.2 at 2010-07-15 16:36:30) [GET]
+
+ActionController::RoutingError (No route matches "/events/search" with {:method=>:get}):
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing EventsController#show (for 10.0.2.2 at 2010-07-15 16:38:24) [GET]
+  Parameters: {"id"=>"search"}
+  [4;36;1mEvent Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `events`[0m
+  [4;35;1mOrganisation Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `organisations`[0m
+  [4;36;1mEvent Load (0.3ms)[0m   [0;1mSELECT * FROM `events` WHERE (`events`.`id` = 0) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Event with ID=search):
+  app/controllers/events_controller.rb:11:in `show'
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (69.7ms)
+Rendered rescues/_request_and_response (1.8ms)
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing EventsController#show (for 10.0.2.2 at 2010-07-15 16:38:35) [GET]
+  Parameters: {"id"=>"search"}
+  [4;35;1mEvent Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `events`[0m
+  [4;36;1mOrganisation Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `organisations`[0m
+  [4;35;1mEvent Load (1.1ms)[0m   [0mSELECT * FROM `events` WHERE (`events`.`id` = 0) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Event with ID=search):
+  app/controllers/events_controller.rb:11:in `show'
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (155.6ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing EventsController#show (for 10.0.2.2 at 2010-07-15 16:38:36) [GET]
+  Parameters: {"id"=>"search"}
+  [4;36;1mEvent Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `events`[0m
+  [4;35;1mOrganisation Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `organisations`[0m
+  [4;36;1mEvent Load (0.5ms)[0m   [0;1mSELECT * FROM `events` WHERE (`events`.`id` = 0) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Event with ID=search):
+  app/controllers/events_controller.rb:11:in `show'
+  warden (0.10.7) lib/warden/manager.rb:35:in `call'
+  warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+  warden (0.10.7) lib/warden/manager.rb:34:in `call'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (41.5ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing EventsController#search (for 10.0.2.2 at 2010-07-15 16:40:44) [GET]
+  [4;36;1mEvent Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `events`[0m
+  [4;35;1mOrganisation Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `organisations`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+Rendering template within layouts/application
+Rendering events/search
+  [4;32;1mSphinx[0m   [0mQuerying: ''[0m
+  [4;32;1mSphinx (0.014484s)[0m   [0mFound 2 results[0m
+  [4;35;1mEvent Load (0.3ms)[0m   [0mSELECT * FROM `events` WHERE (`events`.`id` IN (1,2)) [0m
+
+ActionView::TemplateError (undefined method `weeks_in_future_of' for #<ActionView::Base:0xb659d934>) on line #4 of app/views/events/_events_list.html.erb:
+1: <div id="wrap" class="events">
+2:   <% unless events.empty? %>
+3:     <ul class="events-list">
+4:     	<%= raw render_events events %>
+5:   	</ul>
+6:   <% else %>
+7:   	<p class="info">Oops, couldn't find any events. Try being less specific about the type of event.</p>
+
+    app/helpers/events_helper.rb:46:in `render_week'
+    app/helpers/events_helper.rb:25:in `render_events'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `each'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `send'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `method_missing'
+    app/helpers/events_helper.rb:20:in `render_events'
+    app/views/events/_events_list.html.erb:4
+    app/views/events/search.erb:13
+    warden (0.10.7) lib/warden/manager.rb:35:in `call'
+    warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+    warden (0.10.7) lib/warden/manager.rb:34:in `call'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (180.9ms)
+Rendered rescues/_request_and_response (2.9ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing EventsController#search (for 10.0.2.2 at 2010-07-15 16:40:45) [GET]
+  [4;36;1mEvent Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `events`[0m
+  [4;35;1mOrganisation Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `organisations`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW TABLES[0m
+Rendering template within layouts/application
+Rendering events/search
+  [4;32;1mSphinx[0m   [0mQuerying: ''[0m
+  [4;32;1mSphinx (0.014297s)[0m   [0mFound 2 results[0m
+  [4;35;1mEvent Load (0.0ms)[0m   [0mSELECT * FROM `events` WHERE (`events`.`id` IN (1,2)) [0m
+
+ActionView::TemplateError (undefined method `weeks_in_future_of' for #<ActionView::Base:0xb69ef7bc>) on line #4 of app/views/events/_events_list.html.erb:
+1: <div id="wrap" class="events">
+2:   <% unless events.empty? %>
+3:     <ul class="events-list">
+4:     	<%= raw render_events events %>
+5:   	</ul>
+6:   <% else %>
+7:   	<p class="info">Oops, couldn't find any events. Try being less specific about the type of event.</p>
+
+    app/helpers/events_helper.rb:46:in `render_week'
+    app/helpers/events_helper.rb:25:in `render_events'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `each'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `send'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `method_missing'
+    app/helpers/events_helper.rb:20:in `render_events'
+    app/views/events/_events_list.html.erb:4
+    app/views/events/search.erb:13
+    warden (0.10.7) lib/warden/manager.rb:35:in `call'
+    warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+    warden (0.10.7) lib/warden/manager.rb:34:in `call'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (61.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing EventsController#search (for 10.0.2.2 at 2010-07-15 16:40:46) [GET]
+  [4;36;1mEvent Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `events`[0m
+  [4;35;1mOrganisation Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `organisations`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+Rendering template within layouts/application
+Rendering events/search
+  [4;32;1mSphinx[0m   [0mQuerying: ''[0m
+  [4;32;1mSphinx (0.015727s)[0m   [0mFound 2 results[0m
+  [4;35;1mEvent Load (0.0ms)[0m   [0mSELECT * FROM `events` WHERE (`events`.`id` IN (1,2)) [0m
+
+ActionView::TemplateError (undefined method `weeks_in_future_of' for #<ActionView::Base:0xb6568554>) on line #4 of app/views/events/_events_list.html.erb:
+1: <div id="wrap" class="events">
+2:   <% unless events.empty? %>
+3:     <ul class="events-list">
+4:     	<%= raw render_events events %>
+5:   	</ul>
+6:   <% else %>
+7:   	<p class="info">Oops, couldn't find any events. Try being less specific about the type of event.</p>
+
+    app/helpers/events_helper.rb:46:in `render_week'
+    app/helpers/events_helper.rb:25:in `render_events'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `each'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `send'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `method_missing'
+    app/helpers/events_helper.rb:20:in `render_events'
+    app/views/events/_events_list.html.erb:4
+    app/views/events/search.erb:13
+    warden (0.10.7) lib/warden/manager.rb:35:in `call'
+    warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+    warden (0.10.7) lib/warden/manager.rb:34:in `call'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (78.4ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing EventsController#search (for 10.0.2.2 at 2010-07-15 16:40:49) [GET]
+  [4;36;1mEvent Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `events`[0m
+  [4;35;1mOrganisation Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `organisations`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+Rendering template within layouts/application
+Rendering events/search
+  [4;32;1mSphinx[0m   [0mQuerying: ''[0m
+  [4;32;1mSphinx (0.014554s)[0m   [0mFound 2 results[0m
+  [4;35;1mEvent Load (0.5ms)[0m   [0mSELECT * FROM `events` WHERE (`events`.`id` IN (1,2)) [0m
+
+ActionView::TemplateError (undefined method `weeks_in_future_of' for #<ActionView::Base:0xb6e5edfc>) on line #4 of app/views/events/_events_list.html.erb:
+1: <div id="wrap" class="events">
+2:   <% unless events.empty? %>
+3:     <ul class="events-list">
+4:     	<%= raw render_events events %>
+5:   	</ul>
+6:   <% else %>
+7:   	<p class="info">Oops, couldn't find any events. Try being less specific about the type of event.</p>
+
+    app/helpers/events_helper.rb:46:in `render_week'
+    app/helpers/events_helper.rb:25:in `render_events'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `each'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `send'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `method_missing'
+    app/helpers/events_helper.rb:20:in `render_events'
+    app/views/events/_events_list.html.erb:4
+    app/views/events/search.erb:13
+    warden (0.10.7) lib/warden/manager.rb:35:in `call'
+    warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+    warden (0.10.7) lib/warden/manager.rb:34:in `call'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (64.5ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing EventsController#search (for 10.0.2.2 at 2010-07-15 16:42:52) [GET]
+  [4;36;1mEvent Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `events`[0m
+  [4;35;1mOrganisation Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `organisations`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+Rendering template within layouts/application
+Rendering events/search
+  [4;32;1mSphinx[0m   [0mQuerying: ''[0m
+  [4;32;1mSphinx (0.017842s)[0m   [0mFound 2 results[0m
+  [4;35;1mEvent Load (0.2ms)[0m   [0mSELECT * FROM `events` WHERE (`events`.`id` IN (1,2)) [0m
+  [4;36;1mTagging Load (0.4ms)[0m   [0;1mSELECT * FROM `taggings` WHERE (`taggings`.taggable_id = 1 AND `taggings`.taggable_type = 'Event') [0m
+Rendered events/_link_star (19.7ms)
+  [4;35;1mTagging Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `taggings`[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 1) AND (`taggings`.taggable_type = 'Event') AND ((taggings.tagger_id IS NULL AND taggings.context = 'topics'))) [0m
+
+ActionView::TemplateError (undefined method `+' for {:topic=>[]}:Hash) on line #26 of app/views/events/_event.html.erb:
+23: 	<div class="grid7col left">
+24: 		<ul class="tags" style="background-color: red;">
+25: 			<% first_tag = true 
+26: 			event.combined_tags.each_pair do |type, tag_set| %>
+27: 				<% tag_set.each do |tag| %>
+28: 					<li class="left"><a href="?<%= type %>=<%= tag %>" <% if first_tag %>class="primary-tag" <% end %>title="Find more events tagged with '<%= tag.name %>'"><%= tag.name %></a></li>
+29: 					<% first_tag = false if first_tag
+
+    app/models/event.rb:26:in `combined_tags'
+    app/views/events/_event.html.erb:26
+    app/helpers/events_helper.rb:31:in `render_events'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `each'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `send'
+    /usr/local/rvm/gems/ruby-1.8.7-p174/gems/thinking-sphinx-1.3.18/lib/thinking_sphinx/search.rb:124:in `method_missing'
+    app/helpers/events_helper.rb:20:in `render_events'
+    app/views/events/_events_list.html.erb:4
+    app/views/events/search.erb:13
+    warden (0.10.7) lib/warden/manager.rb:35:in `call'
+    warden (0.10.7) lib/warden/manager.rb:34:in `catch'
+    warden (0.10.7) lib/warden/manager.rb:34:in `call'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/local/rvm/rubies/ruby-1.8.7-p174/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (72.6ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)

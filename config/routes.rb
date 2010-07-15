@@ -21,8 +21,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :events, 
       :only => [:index, :show], 
       :member => { :star => :get, :unstar => :get }, 
-      :collection => { :starred => :get }
-    
+      :collection => { :starred => :get, :search => :get }
+  
   # map.root            :controller => 'home'
   # map.about '/about', :controller => 'about'
   # map.admin '/admin', :controller => 'admin'

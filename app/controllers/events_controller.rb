@@ -16,6 +16,12 @@ class EventsController < ApplicationController
     end
   end
   
+  # GET /events/search
+  def search
+    @q      = params[:q]
+    @events = Event.search(@q)
+  end
+  
   ###### STARRING CONTROLLER METHODS
 
   # GET /events/starred
