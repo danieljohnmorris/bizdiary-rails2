@@ -6,7 +6,7 @@ module EventsHelper
   @@week_names = ['This Week','Next Week','Week After Next']
   
   def map_link(address)
-    link_to "map", 'http://maps.google.co.uk?q=' + CGI.escape(address)
+    link_to "map", 'http://maps.google.co.uk?q=' + CGI.escape(address), :class => 'map-link'
   end
   
   def event_publish_states
@@ -22,7 +22,7 @@ module EventsHelper
       week, calendar_page = '',''
       
       unless last_date.strftime('%W') == event.start_date.strftime('%W')
-        week = render_week(event.start_date)
+        #week = render_week(event.start_date)
       end
       unless last_date.day == event.start_date.day
          calendar_page = render_calendar_page(event.start_date)
