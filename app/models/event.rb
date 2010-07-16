@@ -125,6 +125,13 @@ class Event < ActiveRecord::Base
     indexes description
     indexes organisation(:name), :as => :organisation
     indexes location
+    
+    set_property :field_weights => {
+      :title          => 5,
+      :description    => 3,
+      :location       => 5,
+      :organisation   => 5
+    }
   end
   
 end

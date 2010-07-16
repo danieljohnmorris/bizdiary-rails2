@@ -1,4 +1,9 @@
 <div id="search"
+  <% unless @q %>
+    <div class="hint">
+      Which events are you looking for? Search by event type, location or organiser.
+    </div>
+  <% end %>
   <% form_tag({:controller => 'events', :action => 'search'}, {:method =>'get'}) do  %>
     <%= text_field_tag :q, @q || '' %>
     <%= submit_tag 'Search' %>

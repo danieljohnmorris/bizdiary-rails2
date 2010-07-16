@@ -141,7 +141,12 @@ img.logo {
 ************************/
 #search {
 	margin-left:2em;
+	margin-bottom:1em;
 }
 #search #q {
 	width: 30em; font-size: 1.5em;
 }
+	#search .hint {
+		color:#aaa;
+		margin:0.25em 0;
+	}
