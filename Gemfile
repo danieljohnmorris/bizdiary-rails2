@@ -3,6 +3,7 @@ source :gemcutter
 # include at least one source and the rails gem
 gem 'rails', '2.3.8', :require => nil
 gem 'mysql'
+gem 'thinking-sphinx', :require => 'thinking_sphinx'
 
 # auth
 gem 'warden'

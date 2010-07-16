@@ -120,11 +120,10 @@ class Event < ActiveRecord::Base
     end
   end
   
-  # def method_missing(method,*args,&block)
-  #   if method.to_s =~ /^(start|end)_(ampm|time|day|month)$/
-  #     _formatted_date($1 + '_date',$2)
-  #   else
-  #     super(method,*args,&block)
-  #   end
-  # end
+  define_index do
+    indexes title
+    indexes description
+    indexes organisation(:name), :as => :organisation
+  end
+  
 end
