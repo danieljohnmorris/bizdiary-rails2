@@ -5,3 +5,46 @@
 [Thu Jul 15 16:40:46.433 2010] 0.007 sec [scan/2/rel 2 (0,20)] [event_core]
 [Thu Jul 15 16:40:49.499 2010] 0.007 sec [scan/2/rel 2 (0,20)] [event_core]
 [Thu Jul 15 16:42:53.105 2010] 0.008 sec [scan/2/rel 2 (0,20)] [event_core]
+[Fri Jul 16 11:08:40.876 2010] 0.012 sec [scan/2/rel 2 (0,20)] [event_core]
+[Fri Jul 16 11:08:50.738 2010] 0.009 sec [all/2/rel 1 (0,20)] [event_core] fun
+[Fri Jul 16 11:08:54.182 2010] 0.008 sec [all/2/rel 1 (0,20)] [event_core] hard
+[Fri Jul 16 11:08:57.906 2010] 0.009 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:20:15.962 2010] 0.008 sec [scan/2/rel 2 (0,20)] [event_core]
+[Fri Jul 16 11:20:25.366 2010] 0.007 sec [scan/2/rel 2 (0,20)] [event_core]
+[Fri Jul 16 11:20:38.280 2010] 0.007 sec [scan/2/rel 2 (0,20)] [event_core]
+[Fri Jul 16 11:28:17.455 2010] 0.009 sec [all/2/rel 1 (0,20)] [event_core] fun
+[Fri Jul 16 11:30:34.057 2010] 0.009 sec [all/2/rel 1 (0,20)] [event_core] fun
+[Fri Jul 16 11:31:03.710 2010] 0.008 sec [all/2/rel 1 (0,20)] [event_core] fun
+[Fri Jul 16 11:31:09.722 2010] 0.008 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:31:14.182 2010] 0.010 sec [all/2/rel 1 (0,20)] [event_core] hard
+[Fri Jul 16 11:32:01.804 2010] 0.008 sec [all/2/rel 1 (0,20)] [event_core] fun
+[Fri Jul 16 11:32:06.331 2010] 0.013 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:32:53.885 2010] 0.008 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:33:00.326 2010] 0.010 sec [all/2/rel 1 (0,20)] [event_core] fun
+[Fri Jul 16 11:34:13.580 2010] 0.008 sec [all/2/rel 1 (0,20)] [event_core] fun
+[Fri Jul 16 11:35:59.093 2010] 0.009 sec [all/2/rel 1 (0,20)] [event_core] fun
+[Fri Jul 16 11:36:26.364 2010] 0.009 sec [scan/2/rel 1 (0,20)] [event_core]
+[Fri Jul 16 11:36:26.401 2010] 0.007 sec [scan/2/rel 1 (0,20)] [event_core]
+[Fri Jul 16 11:36:42.176 2010] 0.014 sec [scan/2/rel 1 (0,20)] [event_core]
+[Fri Jul 16 11:36:42.211 2010] 0.007 sec [scan/2/rel 1 (0,20)] [event_core]
+[Fri Jul 16 11:36:56.330 2010] 0.010 sec [scan/2/rel 1 (0,20)] [event_core]
+[Fri Jul 16 11:36:56.366 2010] 0.007 sec [scan/2/rel 1 (0,20)] [event_core]
+[Fri Jul 16 11:37:18.296 2010] 0.009 sec [scan/2/rel 1 (0,20)] [event_core]
+[Fri Jul 16 11:37:18.333 2010] 0.007 sec [scan/2/rel 1 (0,20)] [event_core]
+[Fri Jul 16 11:37:28.192 2010] 0.008 sec [all/2/rel 1 (0,20)] [event_core] fun
+[Fri Jul 16 11:38:03.446 2010] 0.012 sec [scan/2/rel 1 (0,20)] [event_core]
+[Fri Jul 16 11:38:03.480 2010] 0.007 sec [scan/2/rel 1 (0,20)] [event_core]
+[Fri Jul 16 11:38:43.354 2010] 0.008 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:40:30.452 2010] 0.009 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:42:44.403 2010] 0.008 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:46:18.986 2010] 0.008 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:46:24.404 2010] 0.008 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:46:28.556 2010] 0.016 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:46:44.284 2010] 0.009 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:47:07.119 2010] 0.009 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:47:07.507 2010] 0.008 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:47:19.649 2010] 0.008 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:47:24.936 2010] 0.009 sec [all/2/rel 1 (0,20)] [event_core] fun
+[Fri Jul 16 11:47:29.594 2010] 0.007 sec [all/2/rel 2 (0,20)] [event_core] times
+[Fri Jul 16 11:47:43.049 2010] 0.009 sec [all/2/rel 1 (0,20)] [event_core] fun
+[Fri Jul 16 11:47:46.885 2010] 0.009 sec [all/2/rel 2 (0,20)] [event_core] times

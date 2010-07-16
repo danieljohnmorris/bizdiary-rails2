@@ -1,13 +1,3 @@
-
-<div id="search">
-  <% form_for('search') do |f| %>
-    <%= f.text_field :q %>
-    <%= f.submit :submit %>
-  <% end %>
-  <% if @q %>
-    <p>Your search for <%= @q %> found <%= @q.length %> events</p>
-    
-  <% end %>
-</div>
+<%= render :partial => 'search' %>
 
 <%= render :partial => 'events/events_list', :locals => { :events => @events } %>

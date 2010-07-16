@@ -10,6 +10,15 @@ textarea {
     width: 400px;
 }
 
+/* Search
+************************/
+#search {
+	margin-left:2em;
+}
+#search #q {
+	width: 30em; font-size: 1.5em;
+}
+
 /* Stars
 ************************/
 

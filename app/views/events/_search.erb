@@ -1,0 +1,9 @@
+<div id="search"
+  <% form_tag({:controller => 'events', :action => 'search'}, {:method =>'get'}) do  %>
+    <%= text_field_tag :q, @q || '' %>
+    <%= submit_tag 'Search' %>
+  <% end %>
+  <% if @events && @q %>
+    <p>Your search for "<%= @q %>" found <%= @events.length %> events</p>
+  <% end %>
+</div>

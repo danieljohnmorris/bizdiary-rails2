@@ -124,6 +124,7 @@ class Event < ActiveRecord::Base
     indexes title
     indexes description
     indexes organisation(:name), :as => :organisation
+    indexes location
   end
   
 end

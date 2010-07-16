@@ -1,9 +1,4 @@
-<div id="search">
-  <% form_for('search') do |f| %>
-    <%= f.text_field :q %>
-    <%= f.submit :submit %>
-  <% end %>
-</div>
+<%= render :partial => 'events/search' %>
 
 <% if (params[:topic]) %>
 <h1><strong><%= @events.length %></strong> upcoming events for topic <strong><%= params[:topic] %></strong> (<%= link_to "Show all events", root_path %>)</h1>
