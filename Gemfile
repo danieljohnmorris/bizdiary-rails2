@@ -4,7 +4,7 @@ source :gemcutter
 gem 'rails', '2.3.8'
 gem 'mysql'
 
-gem 'thinking-sphinx', :require => 'thinking_sphinx'
+gem 'thinking-sphinx', '1.3.11', :require => 'thinking_sphinx'
 
 # auth
 gem 'warden'
