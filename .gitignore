@@ -17,3 +17,5 @@ vendor/cache
 relock/
 config/development.sphinx.conf
 log/searchd*
+config/development/sphinx.conf
+db/sphinx/*
