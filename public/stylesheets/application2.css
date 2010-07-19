@@ -69,6 +69,7 @@ img.logo {
 	border-top:1px solid #E0DED6;
 	list-style:none outside none;
 	margin:0;
+	padding: 10px;
 	padding-top:10px;
 	overflow:hidden;
 }
@@ -76,10 +77,13 @@ img.logo {
 		background-color: #FFFDED;
 	}
 	.event .title  {
-		font-size: 1.4em;
+		font-size: 0.9em;
 		cursor: pointer;
 		color: #000;
 	}
+		.event .title h3 {
+			margin: 0;
+		}
 		.event .title a {
 			text-decoration: none;
 		}
@@ -87,17 +91,39 @@ img.logo {
 .expanded {
 }	
 
+.byline {
+	overflow: auto;
+	padding: 0;
+	margin: 0;
+}
+
+.taglink {
+	text-decoration: none;
+	padding: 2px 4px 2px 4px;
+	background-color: #eee;
+	color: #aaa;
+}
+.tag {
+	background-color: blue;
+	color: white;
+}
+	.subtle a:hover {
+		background-color: #999;
+		color: white;
+		padding: 2px 4px 2px 4px;
+	}
+
 /* Quick preview
 ************************/
 .event .preview {
 	display: none;
 	background-color: #fff;
-	border: 6px solid #eee;
-	border-top: 0;
 	clear:both;
 	overflow:auto;
-	padding: 10px 0 10px 0;
+	padding: 0;
+	padding: 10px 0 0 0;
 }
+
 /* Block-level proportions and macro-layout */
 	.event .preview .description
 	{

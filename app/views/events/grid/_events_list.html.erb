@@ -1,0 +1,31 @@
+<div id="wrap" class="events">
+  <% unless events.empty? %>
+    <ul class="events-list">
+		<li class="grid24col clearboth">
+			<span class="subtle title left grid11col">
+				Event Title
+			</span>	
+
+			<ul class="subtle grid9col byline left">
+				<li class="grid3col left">
+					Topic
+				</li>
+				<li class="grid3col left">
+					Event type
+				</li>
+				<li class="grid3col left">
+					Organiser
+				</li>
+			</ul>
+
+			<!-- date -->
+			<span class="grid3col right marginleft  subtle">
+			</span>
+		</li>
+    	<%= raw render_events(events, @list_type) %>
+  	</ul>
+  <% else %>
+  	<p class="info">Oops, couldn't find any events. Try being less specific about the type of event.</p>
+  <% end %>
+</div>	
+<%= will_paginate events %>

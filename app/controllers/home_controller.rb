@@ -8,5 +8,8 @@ class HomeController < ApplicationController
     @events = @events.find_all_by_organiser(Organisation.find(params[:organiser])) if (params[:organiser])
 
     @events = @events.paginate :page => params[:page]
+    
+    @list_type = params[:list] || "grid"
+    @list_type += "/" unless @list_type.blank?
   end
 end

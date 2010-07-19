@@ -2,4 +2,4 @@
 <h1><strong><%= @events.length %></strong> upcoming events for topic <strong><%= params[:topic] %></strong> (<%= link_to "Show all events", root_path %>)</h1>
 <% end %>
 
-<%= render :partial => 'events/events_list', :locals => { :events => @events } %>
+<%= render :partial => "events/#{@list_type}events_list", :locals => { :events => @events } %>

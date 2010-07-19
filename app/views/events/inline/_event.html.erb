@@ -1,0 +1,71 @@
+<%
+#= week 
+#disable week heading for now
+%>
+<li id="event-<%= event.id %>" class="event grid24col clearboth">
+	<span class="title left grid20col">
+		<h3 title="Show more info">
+			<%= event.title.html_safe %>
+		</h3>
+		<ul class="subtle grid20col byline left">
+			<li class="grid4col left">
+				Topic: <a href="#blah">Accounting</a>
+			</li>
+			<li class="grid4col left">
+				Event type: <a href="#blah">Seminar</a>
+			</li>
+			<li class="grid4col left">
+				Organiser: <a href="#blah">Business Link</a>
+			</li>
+		</ul>
+	</span>	
+
+	<!-- date -->
+	<span class="grid3col right marginleft  subtle">
+		<strong><%= event.start_date.bd_date_format %></strong><br />
+		London
+	</span>
+	
+	<!-- quick preview -->
+	<div class="preview">
+
+	  <div class="description" style="width: 500px;">
+		<h4>Event description</h4>
+		<%= event.description.html_safe %>
+	  </div>
+
+	  <div class="others" style="float: right;">
+		  <h4>Start time</h4>	
+		  <p><strong><%= event.start_date.full_date_format %></strong></p>
+
+		  <h4>Address</h4>	
+		  <p><%= event.location.html_safe.strip %> (<%= map_link(event.location.html_safe) %>)</p>
+
+	      <div class="organiser-description">
+			<% if event.organisation %>
+	        	<%= event.organisation.description %>
+			<% else %>
+				We're waiting for a description for this organiser.
+			<% end %>
+	      </div>
+
+
+	      <dl class="organiser-details">
+		  	<% unless event.telephone.blank? and event.email.blank? %>
+			<h4>Contact details</h4>
+			<% end %>
+
+			<% unless event.telephone.blank? %>
+	        <dt>Telephone:</dt>
+	        <dd><%= event.telephone %></dd>
+			<% end %>
+
+			<% unless event.email.blank? %>
+	        <dt>Email:</dt>
+	        <dd><%= event.email %></dd>
+			<% end %>
+	      </dl>
+	  </div>
+  </div>
+	
+</li>

@@ -14,9 +14,13 @@ module EventsHelper
   end
   
   # render events, and week and days for all distinct dates
-  def render_events(events)
+  def render_events(events, list_type = '')
     output = ''
     last_date =  Date.parse('1970-1-1')
+
+    # if exists will already have trailing slash as added in controller!
+    #list_type += '/' unless list_type.blank? 
+
     events.each do |event|
       
       week, calendar_page = '',''
@@ -28,7 +32,7 @@ module EventsHelper
          calendar_page = render_calendar_page(event.start_date)
       end
       
-      output += render(:partial => 'events/event',:locals => {:event=>event, :week=>week, :calendar_page=>calendar_page})
+      output += render(:partial => "events/#{list_type}event",:locals => {:event=>event, :week=>week, :calendar_page=>calendar_page})
       
       last_date = event.start_date
       

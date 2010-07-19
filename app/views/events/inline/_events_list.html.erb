@@ -1,7 +1,7 @@
 <div id="wrap" class="events">
   <% unless events.empty? %>
     <ul class="events-list">
-    	<%= raw render_events events %>
+    	<%= raw render_events(events, @list_type) %>
   	</ul>
   <% else %>
   	<p class="info">Oops, couldn't find any events. Try being less specific about the type of event.</p>
