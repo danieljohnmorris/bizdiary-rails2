@@ -15,7 +15,7 @@
 :user: rails
 
 # Timezone to set server's time to. Defaults to UTC
-#:time_zone: UTC
+:time_zone: UTC
 
 # Directory where application is deployed to
 :deploy_to: /srv/bizdiary
