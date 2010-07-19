@@ -26,3 +26,5 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+# Use postfix for mail delivery 
+ActionMailer::Base.delivery_method = :sendmail 
