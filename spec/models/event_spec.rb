@@ -21,7 +21,9 @@ describe Event do
     
     it "should show events only by organisation" do
       
-      Event.filtered(:organisation => organisations('moonies').id).all.length.should == 1
+      (result = Event.filtered(:organisation => organisations('moonies').id).all).length.should == 1
+      result.first.title = events('moonies_meetup').title
+      
     end
     
     

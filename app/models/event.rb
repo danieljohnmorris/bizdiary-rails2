@@ -4,53 +4,54 @@ class Event < ActiveRecord::Base
   
   
   belongs_to :organisation
+  
+  # tagging
+  acts_as_taggable_on :saves, :topics, :types, :industries
 
   validates_presence_of :title, :start_date, :location # minimum useful fields
-
-  named_scope :by_start_date_backward, :order => "start_date DESC"
-  named_scope :by_start_date_forward, :order => "start_date ASC"
-  named_scope :in_the_past, lambda {{ :conditions => ["start_date < NOW()"] }}    
-  named_scope :in_the_future, lambda {{ :conditions => ["start_date >= NOW()"] }}    
 
   #pub state
   DRAFT_STATE = 0
   PUBLISHED_STATE = 1
   
   attr_protected :publish_state
+  
+  # scopes
   named_scope :published, lambda {{ :conditions => ["publish_state = ?", PUBLISHED_STATE] }}    
   named_scope :drafts, lambda {{ :conditions => ["publish_state = ?", DRAFT_STATE] }}
+  
+  named_scope :by_start_date_backward, :order => "start_date DESC"
+  named_scope :by_start_date_forward, :order => "start_date ASC"
+  named_scope :in_the_past, lambda {{ :conditions => ["start_date < NOW()"] }}    
+  named_scope :in_the_future, lambda {{ :conditions => ["start_date >= NOW()"] }}
   
   # /events/filter?organisation=5&q=london
   # topic 1+5 -> 1,5
   def self.filtered(filters)
     scope = scoped({})
     filters.each_pair do |filter_name, filter_args|
-      next unless [:organisation, :topics, :type, :industry, :starred, :q].include? filter_name.to_sym
+      next unless [:organisation, :topic, :type, :industry, :starred, :q].include? filter_name.to_sym
+      
       # if you add a condition, make sure you put in in the list above too
-      conditions = case filter_name
-                     when :organisation
-                       
-                       {:include => :organisation, :conditions => {:organisation => {:id => filter_args}}}
-                     when :topics
-                     
-                     when :type
-                     
-                     when :industry
-                     
-                     when :starred
-                     
-                     when :q
-                       
-                   end
-                   
-      scoped = scope.scoped(conditions)
+      scope = case filter_name
+               when :organisation
+                 scope.scoped :include => :organisation, :conditions => {:organisations => {:id => filter_args}}
+               when :topic
+                 scope.tagged_with(filter_args, :on => :topics)
+               when :type
+                 scope.tagged_with(filter_args, :on => :types)
+               when :industry
+                 scope.tagged_with(filter_args, :on => :industries)
+               when :starred
+                 # TODO need to have person
+      #                       scope.tagged_with('save', :on => :saves)
+               when :q
+         
+             end
     end
     scope
   end
 
-  # tagging
-  acts_as_taggable_on :saves, :topics, :types, :industries
-  
   def combined_tags
     topics = {:topic => self.topics.to_a}
     event_types = {:type => self.types.to_a}

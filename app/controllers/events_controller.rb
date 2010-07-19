@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+  
+  include EventsHelper
+  
   before_filter :authenticate_person!, :only => [:starred, :star, :unsta]
   
   def index
@@ -6,7 +9,8 @@ class EventsController < ApplicationController
   end
   
   def filter
-    render :text => params.inspect
+    @events = Event.filtered(prepare_filters(params, {:organisation => :id, :topic => :text, :type => :text, :industry => :text})).paginate :page => params[:page]
+    render :template => 'home/index'
   end
   
   # GET /events/1
