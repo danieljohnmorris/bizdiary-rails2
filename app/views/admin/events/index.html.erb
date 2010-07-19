@@ -85,11 +85,11 @@ $(function() {
 			</ul>
 			<% end %>
 		</td>
-	    <td><%= event.location.html_safe %> (<%= map_link(event.location) %>)</td>
+	    <td><%= event.location %> (<%= map_link(event.location) %>)</td>
 	    <td><%= event.start_date %></td>
 	    <td>
 			<% if event.organisation %>
-				<%= link_to event.organisation.name.html_safe, admin_organisation_path(event.organisation) %>
+				<%= link_to event.organisation.name, admin_organisation_path(event.organisation) %>
 			<% else %>
 				N/A
 			<% end %>
@@ -103,34 +103,34 @@ $(function() {
 		</td>
 	    <td>
 			<% if event.source && event.source.length > 1 %>
-				<%= event.source.html_safe %>
+				<%= event.source %>
 			<% else %>
 				N/A
 			<% end %>
 		</td>
 	    <!--<td>
 			<% if event.telephone && event.telephone.length > 1 %>
-				<%= event.telephone.html_safe %>
+				<%= event.telephone %>
 			<% else %>
 				N/A
 			<% end %>
 		</td>
 	    <td>
 			<% if event.email && event.email.length > 1 %>
-				<%= link_to event.email.html_safe, "mailto:#{event.email}" %>
+				<%= link_to event.email, "mailto:#{event.email}" %>
 			<% else %>
 				N/A
 			<% end %>
 		</td>
 	    <td>
-			<% if event.people.html_safe && event.people.length > 1 %>
+			<% if event.people && event.people.length > 1 %>
 				<%= event.people %>
 			<% else %>
 				N/A
 			<% end %>
 		</td>
 	    <td>
-			<% if event.notes.html_safe && event.notes.length > 1 %>
+			<% if event.notes && event.notes.length > 1 %>
 				<%= event.notes %>
 			<% else %>
 				N/A
