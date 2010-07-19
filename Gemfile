@@ -19,6 +19,7 @@ gem 'will_paginate'
 
 # deploy
 gem 'capistrano'
+gem 'shadow_puppet'
 
 # admin
 gem 'fastercsv'
