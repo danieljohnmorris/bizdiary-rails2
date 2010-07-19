@@ -17,6 +17,9 @@ gem 'acts-as-taggable-on'
 # pagination
 gem 'will_paginate'
 
+# deploy
+gem 'capistrano'
+
 # admin
 gem 'fastercsv'
 
