@@ -1,11 +1,11 @@
 require 'fastercsv'
 
 class Event < ActiveRecord::Base
+  
+  
   belongs_to :organisation
 
   validates_presence_of :title, :start_date, :location # minimum useful fields
-
-  lambda { {:conditions => ['delete_after < ?', Time.now]} }
 
   named_scope :by_start_date_backward, :order => "start_date DESC"
   named_scope :by_start_date_forward, :order => "start_date ASC"
@@ -15,9 +15,38 @@ class Event < ActiveRecord::Base
   #pub state
   DRAFT_STATE = 0
   PUBLISHED_STATE = 1
+  
   attr_protected :publish_state
   named_scope :published, lambda {{ :conditions => ["publish_state = ?", PUBLISHED_STATE] }}    
-  named_scope :drafts, lambda {{ :conditions => ["publish_state = ?", DRAFT_STATE] }}    
+  named_scope :drafts, lambda {{ :conditions => ["publish_state = ?", DRAFT_STATE] }}
+  
+  # /events/filter?organisation=5&q=london
+  # topic 1+5 -> 1,5
+  def self.filtered(filters)
+    scope = scoped({})
+    filters.each_pair do |filter_name, filter_args|
+      next unless [:organisation, :topics, :type, :industry, :starred, :q].include? filter_name.to_sym
+      # if you add a condition, make sure you put in in the list above too
+      conditions = case filter_name
+                     when :organisation
+                       
+                       {:include => :organisation, :conditions => {:organisation => {:id => filter_args}}}
+                     when :topics
+                     
+                     when :type
+                     
+                     when :industry
+                     
+                     when :starred
+                     
+                     when :q
+                       
+                   end
+                   
+      scoped = scope.scoped(conditions)
+    end
+    scope
+  end
 
   # tagging
   acts_as_taggable_on :saves, :topics, :types, :industries

@@ -5,6 +5,10 @@ class EventsController < ApplicationController
     redirect_to root_path
   end
   
+  def filter
+    render :text => params.inspect
+  end
+  
   # GET /events/1
   # GET /events/1.xml
   def show

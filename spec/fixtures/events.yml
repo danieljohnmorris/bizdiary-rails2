@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+moonies_meetup:
+  title: Moonies' meet
+  start_date: <%= DateTime.new + 1.week %>
+  location: Cult house 1
+  organisation: moonies
+
+scientologist_party:
+  title: Tom Cruise will not be there!
+  start_date: <%= DateTime.new + 1.week %>
+  location: Cult house 2

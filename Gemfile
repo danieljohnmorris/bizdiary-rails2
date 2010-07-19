@@ -11,6 +11,12 @@ gem 'devise', '1.0.7'
 gem "rpx_now"
 gem 'devise_rpx_connectable'
 
+#testage
+gem 'rspec',        '1.3.0'
+gem 'rspec-rails', '1.3.2'
+gem 'autotest-rails'
+gem 'spork'
+
 # tagging
 gem 'acts-as-taggable-on'
 
