@@ -36,26 +36,6 @@
           </div> -->
         <div class="yui-g">
           <div id="messages">
-
-			<%
-			# DEVISE MESSAGES
-			%>
-
-            <% if notice -%>
-            <p class='info'>
-              <%=h notice %>
-            </p>
-            <% end -%>
-
-            <% if alert -%>
-            <p class='error'>
-              <%=h alert %>
-            </p>
-            <% end -%>
-
-			<%
-			# FLASH MESSAGES
-			%>
 		
             <% if flash[:error] -%>
             <p class='error'>
