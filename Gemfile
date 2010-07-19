@@ -1,7 +1,7 @@
 source :gemcutter
 
 # include at least one source and the rails gem
-gem 'rails', '2.3.8'
+gem 'rails', '2.3.5'
 gem 'mysql'
 
 gem 'thinking-sphinx', '1.3.11', :require => 'thinking_sphinx'
