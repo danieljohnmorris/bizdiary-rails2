@@ -5,7 +5,7 @@ tmp/**/*
 config/database.yml
 db/*.sqlite3
 db/schema.rb
-db/sphinx
+db/sphinx/**/*
 .bundle
 log/development.log
 log/cucumber.log
