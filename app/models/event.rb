@@ -4,31 +4,30 @@ class Event < ActiveRecord::Base
   
   belongs_to :organisation
   
+  validates_presence_of :title, :start_date, :location # minimum useful fields
+  
+  
   # tagging
   acts_as_taggable_on :saves, :topics, :types, :industries
+  STAR_TAG = 'star'
 
-  validates_presence_of :title, :start_date, :location # minimum useful fields
 
-  #pub state
+  # publishing
   DRAFT_STATE = 0
   PUBLISHED_STATE = 1
   
-  # star
-  STAR_TAG = 'star'
-  
-  attr_protected :publish_state
-  
-  # scopes
   named_scope :published, lambda {{ :conditions => ["publish_state = ?", PUBLISHED_STATE] }}    
   named_scope :drafts, lambda {{ :conditions => ["publish_state = ?", DRAFT_STATE] }}
   
+  
+  # date/time scopes
   named_scope :by_start_date_backward, :order => "start_date DESC"
   named_scope :by_start_date_forward, :order => "start_date ASC"
   named_scope :in_the_past, lambda {{ :conditions => ["start_date < NOW()"] }}    
   named_scope :in_the_future, lambda {{ :conditions => ["start_date >= NOW()"] }}
   
-  # /events/filter?organisation=5&q=london
-  # topic 1+5 -> 1,5
+  
+  # Takes a hash of filters and turns returns them as a scope, which can then be paginated etc
   def self.filtered(filters, person = nil)
     scope = scoped({})
     filters.each_pair do |filter_name, filter_args|
@@ -169,5 +168,32 @@ class Event < ActiveRecord::Base
       :organisation   => 5
     }
   end
+
+
+  # load in our tag data, and define a few methods
+  # Event.(topic|industry|type)_tags
+  # Event.(topic|industry|type)_tags_to_humane
+  tag_data = YAML.load_file(File.dirname(__FILE__) + '/../../config/tags.yml')
+  
+  ['topics','industries','types'].each do |tag_type|
+    class_var_symbol = "@@#{tag_type}".to_sym
+    class_variable_set(class_var_symbol, tag_data[tag_type])
+    
+    singleton_class = class << self; self; end
+    singleton_class.instance_eval do
+      
+      # Event.(type)_tags
+      define_method "#{tag_type.singularize}_tags" do
+        class_variable_get(class_var_symbol).keys
+      end
+      # Event.(type)_tags_to_humane
+      define_method "#{tag_type.singularize}_tags_to_humane" do
+        class_variable_get(class_var_symbol)
+      end
+      
+    end
+    
+  end
+
   
 end

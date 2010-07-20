@@ -33,6 +33,9 @@ class DateTime
   include BdDateFormat
 end
 
+
+
+# TODO move this monkey patch into a plugin - patch after 'EXTENSION'
 module ActsAsTaggableOn::Taggable
   module Core
     module ClassMethods
@@ -85,7 +88,7 @@ module ActsAsTaggableOn::Taggable
                             
             tagging_join << " AND " + sanitize_sql(["#{taggings_alias}.context = ?", context.to_s]) if context
             
-            ## EXTENSION by tim: add in tagging by a certain tagger
+            ## EXTENSION by tim: filter for only those tagged by a specific Tagger
             if user = options[:by]
               tagging_join << " AND #{taggings_alias}.tagger_type = #{quote_value(user.class.to_s)}" +
                               " AND #{taggings_alias}.tagger_id = #{user.id}"
