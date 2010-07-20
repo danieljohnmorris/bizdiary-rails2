@@ -38,14 +38,14 @@ test: &test
   socket: /var/run/mysqld/mysqld.sock
 
 production:
-    adapter: mysql
-    encoding: utf8
-    reconnect: false
-    database: bizdiary_production
-    pool: 5
-    username: thebusinessdiary
-    password: yfhA=8
-    socket: /var/run/mysqld/mysqld.sock
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: thebusinessdiary_production
+  pool: 5
+  username: thebusinessdiary
+  password: yfhA=8
+  socket: /var/run/mysqld/mysqld.sock
     
 cucumber:
   <<: *test

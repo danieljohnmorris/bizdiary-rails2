@@ -67,13 +67,13 @@
 				#<p class='success'>This is an success message</p>
 				%>
 																
-	          <% if notice -%>
+	          <% if defined?(notice) -%>
 	          <p class='success'>
 	            <%=h notice %>
 	          </p>
 	          <% end -%>
 
-	          <% if alert -%>
+	          <% if defined?(alert) -%>
 	          <p class='error'>
 	            <%=h alert %>
 	          </p>

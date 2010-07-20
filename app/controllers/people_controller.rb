@@ -1,4 +1,4 @@
-class peopleController < ApplicationController
+class PeopleController < ApplicationController
     
   # GET /people
   # GET /people.xml
