@@ -13,6 +13,9 @@ class Event < ActiveRecord::Base
   DRAFT_STATE = 0
   PUBLISHED_STATE = 1
   
+  # star
+  STAR_TAG = 'star'
+  
   attr_protected :publish_state
   
   # scopes
@@ -45,7 +48,7 @@ class Event < ActiveRecord::Base
                  scope.tagged_with(filter_args, :on => :industries)
                when :starred
                  raise "Can't filter for a person's starred events without the person" unless person
-                 scope.tagged_with('star', :on => :saves, :by => person)
+                 scope.tagged_with(STAR_TAG, :on => :saves, :by => person)
                when :q
                 # TODO - this will be a little more involved, as we'll need to use sphinx_scopes
                 # as sphinx doesn't use SQL for queries, but its separate sphinx server
@@ -86,15 +89,15 @@ class Event < ActiveRecord::Base
   end
   
   def self::starred(person)
-    person.owned_taggings(:context => "saves", :tag => "star").collect { |t| t.taggable }
+    person.owned_taggings(:context => :saves, :tag => STAR_TAG).collect { |t| t.taggable }
   end
 
   def starred
-    taggings(:context => :saves, :tag => "star")
+    taggings(:context => :saves, :tag => STAR_TAG)
   end
 
   def star(person)
-    person.tag(self, :with => "star", :on => :saves)
+    person.tag(self, :with => STAR_TAG, :on => :saves)
   end
 
   def unstar(person)
