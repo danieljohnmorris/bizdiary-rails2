@@ -13,9 +13,9 @@
 	
 	<!-- title -->
 	<h3 class="grid9col left marginleft title" title="Show more info">
-		<%= event.title.html_safe %>
+		<%= event.title %>
 		<%
-		#= link_to event.title.html_safe, event_path(event) 
+		#= link_to event.title, event_path(event) 
 		%>
 	</h3>
 	
@@ -53,9 +53,9 @@
 	</span>
 	<span class="grid2col left marginleft small">
 		<% if event.organisation %>
-			<%= link_to event.organisation.name.html_safe %>
+			<%= link_to event.organisation.name %>
 			<%
-			#= link_to event.organisation.name.html_safe, organisation_path(event.organisation), :class => "organiser" 
+			#= link_to event.organisation.name, organisation_path(event.organisation), :class => "organiser" 
 			%>
 		<% end %>
 	</span>
@@ -69,13 +69,13 @@
 	<!-- actions -->
 	<div class="grid2col left marginleft">
 		<a class="attend-button grid2col" title="Visit event website and book ticket(s)" href="<%= event.url %>">Attend</a>
-		<a id="share-<%= event.id %>" class="share-button grid2col" href="<%= event_path(event) %>" title="Share '<%= event.title.html_safe %>'">Share</a>
+		<a id="share-<%= event.id %>" class="share-button grid2col" href="<%= event_path(event) %>" title="Share '<%= event.title %>'">Share</a>
 		<script>
 		$('#share-<%= event.id %>').click(function(event) {
 			RPXNOW.loadAndRun(['Social'], function () {
 		    	var activity = new RPXNOW.Social.Activity(
 		       		"Share your comment",
-		       		"<%= event.title.html_safe %> (via thebusinessdiary.co.uk)",
+		       		"<%= event.title %> (via thebusinessdiary.co.uk)",
 		       		"<%= event_url(event) %>"
 				);
 		    	RPXNOW.Social.publishActivity(activity);
@@ -91,7 +91,7 @@
 	  
 	  <div class="description">
 		<h4>Event description</h4>
-		<%= event.description.html_safe %>
+		<%= event.description %>
 	  </div>
 	  
 	  <div class="comments" id="comments-<%= event.id %>">
@@ -102,7 +102,7 @@
 		  <p><strong><%= event.start_date.full_date_format %></strong></p>
 
 		  <h4>Address</h4>	
-		  <p><%= event.location.html_safe.strip %> (<%= map_link(event.location.html_safe) %>)</p>
+		  <p><%= event.location.strip %> (<%= map_link(event.location) %>)</p>
 		
 		  <h4>Contact details</h4>
 	      <div class="organiser-description">

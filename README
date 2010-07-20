@@ -4,7 +4,15 @@
 
 Spork up with spork in one window, and spec --drb spec in t'other
 
-== Sphinxy
+== Search - Thinking Sphinx
 
 You'll need to compile Sphinx, head to http://freelancing-god.github.com/ts/en/
 
+install guide;
+http://freelancing-god.github.com/ts/en/installing_sphinx.html
+
+rake thinking_sphinx:configure
+rake thinking_sphinx:index
+rake thinking_sphinx:start
+
+== DEPLOY - MOONSHINE / CAPISTRANO

@@ -12,17 +12,17 @@
 
 <p>
   <b>Title:</b>
-  <%= @event.title.html_safe %>
+  <%= @event.title %>
 </p>
 
 <p>
   <b>Description:</b>
-  <%= @event.description.html_safe %>
+  <%= @event.description %>
 </p>
 
 <p>
   <b>Location:</b>
-  <%= @event.location.html_safe %> (<%= map_link(@event.location) %>)
+  <%= @event.location %> (<%= map_link(@event.location) %>)
 </p>
 
 <p>
@@ -33,7 +33,7 @@
 <p>
   <b>Organisation:</b>
   <% if @event.organisation %>
-  <%= link_to @event.organisation.name.html_safe, admin_organisation_path(@event.organisation) %>
+  <%= link_to @event.organisation.name, admin_organisation_path(@event.organisation) %>
   <% end %>
 </p>
 
@@ -52,27 +52,27 @@
 
 <p>
   <b>Source:</b>
-  <%= @event.source.html_safe %>
+  <%= @event.source %>
 </p>
 
 <p>
   <b>Telephone:</b>
-  <%= @event.telephone.html_safe %>
+  <%= @event.telephone %>
 </p>
 
 <p>
   <b>Email:</b>
-  <%= @event.email.html_safe %>
+  <%= @event.email %>
 </p>
 
 <p>
   <b>People:</b>
-  <%= @event.people.html_safe %>
+  <%= @event.people %>
 </p>
 
 <p>
   <b>Notes:</b>
-  <%= @event.notes.html_safe %>
+  <%= @event.notes %>
 </p>
 
 <p class="option-bar">
