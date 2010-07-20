@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   end
   
   def filter
-    @events = Event.filtered(prepare_filters(params, {:organisation => :id, :topic => :text, :type => :text, :industry => :text}), current_user || nil).paginate :page => params[:page]
+    @events = Event.filtered(prepare_filters(params, {:organisation => :id, :topic => :text, :type => :text, :industry => :text}), current_person || nil).paginate :page => params[:page]
     render :template => 'home/index'
   end
   
