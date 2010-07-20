@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   end
   
   def filter
-    @events = Event.filtered(prepare_filters(params, {:organisation => :id, :topic => :text, :type => :text, :industry => :text}), current_user || nil).paginate :page => params[:page]
+    @events = Event.filtered(prepare_filters(params, {:organisation => :id, :topic => :text, :type => :text, :industry => :text}), params[:page], (person_signed_in? ? current_person : nil))
     render :template => 'home/index'
   end
   
@@ -27,7 +27,7 @@ class EventsController < ApplicationController
   # GET /events/search
   def search
     @q      = params[:q]
-    @events = Event.search(@q)
+    @events = Event.search(@q).paginate(params[:page])
   end
   
   ###### STARRING CONTROLLER METHODS

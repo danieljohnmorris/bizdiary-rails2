@@ -27,34 +27,44 @@ class Event < ActiveRecord::Base
   named_scope :in_the_future, lambda {{ :conditions => ["start_date >= NOW()"] }}
   
   
-  # Takes a hash of filters and turns returns them as a scope, which can then be paginated etc
-  def self.filtered(filters, person = nil)
+  # Takes a hash of filters and performs a query on them, including search if supplied
+  def self.filtered(filters, page = 1, person = nil)
+    
+    filters = filters.dup
     scope = scoped({})
+    
+    q     = filters.delete(:q)
+    sphinx_setup = {}
+    
     filters.each_pair do |filter_name, filter_args|
-      next unless [:organisation, :topic, :type, :industry, :starred, :q].include? filter_name.to_sym
+      next unless [:organisation, :topic, :type, :industry, :starred].include? filter_name.to_sym
       
       # if you add a condition, make sure you put in in the list above too
       # Keep chaining up scope - scope can take extra scopes, and acts_as_taggable tagged_with
       # is just a scope
-      scope = case filter_name
-               when :organisation
-                 scope.scoped :include => :organisation, :conditions => {:organisations => {:id => filter_args}}
-               when :topic
-                 scope.tagged_with(filter_args, :on => :topics)
-               when :type
-                 scope.tagged_with(filter_args, :on => :types)
-               when :industry
-                 scope.tagged_with(filter_args, :on => :industries)
-               when :starred
-                 raise "Can't filter for a person's starred events without the person" unless person
-                 scope.tagged_with(STAR_TAG, :on => :saves, :by => person)
-               when :q
-                # TODO - this will be a little more involved, as we'll need to use sphinx_scopes
-                # as sphinx doesn't use SQL for queries, but its separate sphinx server
-                # http://freelancing-god.github.com/ts/en/
+      setup = case filter_name
+                 when :organisation
+                   {:include => :organisation, :conditions => {:organisations => {:id => filter_args}}}
+                 when :topic
+                   tagged_with_hash(filter_args, :on => :topics)
+                 when :type
+                   tagged_with_hash(filter_args, :on => :types)
+                 when :industry
+                   tagged_with_hash(filter_args, :on => :industries)
+                 when :starred
+                   raise "Can't filter for a person's starred events without the person" unless person
+                   tagged_with_hash(STAR_TAG, :on => :saves, :by => person)
              end
+       q ? sphinx_setup.deep_merge(setup) : scope.scoped(setup)
     end
-    scope
+    
+    if q
+      scope_name = "sphinx_scope_#{rand(999)}_#{rand(999)}".to_sym
+      sphinx_scope(scope_name, sphinx_setup)
+      Event.send(scope_name).search(q).paginate(:page => page)
+    else
+      scope.paginate(:page => page)
+    end
   end
 
   def combined_tags
@@ -172,7 +182,7 @@ class Event < ActiveRecord::Base
 
   # load in our tag data, and store them in class variables
   tag_data = YAML.load_file(File.dirname(__FILE__) + '/../../config/tags.yml')
-  
+
   ['topics','industries','types'].each do |tag_type|
     class_var_symbol = "@@#{tag_type}_tags".to_sym
     class_variable_set(class_var_symbol, tag_data[tag_type])

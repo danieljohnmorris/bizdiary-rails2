@@ -39,6 +39,8 @@ end
 module ActsAsTaggableOn::Taggable
   module Core
     module ClassMethods
+      
+      ## EXTENSION - moved this method here to return a hash, so it can be used for thinking_sphinx scopes
       ##
       # Return a scope of objects that are tagged with the specified tags.
       #
@@ -53,7 +55,7 @@ module ActsAsTaggableOn::Taggable
       #   User.tagged_with("awesome", "cool", :exclude => true)   # Users that are not tagged with awesome or cool
       #   User.tagged_with("awesome", "cool", :any => true)       # Users that are tagged with awesome or cool
       #   User.tagged_with("awesome", "cool", :match_all => true) # Users that are tagged with just awesome and cool
-      def tagged_with(tags, options = {})
+      def tagged_with_hash(tags, options = {})
         tag_list = ActsAsTaggableOn::TagList.from(tags)
 
         return {} if tag_list.empty?
@@ -110,11 +112,15 @@ module ActsAsTaggableOn::Taggable
           group = "#{group_columns} HAVING COUNT(#{taggings_alias}.taggable_id) = #{tags.size}"
         end
         
-        scoped(:joins      => joins.join(" "),
+              {:joins      => joins.join(" "),
                :group      => group,
                :conditions => conditions.join(" AND "),
                :order      => options[:order],
-               :readonly   => false)
+               :readonly   => false}
+      end
+      # override, replacing old API
+      def tagged_with tags, options = {}
+        scoped(tagged_with_hash(tags, options))
       end
     end
   end

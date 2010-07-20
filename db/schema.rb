@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20100705113337) do
     t.string   "cost"
     t.string   "intended_audience"
   end
-
+  
   create_table "organisations", :force => true do |t|
     t.string   "name"
     t.string   "url"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(:version => 20100705113337) do
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
+    t.integer  "sign_in_count", :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"

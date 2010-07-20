@@ -9,3 +9,6 @@
 [Fri Jul 16 11:54:07.578 2010] [ 4646] caught SIGTERM, shutting down
 [Fri Jul 16 11:54:07.583 2010] [ 4646] shutdown complete
 [Fri Jul 16 11:54:08.011 2010] [ 4783] accepting connections
+[Tue Jul 20 12:36:04.392 2010] [ 4693] accepting connections
+[Tue Jul 20 13:43:14.100 2010] [ 4693] caught SIGTERM, shutting down
+[Tue Jul 20 13:43:14.150 2010] [ 4693] shutdown complete

@@ -1,17 +1,5 @@
 <% content_for :head do %>
-    <script type="text/javascript">
-$(function() {
-    $("#select_all").toggle(function() {
-    $(".pub-state-checkbox").each(function() {
-      this.checked = 'checked';
-    });
-    }, function() {
-    $(".pub-state-checkbox").each(function() {
-      this.checked = '';
-    });
-    });
-    });
-    </script>
+  <%= javascript_tag 'event_admin' %>
 <% end %>
 
 <h1>
