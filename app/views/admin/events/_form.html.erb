@@ -37,6 +37,23 @@
 
 <hr />
 	
+  <div class="field">
+    <%= f.label :topic_list, "Main topic" %><br />
+  	<%=
+	select(:event, :topic_list, Event.tags_humane(:topics), {:include_blank => true}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :type_list, "Event type" %><br />
+  	<%=
+	select(:event, :type_list, Event.tags_humane(:types), {:include_blank => true}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :industry_list, "Industry" %><br />
+  	<%=
+	select(:event, :industry_list, Event.tags_humane(:industries), {:include_blank => true}) %>
+  </div>
 
 <hr />
 

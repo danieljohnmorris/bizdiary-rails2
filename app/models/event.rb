@@ -170,29 +170,24 @@ class Event < ActiveRecord::Base
   end
 
 
-  # load in our tag data, and define a few methods
-  # Event.(topic|industry|type)_tags
-  # Event.(topic|industry|type)_tags_to_humane
+  # load in our tag data, and store them in class variables
   tag_data = YAML.load_file(File.dirname(__FILE__) + '/../../config/tags.yml')
   
   ['topics','industries','types'].each do |tag_type|
-    class_var_symbol = "@@#{tag_type}".to_sym
+    class_var_symbol = "@@#{tag_type}_tags".to_sym
     class_variable_set(class_var_symbol, tag_data[tag_type])
-    
-    singleton_class = class << self; self; end
-    singleton_class.instance_eval do
-      
-      # Event.(type)_tags
-      define_method "#{tag_type.singularize}_tags" do
-        class_variable_get(class_var_symbol).keys
-      end
-      # Event.(type)_tags_to_humane
-      define_method "#{tag_type.singularize}_tags_to_humane" do
-        class_variable_get(class_var_symbol)
-      end
-      
-    end
-    
+  end
+  
+  # returns the tags defined for tag_type (setup in config/tags.yml)
+  def self.tags(tag_type)
+    Event.tags_humane(tag_type).keys
+  end
+  
+  # returns the tags defined for tag_type, with their user facing names (setup in config/tags.yml)
+  def self.tags_humane(tag_type)
+    sym = "@@#{tag_type}_tags".to_sym
+    raise "Asked for a non existant tag type #{tag_type}" unless class_variable_defined?(sym)
+    class_variable_get(sym)
   end
 
   
