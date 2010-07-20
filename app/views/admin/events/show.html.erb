@@ -1,7 +1,5 @@
 <%= render :partial => "admin/events/header" %>
 
-<p id="notice"><%= notice %></p>
-
 <p id="pubstate-<%= @event.id %>" class="option-bar">
 	<% if @event.published? %>
 		<%= render :partial => 'admin/events/link_hide', :locals => { :event => @event } %>

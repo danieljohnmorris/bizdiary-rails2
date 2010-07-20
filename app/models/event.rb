@@ -23,8 +23,8 @@ class Event < ActiveRecord::Base
   # date/time scopes
   named_scope :by_start_date_backward, :order => "start_date DESC"
   named_scope :by_start_date_forward, :order => "start_date ASC"
-  named_scope :in_the_past, lambda {{ :conditions => ["start_date < NOW()"] }}    
-  named_scope :in_the_future, lambda {{ :conditions => ["start_date >= NOW()"] }}
+  named_scope :in_the_past, lambda {{ :conditions => ["start_date < " + Date.new.to_s(:db)] }}    
+  named_scope :in_the_future, lambda {{ :conditions => ["start_date >= " + Date.new.to_s(:db)] }}
   
   
   # Takes a hash of filters and turns returns them as a scope, which can then be paginated etc

@@ -1,17 +1,5 @@
 <% content_for :head do %>
-    <script type="text/javascript">
-$(function() {
-    $("#select_all").toggle(function() {
-    $(".pub-state-checkbox").each(function() {
-      this.checked = 'checked';
-    });
-    }, function() {
-    $(".pub-state-checkbox").each(function() {
-      this.checked = '';
-    });
-    });
-    });
-    </script>
+  <%= javascript_include_tag 'event_admin' %>
 <% end %>
 
 <h1>
@@ -19,7 +7,6 @@ $(function() {
     <%= @view == "past" ? link_to("upcoming events", "?view=upcoming") : link_to("past events", "?view=past") %>
   ?)
 </h1>
-<form action="<%= bulk_publish_admin_events_path %>" method="get">
 	<%= will_paginate @events %>
 	<%= render :partial => "action_bar" %>
 
@@ -65,20 +52,30 @@ $(function() {
 	    
 	    
 	    <!-- tags -->
-      <% form_for(event) do |f| %>
         <td class="tag_field">
-          <%= f.label :topic_list, "Main topic" %><br>
-          <%= select(:event, :topic_list, Event.tags_humane(:topics), {:include_blank => true}) %>
+        
+        
+          <% form_for([:admin, event], :html => {:class => 'tag_form', :target => '_ajax_hack'}) do |f| %>
+            
+            <p>
+              <%= f.label :topic_list, "Main topic" %><br>
+              <%= select(:event, :topic_list, Event.tags_humane(:topics), {:include_blank => true}) %>
+            </p>
+            
+            <p>
+              <%= f.label :type_list, "Event type" %><br>
+              <%= select(:event, :type_list, Event.tags_humane(:types), {:include_blank => true}) %>
+            </p>
+            
+            <p>
+              <%= f.label :industry_list, "Industry" %><br>
+              <%= select(:event, :industry_list, Event.tags_humane(:industries), {:include_blank => true}) %>
+            </p>
+          
+          <% end %>
+
         </td>
-        <td class="tag_field">
-          <%= f.label :type_list, "Event type" %><br>
-          <%= select(:event, :type_list, Event.tags_humane(:types), {:include_blank => true}) %>
-        </td>
-        <td class="tag_field">
-          <%= f.label :industry_list, "Industry" %><br>
-          <%= select(:event, :industry_list, Event.tags_humane(:industries), {:include_blank => true}) %>
-        </td>
-      <% end %>
+
 
 		</td>
 	    <td><%= event.location %> (<%= map_link(event.location) %>)</td>
@@ -136,5 +133,4 @@ $(function() {
 	  </tr>
 	<% end %>
 	</table>
->>>>>>> dev
-
+<iframe id="_ajax_hack" name="_ajax_hack"></iframe>

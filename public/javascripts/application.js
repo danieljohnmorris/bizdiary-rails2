@@ -10,15 +10,15 @@ $(function() {
 		'transitionOut'		: 'none',				
 		'type'				: 'iframe'			
 	});
-		$(".event .map-link").fancybox({
-			'width'				: '90%',				
-			'height'			: '90%',				
-			'autoScale'			: true,				
-			'transitionIn'		: 'none',			
-			'transitionOut'		: 'none',				
-			'type'				: 'iframe'			
-		});
-		
+	$(".event .map-link").fancybox({
+		'width'				: '90%',				
+		'height'			: '90%',				
+		'autoScale'			: true,				
+		'transitionIn'		: 'none',			
+		'transitionOut'		: 'none',				
+		'type'				: 'iframe'			
+	});
+	
 	// Highlight starred on hover!
 	$(".star a.starred").hover(function() {
 		$("img", this).attr("src", "/images/starred.gif");
