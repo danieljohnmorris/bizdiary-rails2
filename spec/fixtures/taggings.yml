@@ -1,0 +1,7 @@
+weird_t:
+  tag_id: 4
+  context: saves
+  taggable_id: 1
+  taggable_type: Event
+  tagger_id: 1
+  tagger_type: Person

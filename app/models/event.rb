@@ -2,7 +2,6 @@ require 'fastercsv'
 
 class Event < ActiveRecord::Base
   
-  
   belongs_to :organisation
   
   # tagging
@@ -27,12 +26,14 @@ class Event < ActiveRecord::Base
   
   # /events/filter?organisation=5&q=london
   # topic 1+5 -> 1,5
-  def self.filtered(filters)
+  def self.filtered(filters, person = nil)
     scope = scoped({})
     filters.each_pair do |filter_name, filter_args|
       next unless [:organisation, :topic, :type, :industry, :starred, :q].include? filter_name.to_sym
       
       # if you add a condition, make sure you put in in the list above too
+      # Keep chaining up scope - scope can take extra scopes, and acts_as_taggable tagged_with
+      # is just a scope
       scope = case filter_name
                when :organisation
                  scope.scoped :include => :organisation, :conditions => {:organisations => {:id => filter_args}}
@@ -43,10 +44,12 @@ class Event < ActiveRecord::Base
                when :industry
                  scope.tagged_with(filter_args, :on => :industries)
                when :starred
-                 # TODO need to have person
-      #                       scope.tagged_with('save', :on => :saves)
+                 raise "Can't filter for a person's starred events without the person" unless person
+                 scope.tagged_with('star', :on => :saves, :by => person)
                when :q
-         
+                # TODO - this will be a little more involved, as we'll need to use sphinx_scopes
+                # as sphinx doesn't use SQL for queries, but its separate sphinx server
+                # http://freelancing-god.github.com/ts/en/
              end
     end
     scope

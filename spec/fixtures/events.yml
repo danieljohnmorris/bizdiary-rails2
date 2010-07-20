@@ -5,14 +5,13 @@
 # below each fixture, per the syntax in the comments below
 #
 moonies_meetup:
+  id: 1
   title: Moonies' meet
   start_date: <%= DateTime.new + 1.week %>
   location: Cult house 1
   organisation: moonies
-  taggings: weird, creepy
 
 scientologist_party:
   title: Tom Cruise will not be there!
   start_date: <%= DateTime.new + 1.week %>
   location: Cult house 2
-  taggings: weird, creepy, tom

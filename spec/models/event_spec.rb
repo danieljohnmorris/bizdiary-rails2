@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Event do
   
   
-  fixtures :events, :organisations, :tags, :taggings
+  fixtures :events, :organisations, :tags, :taggings, :people
   
   before(:each) do
     @valid_attributes = {
@@ -23,6 +23,12 @@ describe Event do
       
       (result = Event.filtered(:organisation => organisations('moonies').id).all).length.should == 1
       result.first.title = events('moonies_meetup').title
+      
+    end
+    
+    it "should show events starred by someone" do
+      
+      Event.filtered({:starred => true},people('bill')).first.title.should == events('moonies_meetup').title
       
     end
     
