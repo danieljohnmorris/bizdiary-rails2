@@ -18,19 +18,9 @@
 	    <th></th>
 	    <th>Title</th>
 	    <th>Topics</th>
-	    <th>Event Types</th>
-	    <th>Industries</th>
-	    <!--<th>Description</th>-->
-	    <th>Location</th>
-	    <th>Start Date</th>
-	    <th>Organisation</th>
-	    <th>Url</th>
-	    <th>Source</th>
-	    <!--<th>Telephone</th>
-	    <th>Email</th>
-	    <th>People</th>
-	    <th>Notes</th>-->
-	    <th></th>
+		<th>Description</th>
+	    <th>Organiser</th>
+	    <th>URL</th>
 	  </tr>
 
 	<% @events.each do |event| %>
@@ -49,37 +39,39 @@
 	    <td><%= link_to 'Edit', edit_admin_event_path(event), :class => "edit" %></td>
 		<td><%= link_to event.title, admin_event_path(event) %></td>
 	    <!--<td><%= event.description %></td>-->
-	    
-	    
+	    	    
 	    <!-- tags -->
-        <td class="tag_field">
-        
-        
+        <td class="tag_field">               
           <% form_for([:admin, event], :html => {:class => 'tag_form', :target => '_ajax_hack'}) do |f| %>
             
-            <p>
-              <%= f.label :topic_list, "Main topic" %><br>
+            <p style="background-color: #eee;">
+              <%= f.label :topic_list, "Main topic", :style => "color: #777;" %><br>
+			  <% unless event.topics.blank? %><strong><%= event.topics.first %><% else %>UNSET<% end %></strong><br>
               <%= select(:event, :topic_list, Event.tags_humane(:topics), {:include_blank => true}) %>
             </p>
             
-            <p>
-              <%= f.label :type_list, "Event type" %><br>
+            <p style="background-color: #eee;">
+              <%= f.label :type_list, "Event type", :style => "color: #777;" %><br>
+			  <% unless event.types.blank? %><strong><%= event.types.first %><% else %>UNSET<% end %></strong><br>
               <%= select(:event, :type_list, Event.tags_humane(:types), {:include_blank => true}) %>
             </p>
             
-            <p>
-              <%= f.label :industry_list, "Industry" %><br>
+            <p style="background-color: #eee;">
+              <%= f.label :industry_list, "Industry", :style => "color: #777;" %><br>
+			  <% unless event.industries.blank? %><strong><%= event.industries.first %><% else %>UNSET<% end %></strong><br>
               <%= select(:event, :industry_list, Event.tags_humane(:industries), {:include_blank => true}) %>
             </p>
           
           <% end %>
 
         </td>
-
-
+	    <td>
+			<% if event.description %>
+				<%= event.description %>
+			<% else %>
+				N/A
+			<% end %>
 		</td>
-	    <td><%= event.location %> (<%= map_link(event.location) %>)</td>
-	    <td><%= event.start_date %></td>
 	    <td>
 			<% if event.organisation %>
 				<%= link_to event.organisation.name, admin_organisation_path(event.organisation) %>
@@ -94,43 +86,9 @@
 				N/A
 			<% end %>
 		</td>
-	    <td>
-			<% if event.source && event.source.length > 1 %>
-				<%= event.source %>
-			<% else %>
-				N/A
-			<% end %>
-		</td>
-	    <!--<td>
-			<% if event.telephone && event.telephone.length > 1 %>
-				<%= event.telephone %>
-			<% else %>
-				N/A
-			<% end %>
-		</td>
-	    <td>
-			<% if event.email && event.email.length > 1 %>
-				<%= link_to event.email, "mailto:#{event.email}" %>
-			<% else %>
-				N/A
-			<% end %>
-		</td>
-	    <td>
-			<% if event.people && event.people.length > 1 %>
-				<%= event.people %>
-			<% else %>
-				N/A
-			<% end %>
-		</td>
-	    <td>
-			<% if event.notes && event.notes.length > 1 %>
-				<%= event.notes %>
-			<% else %>
-				N/A
-			<% end %>
-		</td>-->
-	    <td><%= link_to 'Destroy', admin_event_path(event), :html => { :confirm => 'Are you sure?', :method => :delete }, :class => "delete" %></td>
 	  </tr>
 	<% end %>
 	</table>
+	<%= will_paginate @events %>
+	
 <iframe id="_ajax_hack" name="_ajax_hack"></iframe>
