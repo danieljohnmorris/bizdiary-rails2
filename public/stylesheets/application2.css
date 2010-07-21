@@ -165,9 +165,9 @@ img.logo {
 	#search #q {
 		width: 25em; font-size: 1.8em;
 		margin: 0 0.5em 0 0;
-		padding: .2em .2em .2em .2em;
+		padding: .18em .2em .18em .2em;
 		position: relative;
-		top: 4px;
+		top: 3px;
 	}
 h3.list-hd {
 	color: #bbb;
