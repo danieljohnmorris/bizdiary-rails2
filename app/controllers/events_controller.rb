@@ -1,8 +1,16 @@
 class EventsController < ApplicationController
+  
+  include EventsHelper
+  
   before_filter :authenticate_person!, :only => [:starred, :star, :unsta]
   
   def index
     redirect_to root_path
+  end
+  
+  def filter
+    @events = Event.filtered(prepare_filters(params, {:organisation => :id, :topic => :text, :type => :text, :industry => :text}), current_person || nil).paginate :page => params[:page]
+    render :template => 'home/index'
   end
   
   # GET /events/1
@@ -14,6 +22,19 @@ class EventsController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @event }
     end
+  end
+  
+  # GET /events/search
+  def search
+    @q = params[:q]
+    
+    if @q.blank?
+      redirect_to root_path
+      return
+    end
+        
+    @events = Event.search(@q)
+    render "home/index"
   end
   
   ###### STARRING CONTROLLER METHODS

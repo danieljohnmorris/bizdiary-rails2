@@ -1,0 +1,12 @@
+weird:
+  id: 1
+  name: weird
+creepy:
+  id: 2
+  name: creepy
+tom_cruise:
+  id: 3
+  name: tom_cruise
+star:
+  id: 4
+  name: star

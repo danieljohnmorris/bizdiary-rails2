@@ -1,10 +1,30 @@
 #require File.dirname(__FILE__) + '/../../vendor/plugins/cothink/lib/helpers/date'
 module EventsHelper
   
+  # :ids, :id, :text
+  # turns a hash of filter params, where multiple elements are csv separated
+  def prepare_filters(input, setup)
+    prepared = {}
+    setup.each_pair do |filter, type|
+      next unless input.include? filter
+      val = input[filter]
+      prepared[filter] = case type
+                           when :ids
+                            val.split(',')
+                           when :id
+                            val
+                           when :text
+                            val
+                          end
+    end
+    prepared
+  end
+  
 #  include ::Cothink::Helpers::Date
   
   @@week_names = ['This Week','Next Week','Week After Next']
   
+  # google map link for address
   def map_link(address)
     link_to "map", 'http://maps.google.co.uk?q=' + CGI.escape(address), :class => 'map-link'
   end
@@ -45,6 +65,7 @@ module EventsHelper
   def render_calendar_page(date)
      render(:partial => 'home/calendar_page',:locals => {:day => date.day, :month => date.strftime('%b')})
   end
+  
   def render_week(date)
     
     week_diff = weeks_in_future_of(date,Time.now)

@@ -5,6 +5,7 @@ tmp/**/*
 config/database.yml
 db/*.sqlite3
 db/schema.rb
+db/sphinx/**/*
 .bundle
 log/development.log
 log/cucumber.log
@@ -14,3 +15,7 @@ tmp/pids/server.pid
 capybara-*.html
 vendor/cache
 relock/
+config/development.sphinx.conf
+log/searchd*
+config/development/sphinx.conf
+db/sphinx/*

@@ -6,19 +6,17 @@
    	<title>The Business Diary</title>
 	
 	<link rel="stylesheet" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
-   	<link rel="stylesheet" type="text/css" href="<%= assets %>/css/grid24.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="<%= assets %>/css/j-base.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="<%= assets %>/css/style.css" media="screen" /> 
+   	<link rel="stylesheet" type="text/css" href="/<%= assets %>/css/grid24.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/<%= assets %>/css/j-base.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/<%= assets %>/css/style.css" media="screen" /> 
 	
 	<%= stylesheet_link_tag "application2" %>
 	
-	<%= javascript_include_tag 'jquery-1.4.1-min', 'rails', 'application' %>
-	<%= javascript_include_tag 'jsl', 'rails', 'application' %>
+	<%= javascript_include_tag 'jquery-1.4.1-min', 'rails', 'application', 'jsl' %>
   
 	<script type="text/javascript" src="/fancybox/jquery.easing-1.3.pack.js"></script>
 	<script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
 	<link rel="stylesheet" href="/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen" />
-
 
 	<script type="text/javascript">
 	  //RPXNOW.loadAndRun(['Social'], function () {
@@ -45,7 +43,7 @@
            <div class="yui-u first" id="mast">
 				<h1>
 					<a id="go-home" href="/" title="Back to the homepage" name="go-home">
-						<img class="logo" alt="The Business Diary" src="/images/logo.png">
+						<img class="logo" alt="The Business Diary" src="/images/logo7.png">
 					</a>
 				</h1>
 				<p id="strapline">Meet. Connect. Learn.</p>
@@ -67,13 +65,13 @@
 				#<p class='success'>This is an success message</p>
 				%>
 																
-	          <% if notice -%>
+	          <% if defined?(notice) -%>
 	          <p class='success'>
 	            <%=h notice %>
 	          </p>
 	          <% end -%>
 
-	          <% if alert -%>
+	          <% if defined?(alert) -%>
 	          <p class='error'>
 	            <%=h alert %>
 	          </p>

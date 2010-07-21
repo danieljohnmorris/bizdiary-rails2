@@ -31,8 +31,8 @@ ActionController::Routing::Routes.draw do |map|
         :star => :get, 
         :unstar => :get 
       }, 
-      :collection => { :starred => :get }
-    
+      :collection => { :starred => :get, :search => :get, :filter => :get}
+  
   # map.root            :controller => 'home'
   # map.about '/about', :controller => 'about'
   # map.admin '/admin', :controller => 'admin'

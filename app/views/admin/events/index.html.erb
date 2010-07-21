@@ -1,27 +1,12 @@
 <% content_for :head do %>
-<script type="text/javascript">
-$(function() {
-	$("#select_all").toggle(function() {
-		$(".pub-state-checkbox").each(function() {
-			this.checked = 'checked';
-		});
-	}, function() {
-		$(".pub-state-checkbox").each(function() {
-			this.checked = '';
-		});
-	});
-});
-</script>
+  <%= javascript_include_tag 'event_admin' %>
 <% end %>
 
-<%= render :partial => "admin/events/header" %>
-
-<script type="text/javascript" charset="utf-8">
-</script>
-
-<h1>Listing <%= @view %> events (Switch to <% if @view == "past" %><%= link_to "upcoming events", "?view=upcoming" %><% else %><%= link_to "past events", "?view=past" %><% end %>?)</h1>
-
-<form action="<%= bulk_publish_admin_events_path %>" method="get">
+<h1>
+  Listing <%= @view %> events (Switch to 
+    <%= @view == "past" ? link_to("upcoming events", "?view=upcoming") : link_to("past events", "?view=past") %>
+  ?)
+</h1>
 	<%= will_paginate @events %>
 	<%= render :partial => "action_bar" %>
 
@@ -32,20 +17,10 @@ $(function() {
 	    <th style="width: 90px;">Publish-state</th>
 	    <th></th>
 	    <th>Title</th>
+		<th>Description</th>
 	    <th>Topics</th>
-	    <th>Event Types</th>
-	    <th>Industries</th>
-	    <!--<th>Description</th>-->
-	    <th>Location</th>
-	    <th>Start Date</th>
-	    <th>Organisation</th>
-	    <th>Url</th>
-	    <th>Source</th>
-	    <!--<th>Telephone</th>
-	    <th>Email</th>
-	    <th>People</th>
-	    <th>Notes</th>-->
-	    <th></th>
+	    <th>Organiser</th>
+	    <th>URL</th>
 	  </tr>
 
 	<% @events.each do |event| %>
@@ -62,34 +37,40 @@ $(function() {
 			<% end %>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 	  	</td>
 	    <td><%= link_to 'Edit', edit_admin_event_path(event), :class => "edit" %></td>
-		<td><%= link_to event.title, admin_event_path(event) %></td>
-	    <!--<td><%= event.description %></td>-->
+		<td><h3><%= link_to event.title, admin_event_path(event) %></h3></td>
 	    <td>
-			<% unless event.topic_list.empty? %>
-			<ul>
-				<li><%= render :partial => "admin/events/topic", :collection => event.topic_list, :as => :topic, :spacer_template => "shared/separator_list" %></li>
-			</ul>
+			<% if event.description %>
+				<%= event.description %>
+			<% else %>
+				N/A
 			<% end %>
-		</td>
-	    <td>
-			<% unless event.type_list.empty? %>
-			<ul>
-				<li><%= render :partial => "admin/events/topic", :collection => event.type_list, :as => :topic, :spacer_template => "shared/separator_list" %></li>
-			</ul>
-			<% end %>
-		</td>
-	    <td>
-			<% unless event.industry_list.empty? %>
-			<ul>
-				<li><%= render :partial => "admin/events/topic", :collection => event.industry_list, :as => :topic, :spacer_template => "shared/separator_list" %></li>
-			</ul>
-			<% end %>
-		</td>
-	    <td><%= event.location.html_safe %> (<%= map_link(event.location) %>)</td>
-	    <td><%= event.start_date %></td>
+		</td>	    	    
+	    <!-- tags -->
+        <td class="tag_field">               
+          <% form_for([:admin, event], :html => {:class => 'tag_form', :target => '_ajax_hack'}) do |f| %>
+            
+            <p style="background-color: #eee;">
+              <%= f.label :topic_list, "Main topic", :style => "color: #777;" %><br>
+              <%= select(event, :topic_list, Event.tags_humane(:topics), {:prompt => 'Select topic...', :include_blank => "All topics", :selected => event.topic_list}) %>
+            </p>
+            
+            <p style="background-color: #eee;">
+              <%= f.label :type_list, "Event type", :style => "color: #777;" %><br>
+              <%= select(event, :type_list, Event.tags_humane(:types), {:prompt => 'Select type...', :include_blank => "All types", :selected => event.type_list}) %>
+            </p>
+            
+            <p style="background-color: #eee;">
+              <%= f.label :industry_list, "Industry", :style => "color: #777;" %><br>
+              <%= select(event, :industry_list, Event.tags_humane(:industries), {:prompt => 'Select industry...', :include_blank => "All industries", :selected => event.industry_list}) %>
+            </p>
+          
+          <% end %>
+
+        </td>
+
 	    <td>
 			<% if event.organisation %>
-				<%= link_to event.organisation.name.html_safe, admin_organisation_path(event.organisation) %>
+				<%= link_to event.organisation.name, admin_organisation_path(event.organisation) %>
 			<% else %>
 				N/A
 			<% end %>
@@ -101,46 +82,9 @@ $(function() {
 				N/A
 			<% end %>
 		</td>
-	    <td>
-			<% if event.source && event.source.length > 1 %>
-				<%= event.source.html_safe %>
-			<% else %>
-				N/A
-			<% end %>
-		</td>
-	    <!--<td>
-			<% if event.telephone && event.telephone.length > 1 %>
-				<%= event.telephone.html_safe %>
-			<% else %>
-				N/A
-			<% end %>
-		</td>
-	    <td>
-			<% if event.email && event.email.length > 1 %>
-				<%= link_to event.email.html_safe, "mailto:#{event.email}" %>
-			<% else %>
-				N/A
-			<% end %>
-		</td>
-	    <td>
-			<% if event.people.html_safe && event.people.length > 1 %>
-				<%= event.people %>
-			<% else %>
-				N/A
-			<% end %>
-		</td>
-	    <td>
-			<% if event.notes.html_safe && event.notes.length > 1 %>
-				<%= event.notes %>
-			<% else %>
-				N/A
-			<% end %>
-		</td>-->
-	    <td><%= link_to 'Destroy', admin_event_path(event), :html => { :confirm => 'Are you sure?', :method => :delete }, :class => "delete" %></td>
 	  </tr>
 	<% end %>
 	</table>
-
-	<%= render :partial => "action_bar" %>
 	<%= will_paginate @events %>
-</form>
+	
+<iframe id="_ajax_hack" name="_ajax_hack"></iframe>

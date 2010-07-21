@@ -1,3 +1,5 @@
+<%= render :partial => 'events/search' %>
+
 <% if (params[:topic]) %>
 <h1><strong><%= @events.length %></strong> upcoming events for topic <strong><%= params[:topic] %></strong> (<%= link_to "Show all events", root_path %>)</h1>
 <% end %>

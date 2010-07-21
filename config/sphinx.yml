@@ -1,0 +1,3 @@
+production:
+  pid_file: /srv/bizdiary/shared/pids/searchd.pid
+  searchd_file_path: /srv/bizdiary/shared/system/sphinx_db

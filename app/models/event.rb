@@ -1,27 +1,62 @@
 require 'fastercsv'
 
 class Event < ActiveRecord::Base
+  
   belongs_to :organisation
-
+  
   validates_presence_of :title, :start_date, :location # minimum useful fields
-
-  lambda { {:conditions => ['delete_after < ?', Time.now]} }
-
-  named_scope :by_start_date_backward, :order => "start_date DESC"
-  named_scope :by_start_date_forward, :order => "start_date ASC"
-  named_scope :in_the_past, lambda {{ :conditions => ["start_date < NOW()"] }}    
-  named_scope :in_the_future, lambda {{ :conditions => ["start_date >= NOW()"] }}    
-
-  #pub state
-  DRAFT_STATE = 0
-  PUBLISHED_STATE = 1
-  attr_protected :publish_state
-  named_scope :published, lambda {{ :conditions => ["publish_state = ?", PUBLISHED_STATE] }}    
-  named_scope :drafts, lambda {{ :conditions => ["publish_state = ?", DRAFT_STATE] }}    
-
+  
+  
   # tagging
   acts_as_taggable_on :saves, :topics, :types, :industries
+  STAR_TAG = 'star'
+
+
+  # publishing
+  DRAFT_STATE = 0
+  PUBLISHED_STATE = 1
   
+  named_scope :published, lambda {{ :conditions => ["publish_state = ?", PUBLISHED_STATE] }}    
+  named_scope :drafts, lambda {{ :conditions => ["publish_state = ?", DRAFT_STATE] }}
+  
+  
+  # date/time scopes
+  named_scope :by_start_date_backward, :order => "start_date DESC"
+  named_scope :by_start_date_forward, :order => "start_date ASC"
+  named_scope :in_the_past, lambda {{ :conditions => ["start_date < " + Date.new.to_s(:db)] }}    
+  named_scope :in_the_future, lambda {{ :conditions => ["start_date >= " + Date.new.to_s(:db)] }}
+  
+  
+  # Takes a hash of filters and turns returns them as a scope, which can then be paginated etc
+  def self.filtered(filters, person = nil)
+    scope = scoped({})
+    filters.each_pair do |filter_name, filter_args|
+      next unless [:organisation, :topic, :type, :industry, :starred, :q].include? filter_name.to_sym
+      
+      # if you add a condition, make sure you put in in the list above too
+      # Keep chaining up scope - scope can take extra scopes, and acts_as_taggable tagged_with
+      # is just a scope
+      scope = case filter_name
+               when :organisation
+                 scope.scoped :include => :organisation, :conditions => {:organisations => {:id => filter_args}}
+               when :topic
+                 scope.tagged_with(filter_args, :on => :topics)
+               when :type
+                 scope.tagged_with(filter_args, :on => :types)
+               when :industry
+                 scope.tagged_with(filter_args, :on => :industries)
+               when :starred
+                 raise "Can't filter for a person's starred events without the person" unless person
+                 scope.tagged_with(STAR_TAG, :on => :saves, :by => person)
+               when :q
+                # TODO - this will be a little more involved, as we'll need to use sphinx_scopes
+                # as sphinx doesn't use SQL for queries, but its separate sphinx server
+                # http://freelancing-god.github.com/ts/en/
+             end
+    end
+    scope
+  end
+
   def combined_tags
     topics = {:topic => self.topics.to_a}
     event_types = {:type => self.types.to_a}
@@ -53,15 +88,15 @@ class Event < ActiveRecord::Base
   end
   
   def self::starred(person)
-    person.owned_taggings(:context => "saves", :tag => "star").collect { |t| t.taggable }
+    person.owned_taggings(:context => :saves, :tag => STAR_TAG).collect { |t| t.taggable }
   end
 
   def starred
-    taggings(:context => :saves, :tag => "star")
+    taggings(:context => :saves, :tag => STAR_TAG)
   end
 
   def star(person)
-    person.tag(self, :with => "star", :on => :saves)
+    person.tag(self, :with => STAR_TAG, :on => :saves)
   end
 
   def unstar(person)
@@ -120,11 +155,40 @@ class Event < ActiveRecord::Base
     end
   end
   
-  # def method_missing(method,*args,&block)
-  #   if method.to_s =~ /^(start|end)_(ampm|time|day|month)$/
-  #     _formatted_date($1 + '_date',$2)
-  #   else
-  #     super(method,*args,&block)
-  #   end
-  # end
+  define_index do
+    indexes title
+    indexes description
+    indexes organisation(:name), :as => :organisation
+    indexes location
+    
+    set_property :field_weights => {
+      :title          => 5,
+      :description    => 3,
+      :location       => 5,
+      :organisation   => 5
+    }
+  end
+
+
+  # load in our tag data, and store them in class variables
+  tag_data = YAML.load_file(File.dirname(__FILE__) + '/../../config/tags.yml')
+  
+  ['topics','industries','types'].each do |tag_type|
+    class_var_symbol = "@@#{tag_type}_tags".to_sym
+    class_variable_set(class_var_symbol, tag_data[tag_type])
+  end
+  
+  # returns the tags defined for tag_type (setup in config/tags.yml)
+  def self.tags(tag_type)
+    Event.tags_humane(tag_type).keys
+  end
+  
+  # returns the tags defined for tag_type, with their user facing names (setup in config/tags.yml)
+  def self.tags_humane(tag_type)
+    sym = "@@#{tag_type}_tags".to_sym
+    raise "Asked for a non existant tag type #{tag_type}" unless class_variable_defined?(sym)
+    class_variable_get(sym)
+  end
+
+  
 end
