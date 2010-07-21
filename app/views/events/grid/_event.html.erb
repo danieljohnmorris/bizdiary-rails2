@@ -3,6 +3,9 @@
 #disable week heading for now
 %>
 <li id="event-<%= event.id %>" class="event grid24col clearboth">
+	<%= render :partial => "events/event_star", :locals => { :event => event } %>
+
+	<!-- title -->
 	<span class="title left grid11col">
 		<h3 title="Show more info">
 			<%= event.title %>
