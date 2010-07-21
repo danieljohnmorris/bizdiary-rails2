@@ -28,6 +28,8 @@ class EventsController < ApplicationController
   def search
     @q      = params[:q]
     @events = Event.search(@q)
+    
+    render "home/index"
   end
   
   ###### STARRING CONTROLLER METHODS

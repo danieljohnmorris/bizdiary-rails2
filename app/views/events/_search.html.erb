@@ -1,12 +1,12 @@
 <div id="search">
   <% unless @q %>
-    <div class="hint">
-      Which events are you looking for? Search by event type, location or organiser.
+    <div class="prompt">
+      Which events are you looking for? <span class="hint">Search by event type, location or organiser.</span>
     </div>
   <% end %>
   <% form_tag({:controller => 'events', :action => 'search'}, {:method =>'get'}) do  %>
     <%= text_field_tag :q, @q || '' %>
-    <%= submit_tag 'Search' %>
+	<button class="medium orange awesome" type="submit">Search business events</button>
   <% end %>
   <% if @events && @q %>
     <p>Your search for "<%= @q %>" found <%= @events.length %> events</p>
