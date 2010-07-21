@@ -1,5 +1,7 @@
 server '173.203.95.138', :app, :web, :db, :primary => true
 
+default_run_options[:pty] = true
+
 ### SEARCH - THINKING SPHINX 
 
 # Thinking Sphinx
@@ -57,6 +59,7 @@ namespace :deploy do
 
   task :after_update_code do
     symlink_sphinx_indexes
+    sudo "chown -R rails:rails #{current_path}/config" 
     thinking_sphinx.configure
     thinking_sphinx.start
   end
