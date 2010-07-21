@@ -117,3 +117,7 @@
 [Wed Jul 21 16:08:06.694 2010] 0.000 sec [all/2/rel 22 (0,20)] [event_core] female
 [Wed Jul 21 16:08:23.542 2010] 0.008 sec [all/2/rel 22 (0,20)] [event_core] female
 [Wed Jul 21 16:12:08.026 2010] 0.030 sec [all/2/rel 22 (0,20)] [event_core] female
+[Wed Jul 21 16:16:10.142 2010] 0.022 sec [all/2/rel 277 (0,20)] [event_core] social
+[Wed Jul 21 16:16:14.632 2010] 0.044 sec [all/2/rel 144 (0,20)] [event_core] social business
+[Wed Jul 21 16:16:20.259 2010] 0.015 sec [all/2/rel 32 (0,20)] [event_core] student
+[Wed Jul 21 16:16:31.466 2010] 0.015 sec [all/2/rel 10 (0,20)] [event_core] 4networking
