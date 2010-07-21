@@ -5,7 +5,7 @@
 <li id="event-<%= event.id %>" class="event grid24col clearboth">
 	<span class="title left grid11col">
 		<h3 title="Show more info">
-			<%= event.title.html_safe %>
+			<%= event.title %>
 		</h3>
 	</span>	
 
@@ -44,7 +44,7 @@
 
 	  <div class="description" style="width: 500px;">
 		<h4>Event description</h4>
-		<%= event.description.html_safe %>
+		<%= event.description %>
 	  </div>
 
 	  <div class="others" style="float: right;">
@@ -52,7 +52,7 @@
 		  <p><strong><%= event.start_date.full_date_format %></strong></p>
 
 		  <h4>Address</h4>	
-		  <p><%= event.location.html_safe.strip %> (<%= map_link(event.location.html_safe) %>)</p>
+		  <p><%= event.location.strip %> (<%= map_link(event.location) %>)</p>
 
 	      <div class="organiser-description">
 			<% if event.organisation %>
