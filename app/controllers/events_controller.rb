@@ -26,9 +26,14 @@ class EventsController < ApplicationController
   
   # GET /events/search
   def search
-    @q      = params[:q]
-    @events = Event.search(@q)
+    @q = params[:q]
     
+    if @q.blank?
+      redirect_to root_path
+      return
+    end
+        
+    @events = Event.search(@q)
     render "home/index"
   end
   
