@@ -68,8 +68,9 @@
 	
 	<!-- actions -->
 	<div class="grid2col left marginleft">
-		<a class="attend-button grid2col" title="Visit event website and book ticket(s)" href="<%= event.url %>">Attend</a>
-		<a id="share-<%= event.id %>" class="share-button grid2col" href="<%= event_path(event) %>" title="Share '<%= event.title %>'">Share</a>
+		<a class="small-b attend-b light-orange awesome grid2col" title="Visit event website and book ticket(s)" href="<%= event.url %>">Attend</a>
+		<a id="share-<%= event.id %>" class="small-b share-b white awesome grid2col" href="<%= event_path(event) %>" title="Share '<%= event.title %>'">Share</a>
+				
 		<script>
 		$('#share-<%= event.id %>').click(function(event) {
 			RPXNOW.loadAndRun(['Social'], function () {

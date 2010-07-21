@@ -1,5 +1,14 @@
 body {
-	background: #eee;
+	background: #C1E1ED;
+}
+
+a {
+	/*color: #fca961;*/
+	color: #ED8E3B;
+}
+
+a:hover {
+	color: #ff5c00;
 }
 
 #doc, #doc2, #doc3, #doc4 {
@@ -8,7 +17,6 @@ body {
 }
 
 img.logo {
-	width: 400px;
 }
 
 #hd {
@@ -21,7 +29,7 @@ img.logo {
 	#strapline {
 		/*color: #545454;*/
 		color: #9a9a9a;
-		width: 400px;
+		width: 350px;
 		border-top: 2px solid #eee;
 		padding: 5px 0 0 0;
 		line-height: 1em;
@@ -149,29 +157,30 @@ img.logo {
 	padding: 1em 2em 1.5em 2em;
 	margin: 0 20px 4em 20px;
 }
-#search #q {
-	width: 30em; font-size: 1.5em;
-	margin: 0 0.5em 0 0;
-	position: relative;
-	top: 2px;
-}
-	#search .prompt {
-		font-size: 1.5em;
-		line-height: 1.5em;
-	}	
-	#search .hint {
-		color: #aaa;
+	#search.searched {
+		color: #666;
+		background-color: #ddd;
+		border: 3px solid #eee;
 	}
+	#search #q {
+		width: 25em; font-size: 1.8em;
+		margin: 0 0.5em 0 0;
+		position: relative;
+		top: 3px;
+	}
+h3.list-hd {
+	color: #bbb;
+	padding: 0 20px 0 20px;
+}
+#search .prompt {
+	font-size: 1.6em;
+	line-height: 1.5em;
+	/*margin: 0 0 .1em 0;*/
+}	
+#search .hint {
+	color: #aaa;
+}
 	
-	div.wrapper { width: 940px; margin: 0 auto; padding: 0 30px 36px; position: relative; }
-				div#header { background: #f5f5f5; height: 72px; border-bottom: 1px solid #eee; margin: 0; }
-				div#header h4 { float: left; position: absolute; top: 24px; left: 145px; border-left: 1px solid #ddd; padding-left: 14px; }
-				div#header h4 small { font-size: 14px; font-weight: normal; }
-				div#header h4 a, div#header h4 a:visited { font-weight: normal; }
-
-				div.page-header { padding: 0 0 8px; margin: 18px 0; border-bottom: 1px solid #ddd; }
-				div.page-header h1 { padding: 0; margin: 0; font-size: 24px; line-height: 27px; letter-spacing: 0; }
-
 /* Awesome buttons
 ************************/
 
@@ -193,10 +202,12 @@ img.logo {
 
 .awesome:hover									{ background-color: #111; color: #fff; }
 .awesome:active									{ top: 1px; }
-.small.awesome, .small.awesome:visited 			{ font-size: 11px; padding: ; }
+
+.small-b.awesome, .small-b.awesome:visited 		{ font-size: 11px; margin: 0 0 .5em 0; }
 .awesome, .awesome:visited,
-.medium.awesome, .medium.awesome:visited 		{ font-size: 13px; font-weight: bold; line-height: 1; text-shadow: 0 -1px 1px rgba(0,0,0,0.25); }
-.large.awesome, .large.awesome:visited 			{ font-size: 14px; padding: 8px 14px 9px; }
+.medium-b.awesome, .medium-b.awesome:visited 	{ font-size: 13px; font-weight: bold; line-height: 1; text-shadow: 0 -1px 1px rgba(0,0,0,0.25); }
+.large-b.awesome, .large-b.awesome:visited 		{ font-size: 14px; padding: 8px 14px 9px; }
+
 .green.awesome, .green.awesome:visited			{ background-color: #91bd09; }
 .green.awesome:hover							{ background-color: #749a02; }
 .blue.awesome, .blue.awesome:visited			{ background-color: #2daebf; }
@@ -207,6 +218,10 @@ img.logo {
 .magenta.awesome:hover							{ background-color: #630030; }
 .orange.awesome, .orange.awesome:visited		{ background-color: #ff5c00; }
 .orange.awesome:hover							{ background-color: #d45500; }
+.light-orange.awesome, .orange.awesome:visited	{ background-color: #fca961; }
+.light-orange.awesome:hover						{ background-color: #ff5c00; }
+.white.awesome, .orange.awesome:visited			{ background-color: #eee; color: #999; }
+.white.awesome:hover							{ background-color: #999; color: #fff; }
 .yellow.awesome, .yellow.awesome:visited		{ background-color: #ffb515; }
 .yellow.awesome:hover							{ background-color: #fc9200; }
 
