@@ -17,8 +17,8 @@
 	    <th style="width: 90px;">Publish-state</th>
 	    <th></th>
 	    <th>Title</th>
-	    <th>Topics</th>
 		<th>Description</th>
+	    <th>Topics</th>
 	    <th>Organiser</th>
 	    <th>URL</th>
 	  </tr>
@@ -37,9 +37,14 @@
 			<% end %>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 	  	</td>
 	    <td><%= link_to 'Edit', edit_admin_event_path(event), :class => "edit" %></td>
-		<td><%= link_to event.title, admin_event_path(event) %></td>
-	    <!--<td><%= event.description %></td>-->
-	    	    
+		<td><h3><%= link_to event.title, admin_event_path(event) %></h3></td>
+	    <td>
+			<% if event.description %>
+				<%= event.description %>
+			<% else %>
+				N/A
+			<% end %>
+		</td>	    	    
 	    <!-- tags -->
         <td class="tag_field">               
           <% form_for([:admin, event], :html => {:class => 'tag_form', :target => '_ajax_hack'}) do |f| %>
@@ -62,13 +67,7 @@
           <% end %>
 
         </td>
-	    <td>
-			<% if event.description %>
-				<%= event.description %>
-			<% else %>
-				N/A
-			<% end %>
-		</td>
+
 	    <td>
 			<% if event.organisation %>
 				<%= link_to event.organisation.name, admin_organisation_path(event.organisation) %>
