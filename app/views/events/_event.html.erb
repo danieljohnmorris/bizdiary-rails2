@@ -62,7 +62,9 @@
 	
 	<!-- date -->
 	<span class="grid2col left marginleft small subtle">
-		<strong><%= event.start_date.bd_date_format %></strong><br />
+		<% if event.start_date %>
+			<strong><%= event.start_date.bd_date_format %></strong><br />
+		<% end %>
 		London
 	</span>
 	
@@ -99,9 +101,11 @@
 	  </div>
 
 	  <div class="others" style="float: right;">
-		  <h4>Start time</h4>	
-		  <p><strong><%= event.start_date.full_date_format %></strong></p>
-
+		  <% if event.start_date %>
+			<h4>Start time</h4>	
+		  	<p><strong><%= event.start_date.full_date_format %></strong></p>
+		  <% end %>
+		
 		  <h4>Address</h4>	
 		  <p><%= event.location.strip %> (<%= map_link(event.location) %>)</p>
 		
