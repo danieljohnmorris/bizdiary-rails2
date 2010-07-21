@@ -6,7 +6,7 @@
   <% end %>
   <% form_tag({:controller => 'events', :action => 'search'}, {:method =>'get'}) do  %>
     <%= text_field_tag :q, @q || '' %>
-	<button class="medium orange awesome" type="submit">Search business events</button>
+	<button class="medium orange awesome" type="submit">Find business events</button>
   <% end %>
   <% if @events && @q %>
     <p>Your search for "<%= @q %>" found <%= @events.length %> events</p>
