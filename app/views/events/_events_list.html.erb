@@ -1,16 +1,16 @@
-<% if @events && @q %>
-	<h3 class="list-hd">Found <%= @events.length %> events for "<%= @q %>"</h3>
+<% if events && @q %>
+	<h3 class="list-hd">Found <%= events.length %> events for "<%= @q %>"</h3>
 <% else %>
 	<h3 class="list-hd">Upcoming events in london</h3>
 <% end %>
 
 <div id="wrap" class="events">
-  <% unless @events.empty? %>
+  <% unless events.empty? %>
     <ul class="events-list">
-    	<%= raw render_events @events %>
+    	<%= raw render_events events %>
   	</ul>
   <% else %>
   	<p class="info">Oops, couldn't find any events. Try being less specific about the type of event.</p>
   <% end %>
 </div>	
-<%= will_paginate @events %>
+<%= will_paginate events %>
