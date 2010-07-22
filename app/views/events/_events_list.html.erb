@@ -8,6 +8,7 @@
   <% unless events.empty? %>
     <ul class="events-list">
 		<% events.each do |event| %>
+			<%= debug event %>
 			<%= render :partial => 'events/event', :locals => { :event => event } unless event.blank? %>
 		<% end %>
   	</ul>
