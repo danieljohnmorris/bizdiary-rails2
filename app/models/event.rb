@@ -187,8 +187,8 @@ class Event < ActiveRecord::Base
     set_property :field_weights => {
       :title          => 5,
       :description    => 3,
-      :location       => 5,
-      :organisation   => 5
+      :location       => 4,
+      :organisation   => 4
     }
   end
 

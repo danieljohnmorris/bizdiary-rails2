@@ -62,14 +62,17 @@
 	
 	<!-- date -->
 	<span class="grid2col left marginleft small subtle">
-		<strong><%= event.start_date.bd_date_format %></strong><br />
+		<% if event.start_date %>
+			<strong><%= event.start_date.bd_date_format %></strong><br />
+		<% end %>
 		London
 	</span>
 	
 	<!-- actions -->
 	<div class="grid2col left marginleft">
-		<a class="attend-button grid2col" title="Visit event website and book ticket(s)" href="<%= event.url %>">Attend</a>
-		<a id="share-<%= event.id %>" class="share-button grid2col" href="<%= event_path(event) %>" title="Share '<%= event.title %>'">Share</a>
+		<a class="small-b attend-b light-orange awesome grid2col" title="Visit event website and book ticket(s)" href="<%= event.url %>">Attend</a>
+		<a id="share-<%= event.id %>" class="small-b share-b white awesome grid2col" href="<%= event_path(event) %>" title="Share '<%= event.title %>'">Share</a>
+				
 		<script>
 		$('#share-<%= event.id %>').click(function(event) {
 			RPXNOW.loadAndRun(['Social'], function () {
@@ -98,9 +101,11 @@
 	  </div>
 
 	  <div class="others" style="float: right;">
-		  <h4>Start time</h4>	
-		  <p><strong><%= event.start_date.full_date_format %></strong></p>
-
+		  <% if event.start_date %>
+			<h4>Start time</h4>	
+		  	<p><strong><%= event.start_date.full_date_format %></strong></p>
+		  <% end %>
+		
 		  <h4>Address</h4>	
 		  <p><%= event.location.strip %> (<%= map_link(event.location) %>)</p>
 		
