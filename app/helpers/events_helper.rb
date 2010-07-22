@@ -41,16 +41,16 @@ module EventsHelper
       
       week, calendar_page = '',''
       
-      unless last_date.strftime('%W') == event.start_date.strftime('%W')
-        #week = render_week(event.start_date)
-      end
-      unless last_date.day == event.start_date.day
-         calendar_page = render_calendar_page(event.start_date)
-      end
+      #unless last_date.strftime('%W') == event.start_date.strftime('%W')
+      #  #week = render_week(event.start_date)
+      #end
+      #unless last_date.day == event.start_date.day
+      #   calendar_page = render_calendar_page(event.start_date)
+      #end
       
-      output += render(:partial => 'events/event',:locals => {:event=>event, :week=>week, :calendar_page=>calendar_page})
+      #output += render(:partial => 'events/event',:locals => {:event=>event, :week=>week, :calendar_page=>calendar_page})
       
-      last_date = event.start_date
+      #last_date = event.start_date
       
     end
     output
