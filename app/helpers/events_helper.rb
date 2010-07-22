@@ -35,7 +35,7 @@ module EventsHelper
   
   # render events, and week and days for all distinct dates
   def render_events(events)
-    raise events.length
+    raise events.length.inspect
     output = ''
     last_date =  Date.parse('1970-1-1')
     events.each do |event|
