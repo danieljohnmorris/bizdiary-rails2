@@ -34,7 +34,7 @@ class EventsController < ApplicationController
     end
         
     @events = Event.search(@q)
-    raise @events.to_yaml.inspect
+    raise @events.length.inspect
     render "home/index"
   end
   
