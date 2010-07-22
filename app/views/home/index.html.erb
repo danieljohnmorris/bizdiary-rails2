@@ -1,7 +1,7 @@
 <%= render :partial => 'events/search' %>
-
-<% if (params[:topic]) %>
-<h1><strong><%= @events.length %></strong> upcoming events for topic <strong><%= params[:topic] %></strong> (<%= link_to "Show all events", root_path %>)</h1>
+<h2><%= verbalise_filters @events %></h2>
+<% unless SearchFilter.filter_index[:event_filter].current_filters.length == 0 %>
+  <p class='hint'><%= link_to "View all events", events_path %></p>  
 <% end %>
 
 <%= render :partial => 'events/events_list', :locals => { :events => @events } %>

@@ -1,14 +1,20 @@
 describe EventsHelper do 
   
-  it "should prepare filters by a hash, ignoring invalid filters and preparing values" do
+  before :each do
     
-    input = {:organiser => '1', :tags => '1,2,5', :invalid => :blah}
-    setup = {:organiser => :id, :tags => :ids}
-    
-    prepared = helper.prepare_filters(input, setup)
-    prepared.should == {
-      :organiser => '1',
-      :tags      => %w[1 2 5]
-    }
+    @filter = SearchFilter.new({:topic => :text, :organisation => :text}, :event_filter)
   end
+  
+  context "view" do
+    
+    it "should expose a helper that builds new filter paramters on existing ones" do
+      
+      /topic=networking/.should match helper.filter_path({:topic => 'networking'})
+      
+      @filter.current_filters = {:topic => 'networking'}
+      /topic=networking.*organisation=1|organisation=1.*topic=networking/.should match helper.filter_path({:organisation => 1})
+      
+    end
+  end
+
 end

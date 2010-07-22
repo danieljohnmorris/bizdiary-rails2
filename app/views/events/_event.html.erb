@@ -25,9 +25,10 @@
 			<% first_tag = true 
 			event.combined_tags.each_pair do |type, tag_set| %>
 				<% tag_set.each do |tag| %>
-					<li class="left"><a href="?<%= type %>=<%= tag %>" <% if first_tag %>class="primary-tag" <% end %>title="Find more events tagged with '<%= tag.name %>'"><%= tag.name %></a></li>
-					<% first_tag = false if first_tag
-				end %>
+					<li class="left">
+					  <%= link_to tag.name, filter_path(type => tag.name), {:class => (type == event.combined_tags.keys.first ? 'primary-tag' : nil), :title => "Find more events tagged with '#{tag.name}'"} %>
+					</li>
+				<% end %>
 			<% end %>
 		</ul>
 		<br class="clearboth" />
@@ -51,12 +52,11 @@
 		#end 
 		%>
 	</span>
+	
+	<!-- organisation -->
 	<span class="grid2col left marginleft small">
 		<% if event.organisation %>
-			<%= link_to event.organisation.name %>
-			<%
-			#= link_to event.organisation.name, organisation_path(event.organisation), :class => "organiser" 
-			%>
+			<%= link_to event.organisation.name, filter_path(:organisation => event.organisation.id) %>
 		<% end %>
 	</span>
 	

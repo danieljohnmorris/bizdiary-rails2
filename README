@@ -16,3 +16,10 @@ rake thinking_sphinx:index
 rake thinking_sphinx:start
 
 == DEPLOY - MOONSHINE / CAPISTRANO
+
+
+
+== CRONs to make sure are added when you deploy to a new server
+
+Thinking Sphinx Indexing
+Email reminder sender

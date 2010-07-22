@@ -1,0 +1,24 @@
+Hi,
+
+Just a quick reminder that the event you were interested in, <%= @event.title %>, is happening <%= distance_of_time_in_words_to_now(@event.start_date) %>.
+
+
+Event details:
+--------------
+
+View on a Google map: <%= url_for 'http://maps.google.co.uk?q=' + CGI.escape(@event.location) %>.
+
+<%= @event.location %>
+
+
+Event organiser:
+----------------
+
+<%= @event.organisation.name %>
+<%= @event.telephone %>
+<%= @event.email %>
+
+
+Enjoy!
+
+Finbar, Dan, Tim - The Business Diary

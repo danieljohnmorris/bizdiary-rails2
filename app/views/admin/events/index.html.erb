@@ -46,17 +46,17 @@
             
             <p style="background-color: #eee;">
               <%= f.label :topic_list, "Main topic", :style => "color: #777;" %><br>
-              <%= select(event, :topic_list, Event.tags_humane(:topics), {:include_blank => true, :selected => event.topic_list}) %>
+              <%= select(:event, :topic_list, Event.tags_humane(:topics), {:include_blank => true, :selected => event.topic_list}) %>
             </p>
             
             <p style="background-color: #eee;">
               <%= f.label :type_list, "Event type", :style => "color: #777;" %><br>
-              <%= select(event, :type_list, Event.tags_humane(:types), {:include_blank => true, :selected => event.type_list}) %>
+              <%= select(:event, :type_list, Event.tags_humane(:types), {:include_blank => true, :selected => event.type_list}) %>
             </p>
             
             <p style="background-color: #eee;">
               <%= f.label :industry_list, "Industry", :style => "color: #777;" %><br>
-              <%= select(event, :industry_list, Event.tags_humane(:industries), {:include_blank => true, :selected => event.industry_list}) %>
+              <%= select(:event, :industry_list, Event.tags_humane(:industries), {:include_blank => true, :selected => event.industry_list}) %>
             </p>
           
           <% end %>
