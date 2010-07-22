@@ -1,3 +1,5 @@
+<%= render :partial => "events/event_list_heading", :locals => { :events => events } %>
+
 <div id="wrap" class="events">
   <% unless events.empty? %>
     <ul class="events-list">
@@ -22,10 +24,12 @@
 			<span class="grid3col right marginleft  subtle">
 			</span>
 		</li>
-    	<%= raw render_events(events, @list_type) %>
+		<% events.each do |event| %>
+			<%= render :partial => "events/#{@list_type}event", :locals => { :event => event } %>
+		<% end %>
   	</ul>
   <% else %>
-  	<p class="info">Oops, couldn't find any events. Try being less specific about the type of event.</p>
+	<%= render :partial => "events/event_list_empty" %>
   <% end %>
 </div>	
 <%= will_paginate events %>

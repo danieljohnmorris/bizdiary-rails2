@@ -51,6 +51,8 @@ img.logo {
 .events {
 }
 
+/* Notifications
+************************/	
 #messages .error, #messages .info, #messages .success {
 	margin: 10px;
 	padding: 10px;
@@ -68,6 +70,13 @@ img.logo {
 		background: #C8FFBF;
 		border-color: #A2EF95;
 	}
+
+/* No results
+************************/	
+
+#no-results {
+	text-align: center;
+}
 
 /* Event
 ************************/	
@@ -197,7 +206,8 @@ img.logo {
 	}
 h3.list-hd {
 	color: #bbb;
-	padding: 0 20px 0 20px;
+	margin: 0 20px 20px 20px;
+	border-bottom: 1px solid #eee;
 }
 #search .prompt {
 	font-size: 1.6em;
@@ -210,6 +220,40 @@ h3.list-hd {
 	
 /* Awesome buttons
 ************************/
+
+.spikey {
+	border: 1px solid #eee;
+	padding: 0.3em 0 0.1em 0;
+	display: block;
+	width: 2em;
+	color: #ccc;
+	text-decoration: none;
+	font-size: 1.3em;
+}
+	.spikey:hover {
+		/*border-color: #FFF5BC;*/
+	}
+
+	.spikey span {
+		padding: 1.5em 0 0 0;
+		display: block;
+		background-position: center top;
+		background-image: url(/images/superstar_unstarred.png);
+		background-repeat: no-repeat;
+		text-align: center;
+	}
+		.spikey:hover span {
+			background-image: url(/images/superstar_yellow2.png);
+			color: #F5DE5B;
+		}
+		span .spikey .spiked {
+			background-image: url(/images/superstar_yellow2.png);
+			color: #F5DE5B;
+		}
+			span .spikey:hover .spiked {
+				background-image: url(/images/superstar_unstarred.png);
+				color: #ccc;
+			}
 
 .awesome, .awesome:visited {
 	background: #222 url(/images/buttons/alert-overlay.png) repeat-x; 

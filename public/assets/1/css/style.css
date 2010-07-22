@@ -111,7 +111,7 @@ a.share-button {
 .star {
 	text-align: center;
 	border: 1px solid #e0ded6;
-	width: 22px;
+	width: 30px;
 	padding: 3px;
 	-moz-border-radius: 10px; /* FF1+ */
 	-webkit-border-radius: 10px; /* Saf3+, Chrome */
@@ -126,8 +126,8 @@ a.share-button {
 	background-image: url(../images/star.gif);
 	background-position: center top;
 	background-repeat: no-repeat;
-	height: 20px;
-	width: 22px;
+	height: 30px;
+	width: 32px;
 	display: block;
 	padding-top: 20px;
 	color: #cfccc0;

@@ -1,8 +1,8 @@
 <!-- star -->
-<span class="star grid2col left">
-	<% if person_signed_in? and event.starred?(current_person) %>
-		<%= render :partial => "events/link_unstar", :locals => { :event => event } %>
-	<% else %>
-		<%= render :partial => "events/link_star", :locals => { :event => event } %>
-	<% end %>
+<span class="almost-grid2col left">
+	<a href="" class="spikey">
+		<span class="">
+			<%= event.starred.length.to_s %>
+		</span>	
+	</a>
 </span>

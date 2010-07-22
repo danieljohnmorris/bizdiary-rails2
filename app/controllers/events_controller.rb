@@ -34,6 +34,7 @@ class EventsController < ApplicationController
     end
         
     @events = Event.search(@q)
+    assign_list_type
     render "home/index"
   end
   
