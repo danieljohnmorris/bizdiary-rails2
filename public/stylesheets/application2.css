@@ -13,28 +13,23 @@ a:hover {
 
 #doc, #doc2, #doc3, #doc4 {
 	background: #fff;
-	padding: 0 10px 0 10px;
+	padding: 0 20px 0 20px;
 }
 
 img.logo {
 }
 
 #hd {
-	padding: 20px 20px 0 20px;
 }
 
-#mast h1 {
-	margin: 0;
+#mast {
+	padding: 10px;
+	border: 4px solid #ddd;
+	border-top: none;
 }
 	#strapline {
-		/*color: #545454;*/
 		color: #9a9a9a;
-		width: 350px;
-		border-top: 2px solid #eee;
-		padding: 5px 0 0 0;
-		line-height: 1em;
 		font-size: 1.4em;
-		text-align: justify;
 	}
 
 #user p {
@@ -49,6 +44,9 @@ img.logo {
 }
 
 .events {
+}
+
+#bd {
 }
 
 /* Notifications
@@ -112,6 +110,9 @@ img.logo {
 	margin: 0;
 }
 
+/* Tags
+************************/
+
 .taglink {
 	text-decoration: none;
 	padding: 2px 4px 2px 4px;
@@ -130,6 +131,7 @@ img.logo {
 
 /* Quick preview
 ************************/
+
 .event .preview {
 	display: none;
 	background-color: #fff;
@@ -190,7 +192,7 @@ img.logo {
 	border: 4px solid #777;
 	color: white;
 	padding: 1em 2em 1.5em 2em;
-	margin: 0 20px 4em 20px;
+	margin: 0 0 3em 0;
 }
 	#search.searched {
 		color: #666;
@@ -205,9 +207,8 @@ img.logo {
 		top: 3px;
 	}
 h3.list-hd {
-	color: #bbb;
-	margin: 0 20px 20px 20px;
-	border-bottom: 1px solid #eee;
+	color: #aaa;
+	border-bottom: 1px solid #ddd;
 }
 #search .prompt {
 	font-size: 1.6em;

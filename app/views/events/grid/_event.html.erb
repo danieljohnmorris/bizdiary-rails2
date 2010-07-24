@@ -15,21 +15,21 @@
 	<ul class="subtle grid9col byline left">
 		<li class="grid3col left">
 			<% unless event.topics.empty? %>
-				<a href="?topic=<%= event.topics.first.name %>" title="Find more events tagged with '<%= event.topics.first.name %>'" class="tag taglink"><%= event.topics.first.name %></a>
+				<a href="?topic=<%= event.topics.first.name %>" title="Find more events tagged with '<%= event.topics.first.name %>'" class="small awesome"><%= event.topics.first.name %></a>
 			<% else %>
 				&nbsp;
 			<% end %>
 		</li>
 		<li class="grid3col left">
 			<% unless event.types.empty? %>
-				<a href="?topic=<%= event.types.first.name %>" title="Find more events tagged with '<%= event.types.first.name %>'" class="tag taglink"><%= event.types.first.name %></a>
+				<a href="?topic=<%= event.types.first.name %>" title="Find more events tagged with '<%= event.types.first.name %>'" class="small awesome"><%= event.types.first.name %></a>
 			<% else %>
 				&nbsp;
 			<% end %>
 		</li>
 		<li class="grid3col left">
 			<% if event.organisation %>
-				<a href="?organiser=<%= event.organisation.id %>" title="Find more events organised by '<%= event.organisation.name %>'" class="taglink"><%= event.organisation.name %></a>
+				<a href="?organiser=<%= event.organisation.id %>" title="Find more events organised by '<%= event.organisation.name %>'" class="small awesome"><%= event.organisation.name %></a>
 			<% else %>
 				&nbsp;
 			<% end %>

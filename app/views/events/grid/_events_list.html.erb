@@ -1,35 +1,8 @@
 <%= render :partial => "events/event_list_heading", :locals => { :events => events } %>
 
-<div id="wrap" class="events">
-  <% unless events.empty? %>
-    <ul class="events-list">
-		<li class="grid24col clearboth">
-			<span class="subtle title left grid11col">
-				Event Title
-			</span>	
-
-			<ul class="subtle grid9col byline left">
-				<li class="grid3col left">
-					Topic
-				</li>
-				<li class="grid3col left">
-					Event type
-				</li>
-				<li class="grid3col left">
-					Organiser
-				</li>
-			</ul>
-
-			<!-- date -->
-			<span class="grid3col right marginleft  subtle">
-			</span>
-		</li>
-		<% events.each do |event| %>
-			<%= render :partial => "events/#{@list_type}event", :locals => { :event => event } %>
-		<% end %>
-  	</ul>
-  <% else %>
-	<%= render :partial => "events/event_list_empty" %>
-  <% end %>
-</div>	
-<%= will_paginate events %>
+	<div class="yui-u first"> 
+		<p>A - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p> 
+	</div>	
+	<div class="yui-u"> 
+		<p>B - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p> 
+	</div> 

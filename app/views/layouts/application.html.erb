@@ -40,13 +40,15 @@
 <div id="doc4" class="yui-t7">
 	<div id="hd" role="banner">
         <div class="yui-g">
-           <div class="yui-u first" id="mast">
-				<h1>
-					<a id="go-home" href="/" title="Back to the homepage" name="go-home">
-						<img class="logo" alt="The Business Diary" src="/images/logo7.png">
-					</a>
-				</h1>
-				<p id="strapline">Meet. Connect. Learn.</p>
+           <div class="yui-u first">
+				<div id="mast">
+					<h1>
+						<a id="go-home" href="/" title="Back to the homepage" name="go-home">
+							<img class="logo" alt="The Business Diary" src="/images/logo7.png">
+						</a>
+					</h1>
+					<p id="strapline">Meet. Connect. Learn.</p>
+				</div>
            </div>
            <div class="yui-u" id="user">
 				<%= render :partial => "layouts/auth_person" %>
@@ -54,7 +56,6 @@
         </div>
 	</div>
    	<div id="bd" role="main">
-		<div class="yui-g">
 	        <div id="messages">
 				
 				<%
@@ -100,8 +101,7 @@
 	          <% end -%>
 	        </div>
         
-	        <%= yield %>
-		</div>
+		<%= yield %>
 	</div>
 
    <div id="ft" role="contentinfo"><p>Footer</p></div>
