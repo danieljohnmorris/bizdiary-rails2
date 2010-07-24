@@ -9,4 +9,5 @@
     <%= text_field_tag :q, @q || '' %>
 	<button class="large-b scheme-2 awesome" type="submit">Find business events</button>
   <% end %>
+  <%= select(Event.new, :type_list, Event.tags_humane(:types), {:include_blank => "All Event Types", :selected => params[:type]}) %>
 </div> 
