@@ -1,4 +1,9 @@
 module ApplicationHelper
+  
+  def searched?
+    @q or params[:topic] or params[:type] or params[:industry]
+  end
+
  # assets version
  def assets
    "assets/1"
