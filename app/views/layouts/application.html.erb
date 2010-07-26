@@ -9,17 +9,28 @@
    	<link rel="stylesheet" type="text/css" href="/<%= assets %>/css/grid24.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="/<%= assets %>/css/j-base.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="/<%= assets %>/css/style.css" media="screen" /> 
-		
-	<%= javascript_include_tag 'jquery-1.4.1-min', 'rails', 'application', 'jsl' %>
 	
-    <script src="/uniform/js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>  
+	<%= stylesheet_link_tag "application2" %>
+	
+	<%= javascript_include_tag 'jquery-1.4.1-min', 'rails', 'application', 'jsl' %>
+  
 	<script type="text/javascript" src="/fancybox/jquery.easing-1.3.pack.js"></script>
 	<script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
 	<link rel="stylesheet" href="/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen" />
 
-	<%= stylesheet_link_tag "application2" %>
-    <link rel="stylesheet" href="/uniform/css/uniform.default.css" type="text/css" media="screen">
-	
+	<script type="text/javascript">
+	  //RPXNOW.loadAndRun(['Social'], function () {
+	  //  var activity = new RPXNOW.Social.Activity(
+	  //     "Share your comment",
+	  //     "commented on 'Like My New Perfume?' on cuteoverload.com",
+	  //     "http://cuteoverload.com/2009/10/26/like-my-new-perfume/");
+	  //  RPXNOW.Social.publishActivity(activity);
+	  //});
+	</script>
+		
+ 	<%
+	#= csrf_meta_tag 
+	%>
 	<%= yield :head %>
 </head>
 <body>
