@@ -1,14 +1,18 @@
-<% unless @q or params[:topic] or params[:type] or params[:industry] %>
-	<h3 class="list-hd">Upcoming events in london</h3>
-<% else %>
-	<!-- filter list heading -->
-	<h2><%= verbalise_filters @events %></h2>
-	<% unless SearchFilter.filter_index[:event_filter].current_filters.length == 0 %>
-	  <p class='hint'><%= link_to "View all events", events_path %></p>  
+<div class="events">
+	<% if @q %>
+		<h1 class="list-hd">Found <%= events.length %> events for keywords "<%= @q %>"</h1>
+	<% elsif params[:topic] or params[:type] or params[:industry] %>
+		<!-- filter list heading -->
+		<h1 class="list-hd">
+			<%= verbalise_filters events %>
+			<% unless SearchFilter.filter_index[:event_filter].current_filters.length == 0 %>
+			  <span class='hint'>(<%= link_to "View all events", events_path %>)</span>  
+			<% end %>
+		</h1>
+	<% else %>
+		<h1 class="list-hd">Upcoming events in london</h1>
 	<% end %>
-<% end %>
 
-<div id="wrap" class="events">
   <% unless events.empty? %>
     <ul class="events-list">
 		<% events.each do |event| %>
@@ -16,7 +20,12 @@
 		<% end %>
   	</ul>
   <% else %>
-  	<p class="info">Oops, couldn't find any events. Try being less specific about the type of event. (<%= link_to "Show all events", root_path %>)</p> 
+  	<div class="page-message">
+  		<a href="http://www.flickr.com/photos/ericbvd/4324724233/" title="View photo @ Flickr.com">
+			<img src="http://farm5.static.flickr.com/4042/4324724233_df6f858e60.jpg" alt="Photo of empty theatre by Eric Broder Van Dyke">
+		</a>
+		<p>Sorry, we couldn't find any events for your query! Try broadening your search.</p>
+  	</div> 
   <% end %>
 </div>	
 <%= will_paginate events %>

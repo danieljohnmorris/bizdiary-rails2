@@ -1,6 +1,6 @@
-<div id="search" <% if @q %>class="searched"<% end %>>
+<div id="search" <% if searched? %>class="searched"<% end %>>
 	<div class="keywords">
-	  <% unless @q or params[:topic] or params[:type] or params[:industry] %>
+	  <% unless searched? %>
 		<div class="prompt">
 			Search by: keywords, location and organiser:
 		</div>
