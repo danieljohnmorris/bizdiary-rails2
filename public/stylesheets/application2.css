@@ -157,9 +157,11 @@ img.logo {
 	background-color: #666;
 	border: 4px solid #777;
 	color: white;
-	padding: 1em 2em 1.5em 2em;
 	margin: 0 20px 4em 20px;
 }
+	#search .keywords {
+		padding: 1em 2em 0em 2em;		
+	}
 	#search.searched {
 		color: #666;
 		background-color: #ddd;
@@ -173,11 +175,22 @@ img.logo {
 		top: 3px;
 	}
 	#search .filters {
+		border-top: 2px dashed #999;
 		margin: 2em 0 0 0;
+		padding: 1em 2em 1em 2em;		
+		text-align: center;
 	}
+		#search .filters button {
+			margin-left: 10px;
+		}
+		#search .filters .prompt {
+			position: relative;
+			padding: 0.1em 0.5em 0.1em 0.5em;
+		}
 	#search select {
-		font-size: 1.2em;
+		font-size: 1.5em;
 		height: 1.5em;
+		width: 10em;
 	}
 	
 h3.list-hd {

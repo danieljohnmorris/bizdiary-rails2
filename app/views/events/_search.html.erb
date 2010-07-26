@@ -1,17 +1,28 @@
 <div id="search" <% if @q %>class="searched"<% end %>>
-  <% unless @q %>
-	<div class="prompt">
-		Which events are you looking for? <span class="hint">Search by: keywords, location and organiser.</span>
+	<div class="keywords">
+	  <% unless @q or params[:topic] or params[:type] or params[:industry] %>
+		<div class="prompt">
+			Search by: keywords, location and organiser:
+		</div>
+	  <% end %>
+
+	  <% form_tag({:controller => 'events', :action => 'search'}, {:method =>'get'}) do  %>
+	    <%= text_field_tag :q, @q || '' %>
+		<button class="large-b scheme-2 awesome" type="submit">Search events</button>
+	  <% end %>
 	</div>
-  <% else %>
-  <% end %>
-  <% form_tag({:controller => 'events', :action => 'filter'}, {:method =>'get'}) do  %>
-    <%= text_field_tag :q, @q || '' %>
-	<button class="large-b scheme-2 awesome" type="submit">Find business events</button>
 	<div class="filters">
-	  <%= select_tag(:topic, options_for_select([['All Topics', ''], ['','']] + Event.tags_humane(:topics).map{|t| t}, params[:topic] || nil)) %>
-	  <%= select_tag(:type, options_for_select([['All Event Types', ''], ['','']] + Event.tags_humane(:types).map{|t| t}, params[:type] || nil)) %>
-	  <%= select_tag(:industry, options_for_select([['All Industries', ''], ['','']] + Event.tags_humane(:industries).map{|t| t}, params[:industry] || nil)) %>
+	  <% unless @q or params[:topic] or params[:type] or params[:industry] %>
+		<div class="prompt">
+			Or filter by topic, event type and industry:
+		</div>
+	  <% end %>
+
+	  <% form_tag({:controller => 'events', :action => 'filter'}, {:method =>'get'}) do  %>
+		  <%= select_tag(:topic, options_for_select([['All Topics', ''], ['','']] + Event.tags_humane(:topics).map{|t| t}, params[:topic] || nil)) %>
+		  <%= select_tag(:type, options_for_select([['All Event Types', ''], ['','']] + Event.tags_humane(:types).map{|t| t}, params[:type] || nil)) %>
+		  <%= select_tag(:industry, options_for_select([['All Industries', ''], ['','']] + Event.tags_humane(:industries).map{|t| t}, params[:industry] || nil)) %>
+			<button class="large-b scheme-2 awesome" type="submit">Filter events</button>
+	  <% end %>
 	</div>
-  <% end %>
 </div> 

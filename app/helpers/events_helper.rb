@@ -26,11 +26,14 @@ module EventsHelper
     link_to text, filter_path(filters)
   end
   
-  def verbalise_filters events
+  def verbalise_filters events  
     _verbalise_filters(events.length, SearchFilter.filter_index[:event_filter].current_filters) if SearchFilter.filter_index[:event_filter].current_filters.length > 0
   end
-  
+      
   def _verbalise_filters event_count, filters
+      [:topic, :type, :industry].each do |tag| 
+        filters.delete(tag) if params[tag].blank?
+      end
 
      type = filters[:type] || 'event'
 
