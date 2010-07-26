@@ -53,4 +53,6 @@ $(function() {
 		this.title = "Show more info";
 		$(".comments", $(this).parent()).hide();
 	});
+	
+	//$("select").uniform();
 });

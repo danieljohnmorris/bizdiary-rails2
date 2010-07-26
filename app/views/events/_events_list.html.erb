@@ -1,7 +1,10 @@
 <% if events && @q %>
 	<h3 class="list-hd">Found <%= events.length %> events for "<%= @q %>"</h3>
+	<h1><strong><%= @events.length %></strong> upcoming events for topic <strong><%= params[:topic] %></strong> (<%= link_to "Show all events", root_path %>)</h1>
 <% else %>
 	<h3 class="list-hd">Upcoming events in london</h3>
+<% end %>
+<% if (params[:topic]) %>
 <% end %>
 
 <div id="wrap" class="events">

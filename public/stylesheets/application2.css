@@ -69,6 +69,9 @@ img.logo {
 		border-color: #A2EF95;
 	}
 
+#bd h1 {
+}
+
 /* Event
 ************************/	
 .event {
@@ -169,6 +172,10 @@ img.logo {
 		position: relative;
 		top: 3px;
 	}
+	#search .filters {
+		margin: 2em 0 0 0;
+	}
+	
 h3.list-hd {
 	color: #bbb;
 	padding: 0 20px 0 20px;

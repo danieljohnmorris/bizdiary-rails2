@@ -8,6 +8,10 @@
   <% form_tag({:controller => 'events', :action => 'search'}, {:method =>'get'}) do  %>
     <%= text_field_tag :q, @q || '' %>
 	<button class="large-b scheme-2 awesome" type="submit">Find business events</button>
+	<div class="filters">
+	  <%= select_tag(:topic, options_for_select([['All Topics', '']] + Event.tags_humane(:topics).map{|t| t}, params[:topic] || nil)) %>
+	  <%= select_tag(:type, options_for_select([['All Event Types', '']] + Event.tags_humane(:types).map{|t| t}, params[:type] || nil)) %>
+	  <%= select_tag(:industry, options_for_select([['All Industries', '']] + Event.tags_humane(:industries).map{|t| t}, params[:industry] || nil)) %>
+	</div>
   <% end %>
-  <%= select(Event.new, :type_list, Event.tags_humane(:types), {:include_blank => "All Event Types", :selected => params[:type]}) %>
 </div> 
