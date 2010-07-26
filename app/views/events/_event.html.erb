@@ -22,12 +22,10 @@
 	<!-- tags -->
 	<div class="grid7col left">
 		<ul class="tags" style="background-color: red;">
-			<% first_tag = true 
-			event.combined_tags.each_pair do |type, tag_set| %>
+			<% event.combined_tags.each_pair do |type, tag_set| %>
 				<% tag_set.each do |tag| %>
-					<li class="left"><a href="?<%= type %>=<%= tag %>" <% if first_tag %>class="primary-tag" <% end %>title="Find more events tagged with '<%= tag.name %>'"><%= tag.name %></a></li>
-					<% first_tag = false if first_tag
-				end %>
+					<li class="left"><a href="?<%= type %>=<%= tag %>" title="Find more events tagged with '<%= tag.name %>'"><%= tag.name %></a></li>
+				<% end %>
 			<% end %>
 		</ul>
 		<br class="clearboth" />
