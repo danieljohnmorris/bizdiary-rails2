@@ -1,25 +1,6 @@
 #require File.dirname(__FILE__) + '/../../vendor/plugins/cothink/lib/helpers/date'
 module EventsHelper
   
-  # :ids, :id, :text
-  # turns a hash of filter params, where multiple elements are csv separated
-  def prepare_filters(input, setup)
-    prepared = {}
-    setup.each_pair do |filter, type|
-      next unless input.include? filter
-      val = input[filter]
-      prepared[filter] = case type
-                           when :ids
-                            val.split(',')
-                           when :id
-                            val
-                           when :text
-                            val
-                          end
-    end
-    prepared
-  end
-  
 #  include ::Cothink::Helpers::Date
   
   @@week_names = ['This Week','Next Week','Week After Next']
@@ -29,8 +10,42 @@ module EventsHelper
     link_to "map", 'http://maps.google.co.uk?q=' + CGI.escape(address), :class => 'map-link'
   end
   
+  def map_url(address)
+    url_for "map", 'http://maps.google.co.uk?q=' + CGI.escape(address), :class => 'map-link'
+  end
+  
   def event_publish_states
     {"Draft" => 0, "Published" => 1}
+  end
+  
+  def filter_path filters = {}
+    filter_events_path SearchFilter.filter_index[:event_filter].current_filters_with(filters)
+  end
+  
+  def filter_link text, filters = {}
+    link_to text, filter_path(filters)
+  end
+  
+  def verbalise_filters events
+    _verbalise_filters(events.length, SearchFilter.filter_index[:event_filter].current_filters) if SearchFilter.filter_index[:event_filter].current_filters.length > 0
+  end
+  
+  def _verbalise_filters event_count, filters
+
+     type = filters[:type] || 'event'
+
+     sentence = []
+
+     add = lambda {|*args|
+       sentence << sprintf(args.shift, *args)
+     }
+     
+     add.call("Found %d %s", event_count, (event_count > 1 ? type.pluralize : type).downcase)
+     add.call("organised by %s", Organisation.find(filters[:organisation]).name) if filters[:organisation]
+     add.call("covering %s", filters[:topic].downcase) if filters[:topic]
+     add.call("for %s professionals", filters[:industry]) if filters[:industry]
+
+     sentence.join(' ')
   end
   
   # render events, and week and days for all distinct dates

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100705113337) do
+ActiveRecord::Schema.define(:version => 20100721124857) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                             :default => "", :null => false
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20100705113337) do
     t.string   "tagger_type"
     t.string   "context"
     t.datetime "created_at"
+    t.date     "reminder_sent_on"
   end
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"

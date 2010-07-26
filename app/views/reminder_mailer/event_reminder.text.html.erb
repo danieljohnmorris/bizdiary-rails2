@@ -1,0 +1,22 @@
+<p>Hi,</p>
+<p>Just a quick reminder that the event you were interested in, <%= @event.title %>, is happening <%= distance_of_time_in_words_to_now(@event.start_date) %>.</p>
+
+
+<h3>Event details:</h3>
+
+<p>View on a <%=  link_to "Google map", 'http://maps.google.co.uk?q=' + CGI.escape(@event.location), :class => 'map-link' %>.</p>
+
+<p><%= @event.location %></p>
+
+
+<h3>Event organiser:</h3>
+
+<p><%= @event.organisation.name %></p>
+<p><%= @event.telephone %></p>
+<p><%= @event.email %></p>
+
+<p>Enjoy!</p>
+
+<p>Cheers,</p>
+
+<p>The Business Diary Team (Finbar, Dan, Tim)</p>

@@ -29,10 +29,23 @@ describe Event do
     it "should show events starred by someone" do
       
       Event.filtered({:starred => true},people('bill')).first.title.should == events('moonies_meetup').title
-      
     end
     
     
+    
+  end
+  
+  context "reminders" do
+    
+    it "should expose a method that returns all events that should be sent a reminder" do
+      
+      event_user_pairs = Event.event_user_pairs_for_reminder(3)
+      
+      event_user_pairs.length.should == 1
+      event_user_pairs.first.first.should be_an_instance_of Event
+      event_user_pairs.first.last.should be_an_instance_of Person
+      
+    end
     
   end
   

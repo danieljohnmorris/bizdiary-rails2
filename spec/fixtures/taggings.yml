@@ -5,3 +5,20 @@ weird_t:
   taggable_type: Event
   tagger_id: 1
   tagger_type: Person
+  
+  
+save_within_three_day_reminder:
+  tag_id: 4
+  context: saves
+  taggable_id: 3
+  taggable_type: Event
+  tagger_id: 1
+  tagger_type: Person
+
+save_outside_three_day_reminder:
+  tag_id: 4
+  context: saves
+  taggable_id: 4
+  taggable_type: Event
+  tagger_id: 1
+  tagger_type: Person

@@ -1,7 +1,3 @@
-<%
-#= week 
-#disable week heading for now
-%>
 <li id="event-<%= event.id %>" class="event grid24col clearboth">
 	<span class="star grid1col left">
 		<% if person_signed_in? and event.starred?(current_person) %>
@@ -24,7 +20,9 @@
 		<ul class="tags" style="background-color: red;">
 			<% event.combined_tags.each_pair do |type, tag_set| %>
 				<% tag_set.each do |tag| %>
-					<li class="left"><a href="?<%= type %>=<%= tag %>" title="Find more events tagged with '<%= tag.name %>'"><%= tag.name %></a></li>
+					<li class="left">
+					  <%= link_to tag.name, filter_path(type => tag.name), {:class => (type == event.combined_tags.keys.first ? 'primary-tag' : nil), :title => "Find more events tagged with '#{tag.name}'"} %>
+					</li>
 				<% end %>
 			<% end %>
 		</ul>
@@ -49,18 +47,19 @@
 		#end 
 		%>
 	</span>
+	
+	<!-- organisation -->
 	<span class="grid2col left marginleft small">
 		<% if event.organisation %>
-			<%= link_to event.organisation.name %>
-			<%
-			#= link_to event.organisation.name, organisation_path(event.organisation), :class => "organiser" 
-			%>
+			<%= link_to event.organisation.name, filter_path(:organisation => event.organisation.id) %>
 		<% end %>
 	</span>
 	
 	<!-- date -->
 	<span class="grid2col left marginleft small subtle">
-		<strong><%= event.start_date.bd_date_format %></strong><br />
+		<% if event.start_date %>
+			<strong><%= event.start_date.bd_date_format %></strong><br />
+		<% end %>
 		London
 	</span>
 	
@@ -97,9 +96,11 @@
 	  </div>
 
 	  <div class="others" style="float: right;">
-		  <h4>Start time</h4>	
-		  <p><strong><%= event.start_date.full_date_format %></strong></p>
-
+		  <% if event.start_date %>
+			<h4>Start time</h4>	
+		  	<p><strong><%= event.start_date.full_date_format %></strong></p>
+		  <% end %>
+		
 		  <h4>Address</h4>	
 		  <p><%= event.location.strip %> (<%= map_link(event.location) %>)</p>
 		

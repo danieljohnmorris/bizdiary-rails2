@@ -33,6 +33,18 @@ class DateTime
   include BdDateFormat
 end
 
+class Hash
+  
+  # normalises hash's keys as symbols, recursively
+  def keys_to_symbols
+    inject({}) do |normalised, (key, value)|
+      normalised[key.to_sym] = (Hash === value) ? value.keys_to_symbols : value
+      normalised
+    end
+  end
+  
+end
+
 
 
 # TODO move this monkey patch into a plugin - patch after 'EXTENSION'

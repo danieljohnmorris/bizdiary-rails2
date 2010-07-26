@@ -23,16 +23,16 @@ class Event < ActiveRecord::Base
   # date/time scopes
   named_scope :by_start_date_backward, :order => "start_date DESC"
   named_scope :by_start_date_forward, :order => "start_date ASC"
-  named_scope :in_the_past, lambda {{ :conditions => ["start_date < " + Date.new.to_s(:db)] }}    
-  named_scope :in_the_future, lambda {{ :conditions => ["start_date >= " + Date.new.to_s(:db)] }}
+  named_scope :in_the_past, lambda {{ :conditions => ["start_date < ?", Time.now.to_s(:db)] }}    
+  named_scope :in_the_future, lambda {{ :conditions => ["start_date >= ?",(Time.now - AppConfig.hour_age_of_started_events_counted_as_upcoming.to_i.hours).to_s(:db)] }}
+  named_scope :with_relations do {:include => [:taggings, :tags, :organisation]} end
   
   
   # Takes a hash of filters and turns returns them as a scope, which can then be paginated etc
   def self.filtered(filters, person = nil)
+    filters = SearchFilter.filter_index[:event_filter].prepare_filters(filters)
     scope = scoped({})
     filters.each_pair do |filter_name, filter_args|
-      next unless [:organisation, :topic, :type, :industry, :starred, :q].include? filter_name.to_sym
-      
       # if you add a condition, make sure you put in in the list above too
       # Keep chaining up scope - scope can take extra scopes, and acts_as_taggable tagged_with
       # is just a scope
@@ -135,6 +135,29 @@ class Event < ActiveRecord::Base
     return self.publish_state == DRAFT_STATE ? true : false
   end
   
+  # returns pairs of event, user that are ready for a reminder email
+  def self.event_user_pairs_for_reminder(days_before = AppConfig.days_before_event_to_remind)
+    
+    event_user_remind_pairs = []
+    
+    # everything starred, that isn't past and is happening less than N days in the future
+    Event.tagged_with(STAR_TAG, :on => :saves).all(:conditions => {:start_date => Time.now..(Time.now + days_before.days)}).each do |event|
+      
+            event.taggings.each do |tagging|
+        
+              next if tagging.context != 'saves' || tagging.reminder_sent_on
+        
+              remindee = tagging.tagger_type.classify.constantize.find(tagging.tagger_id)
+        
+              event_user_remind_pairs << [event, remindee]
+         
+            end
+            
+    end
+    
+    event_user_remind_pairs
+    
+  end
   
   ### tim stuffs
   

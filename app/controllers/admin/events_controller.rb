@@ -11,11 +11,11 @@ class Admin::EventsController < ApplicationController
     if (params[:view] == "past")
       # show past events
       @view = "past"
-      @events = Event.scoped({ :include => :organisation }).in_the_past.by_start_date_backward.paginate :page => params[:page]
+      @events = Event.with_relations.in_the_past.by_start_date_backward.paginate :page => params[:page]
     else
       # show upcoming events
       @view = "upcoming"
-      @events = Event.scoped({ :include => :organisation }).in_the_future.by_start_date_forward.paginate :page => params[:page]
+      @events = Event.with_relations.in_the_future.by_start_date_forward.paginate :page => params[:page]
     end
 
     respond_to do |format|
@@ -72,7 +72,6 @@ class Admin::EventsController < ApplicationController
   def update
     
     @event = Event.find(params[:id])
-    params[:event][:publish_state] = params[:event][:publish_state].to_i if params[:event][:publish_state] 
     
     respond_to do |format|
       if @event.update_attributes!(params[:event])

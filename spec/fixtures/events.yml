@@ -7,11 +7,22 @@
 moonies_meetup:
   id: 1
   title: Moonies' meet
-  start_date: <%= DateTime.new + 1.week %>
+  start_date: <%= (Time.new + 1.week).to_s(:db) %>
   location: Cult house 1
   organisation: moonies
 
 scientologist_party:
+  id: 2
   title: Tom Cruise will not be there!
-  start_date: <%= DateTime.new + 1.week %>
+  start_date: <%= (Time.new + 1.week).to_s(:db) %>
   location: Cult house 2
+
+within_three_day_reminder:
+  id: 3
+  title: woo
+  start_date: <%= (Time.new + 2.days).to_s(:db) %>
+  
+outside_three_day_reminder:
+  id: 4
+  title: boo
+  start_date: <%= (Time.new + 4.days).to_s(:db) %>
