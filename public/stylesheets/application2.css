@@ -49,6 +49,7 @@ img.logo {
 }
 
 .events {
+	padding: 0 20px 0 20px;
 }
 
 #messages .error, #messages .info, #messages .success {
@@ -69,7 +70,8 @@ img.logo {
 		border-color: #A2EF95;
 	}
 
-#bd h1 {
+.events h1 {
+	color: #999;
 }
 
 /* Event
@@ -160,7 +162,7 @@ img.logo {
 	margin: 0 20px 4em 20px;
 }
 	#search .keywords {
-		padding: 1em 2em 0em 2em;		
+		padding: 1.5em 2em 0em 2em;		
 	}
 	#search.searched {
 		color: #666;
@@ -177,7 +179,7 @@ img.logo {
 	#search .filters {
 		border-top: 2px dashed #999;
 		margin: 2em 0 0 0;
-		padding: 1em 2em 1em 2em;		
+		padding: 1em 2em 1.5em 2em;		
 		text-align: center;
 	}
 		#search .filters button {
@@ -193,9 +195,9 @@ img.logo {
 		width: 10em;
 	}
 	
+	
 h3.list-hd {
 	color: #bbb;
-	padding: 0 20px 0 20px;
 }
 #search .prompt {
 	font-size: 1.6em;
@@ -255,4 +257,10 @@ h3.list-hd {
 
 button {
 	border:0 none;
+}
+
+.page-message {
+	border-top: 1px solid #ddd;
+	padding: 2em;
+	text-align: center;
 }
