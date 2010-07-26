@@ -9,6 +9,10 @@ class EventsController < ApplicationController
   end
   
   def filter
+    [:topic, :type, :industry].each do |tag| 
+      params.delete(tag) if params[tag].blank?
+    end
+
     @events = Event.filtered(prepare_filters(params, {:organisation => :id, :topic => :text, :type => :text, :industry => :text}), current_person || nil).paginate :page => params[:page]
     render :template => 'home/index'
   end
