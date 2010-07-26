@@ -15,7 +15,7 @@
 		<% end %>
   	</ul>
   <% else %>
-  	<p class="info">Oops, couldn't find any events. Try being less specific about the type of event.</p>
+  	<p class="info">Oops, couldn't find any events. Try being less specific about the type of event. (<%= link_to "Show all events", root_path %>)</p> 
   <% end %>
 </div>	
 <%= will_paginate events %>
