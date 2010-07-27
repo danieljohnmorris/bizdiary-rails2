@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.devise_for :admins
   map.devise_for :people
+  map.devise_for :organisations
 
   map.connect '/admin/events/ingest', :controller => 'admin/events', :action => 'ingest'
 
