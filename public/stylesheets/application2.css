@@ -48,17 +48,23 @@ img.logo {
 	display: none;
 }
 
-.events {
+.events, #messages {
 	padding: 0 20px 0 20px;
 }
 
 #messages .error, #messages .info, #messages .highlight, #messages .success {
-	margin: 20px;
+	margin-bottom: 20px;
 	padding: 10px;
 	border: 3px solid;	
+	overflow: auto;
+	position: relative;
 }
 	#messages .error p, #messages .info p, #messages .highlight p, #messages .success p {
 		margin: 0;
+		position: relative;
+	}
+	#messages .highlight p {
+		margin: 0 0 15px 0;
 	}
 	#messages .info {
 		background: #eee;
@@ -75,6 +81,9 @@ img.logo {
 	#messages .success {
 		background: #C8FFBF;
 		border-color: #A2EF95;
+	}
+	#messages .message p {
+		margin: 5px 0 10px 0;
 	}
 
 .events h1 {
@@ -167,6 +176,7 @@ img.logo {
 /* Search
 ************************/
 #search {
+	overflow: auto;
 	text-align: center;
 	background-attachment: scroll;
 	background-clip: border-box;
@@ -286,4 +296,16 @@ button {
 	border-top: 1px solid #ddd;
 	padding: 2em;
 	text-align: center;
+}
+
+.semi {
+	height: 14em;
+	width: 46%;
+	margin: 0;
+}
+
+.lower-right {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
 }
