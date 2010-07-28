@@ -1,1 +1,1 @@
-<%= link_to raw('<span class="unstarred">' + event.starred.length.to_s + '</span>'), star_event_path(event), :class => "unstarred", :title => "Star this event", :remote => true %>
+<%= link_to raw('<span class="unstarred">' + event.starred.length.to_s + '</span>'), star_event_path(event), :rel => 'nofollow', :class => "unstarred", :title => "Star this event", :remote => true %>
