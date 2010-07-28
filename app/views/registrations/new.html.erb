@@ -1,5 +1,7 @@
 <h2>Sign up</h2>
 
+<%= link_to_rpx "Sign in with your favourite site", session_url(resource_name) %>
+
 <% form_for resource_name, resource, :url => registration_path(resource_name) do |f| -%>
   <%= f.error_messages %>
   <p><%= f.label :email %></p>
