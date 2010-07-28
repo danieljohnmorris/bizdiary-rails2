@@ -5,6 +5,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect '/admin/events/ingest', :controller => 'admin/events', :action => 'ingest'
 
+  map.resources :organisations, 
+    :member => { 
+      :star => :get, 
+      :unstar => :get 
+    }, 
+    :collection => { :starred => :get }
+
   map.namespace :admin do |admin|
     admin.index '/', :controller => 'index', :action => 'index'
     admin.resources :organisations
@@ -17,14 +24,6 @@ ActionController::Routing::Routes.draw do |map|
         :bulk_publish => :get
       }
   end
-
-  map.resources :organisations, 
-    :only => [:index, :show], 
-    :member => { 
-      :star => :get, 
-      :unstar => :get 
-    }, 
-    :collection => { :starred => :get }
 
   map.resources :events, 
       :only => [:index, :show], 
