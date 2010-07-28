@@ -36,22 +36,13 @@
 				<p id="strapline">Meet. Connect. Learn.</p>
            </div>
            <div class="yui-u" id="user">
-				<%= render :partial => "layouts/auth_person" %>
+				<%= render :partial => "people/auth_person" %>
            </div>
         </div>
 	</div>
    	<div id="bd" role="main">
 		<div class="yui-g">
-	        <div id="messages">
-				
-				<%
-				# DEVISE MESSAGES
-
-				#<p class='info'>This is an info message</p>
-				#<p class='error'>This is an error message</p>
-				#<p class='success'>This is an success message</p>
-				%>
-																
+	        <div id="messages">																
 	          <% if defined?(notice) -%>
 	          <p class='success'>
 	            <%=h notice %>
