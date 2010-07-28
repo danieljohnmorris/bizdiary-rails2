@@ -52,14 +52,21 @@ img.logo {
 	padding: 0 20px 0 20px;
 }
 
-#messages .error, #messages .info, #messages .success {
-	margin: 10px;
+#messages .error, #messages .info, #messages .highlight, #messages .success {
+	margin: 20px;
 	padding: 10px;
-	border: 2px solid;	
+	border: 3px solid;	
 }
+	#messages .error p, #messages .info p, #messages .highlight p, #messages .success p {
+		margin: 0;
+	}
 	#messages .info {
 		background: #eee;
 		border-color: #ccc;
+	}
+	#messages .highlight {
+		background: #FFFEEB;
+		border-color: #F7F7ED;
 	}
 	#messages .error {
 		background: #FFDFDF;
@@ -72,6 +79,15 @@ img.logo {
 
 .events h1 {
 	color: #aaa;
+}
+
+/* Blurb
+************************/
+
+.blurb {
+	padding: 10px 20px 10px 20px;
+	margin: 0 20px 0 20px;
+	border: 1px solid #ccc;
 }
 
 /* Event
@@ -195,6 +211,13 @@ img.logo {
 		width: 10em;
 	}
 	
+	.bigtext h3 {
+		font-weight: bold;
+	}
+	.bigtext h3,
+	.bigtext p {
+		font-size: 1.5em;
+	}
 	
 h3.list-hd {
 	color: #bbb;
