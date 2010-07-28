@@ -38,7 +38,7 @@ class EventsController < ApplicationController
     end
         
     @events = Event.search(@q)
-    render "home/index"
+    render "events/filter"
   end
   
   ###### STARRING CONTROLLER METHODS
