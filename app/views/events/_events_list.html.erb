@@ -1,7 +1,7 @@
 <div class="events">
-	<% if @q %>
+	<% if searched_with_keywords? %>
 		<h1 class="list-hd">Found <%= events.length %> events for keywords "<%= @q %>"</h1>
-	<% elsif params[:topic] or params[:type] or params[:industry] %>
+	<% elsif searched_with_tags? %>
 		<!-- filter list heading -->
 		<h1 class="list-hd">
 			<%= verbalise_filters events %>
