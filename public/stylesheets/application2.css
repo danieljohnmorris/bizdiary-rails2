@@ -56,7 +56,6 @@ img.logo {
 	margin-bottom: 20px;
 	padding: 10px;
 	border: 3px solid;	
-	overflow: auto;
 	position: relative;
 }
 	#messages .error p, #messages .info p, #messages .highlight p, #messages .success p {
@@ -299,9 +298,10 @@ button {
 }
 
 .semi {
-	height: 14em;
+	height: 15em;
 	width: 46%;
 	margin: 0;
+	position: relative;
 }
 
 .lower-right {
