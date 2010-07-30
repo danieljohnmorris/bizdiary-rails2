@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.devise_for :admins
   map.devise_for :people
+  map.devise_for :organisations
 
   map.connect '/admin/events/ingest', :controller => 'admin/events', :action => 'ingest'
 
@@ -18,7 +19,6 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :organisations, 
-    :only => [:index, :show], 
     :member => { 
       :star => :get, 
       :unstar => :get 
