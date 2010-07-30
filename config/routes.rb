@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.devise_for :organisations
 
   map.connect '/admin/events/ingest', :controller => 'admin/events', :action => 'ingest'
+  map.claim_org '/organisations/claim', :controller => 'organisations', :action => 'claim'
 
   map.namespace :admin do |admin|
     admin.index '/', :controller => 'index', :action => 'index'

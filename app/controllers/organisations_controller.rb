@@ -1,4 +1,8 @@
 class OrganisationsController < ApplicationController
+  
+  def claim
+  end
+  
   # GET /admin_organisations
   # GET /admin_organisations.xml
   def index

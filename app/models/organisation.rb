@@ -1,5 +1,5 @@
 class Organisation < ActiveRecord::Base
-  devise :database_authenticatable, :trackable, :timeoutable, :lockable, :rpx_connectable
+  devise  :database_authenticatable, :confirmable, :recoverable, :rememberable, :trackable, :validatable, :rpx_connectable, :invitable
   has_many :events
   acts_as_taggable_on :saves
 

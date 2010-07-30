@@ -48,40 +48,39 @@ img.logo {
 	display: none;
 }
 
-.events, #messages {
+.events, .messages {
 	padding: 0 20px 0 20px;
 }
 
-#messages .error, #messages .info, #messages .highlight, #messages .success {
+.messages .error, .messages .info, .messages .highlight, .messages .success {
 	margin-bottom: 20px;
 	padding: 10px;
 	border: 3px solid;	
 	position: relative;
 }
-	#messages .error p, #messages .info p, #messages .highlight p, #messages .success p {
+	.messages .error p, .messages .info p, .messages .highlight p, .messages .success p {
 		margin: 0;
 		position: relative;
 	}
-	#messages .highlight p {
+	.messages .highlight p {
 		margin: 0 0 15px 0;
 	}
-	#messages .info {
-		background: #eee;
-		border-color: #ccc;
+	.messages .info {
+		border-color: #eee;
 	}
-	#messages .highlight {
+	.messages .highlight {
 		background: #FFFEEB;
 		border-color: #F7F7ED;
 	}
-	#messages .error {
+	.messages .error {
 		background: #FFDFDF;
 		border-color: #F3AFB5;
 	}
-	#messages .success {
+	.messages .success {
 		background: #C8FFBF;
 		border-color: #A2EF95;
 	}
-	#messages .message p {
+	.messages .message p {
 		margin: 5px 0 10px 0;
 	}
 
