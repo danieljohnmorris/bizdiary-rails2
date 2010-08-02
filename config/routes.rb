@@ -1,7 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.devise_for :admins
   map.devise_for :people
-
+  
+  map.connect 'sitemap.xml', :controller => "sitemap", :action => "sitemap" 
   map.connect '/admin/events/ingest', :controller => 'admin/events', :action => 'ingest'
 
   map.namespace :admin do |admin|
