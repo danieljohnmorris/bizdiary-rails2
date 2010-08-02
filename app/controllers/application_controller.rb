@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   attr_reader :search_filter
   
   before_filter do |controller|
-    @search_filter = SearchFilter.new(AppConfig.event_filters, :event_filter)
+    @search_filter = SearchFilter.new(Event::EVENT_FILTER_SETUP, Event::EVENT_FILTER_KEY)
     @search_filter.load_filters(controller.params)
   end
 end

@@ -26,12 +26,22 @@ class Event < ActiveRecord::Base
   named_scope :in_the_past, lambda {{ :conditions => ["start_date < ?", Time.now.to_s(:db)] }}    
   named_scope :in_the_future, lambda {{ :conditions => ["start_date >= ?",(Time.now - AppConfig.hour_age_of_started_events_counted_as_upcoming.to_i.hours).to_s(:db)] }}
   named_scope :with_relations do {:include => [:taggings, :tags, :organisation]} end
+    
+  # filtering
+  EVENT_FILTER_KEY = :event_filter
+  EVENT_FILTER_SETUP = {
+    :organisation => :id,
+    :topic => :text,
+    :type => :text,
+    :industry => :text,
+    :starred => :text
+  }
   
   
   # Takes a hash of filters and turns returns them as a scope, which can then be paginated etc
   def self.filtered(filters, person = nil)
-    filters = SearchFilter.filter_index[:event_filter].prepare_filters(filters)
-    scope = scoped({})
+    filters = SearchFilter.filter_index[EVENT_FILTER_KEY].prepare_filters(filters)
+    scope = in_the_future
     filters.each_pair do |filter_name, filter_args|
       # if you add a condition, make sure you put in in the list above too
       # Keep chaining up scope - scope can take extra scopes, and acts_as_taggable tagged_with
@@ -157,6 +167,10 @@ class Event < ActiveRecord::Base
     
     event_user_remind_pairs
     
+  end
+  
+  def self.is_duped? attrs
+    Event.find_by_title_and_start_date(attrs['title'], attrs['start_date']) == nil ? false : true
   end
   
   ### tim stuffs

@@ -11,6 +11,8 @@ describe Event do
       :start_date => DateTime.new + 1.week,
       :location => 'Cult house 1'
     }
+    
+    SearchFilter.new(Event::EVENT_FILTER_SETUP, Event::EVENT_FILTER_KEY)
   end
 
   it "should create a new instance given valid attributes" do
@@ -44,6 +46,17 @@ describe Event do
       event_user_pairs.length.should == 1
       event_user_pairs.first.first.should be_an_instance_of Event
       event_user_pairs.first.last.should be_an_instance_of Person
+      
+    end
+    
+  end
+  
+  context "anti-duping" do
+    
+    it "should expose a predicate to check whether a hash of event attributes is the dupe of one in the db" do
+      
+      Event.is_duped?(events(:moonies_meetup).attributes).should == true
+      Event.is_duped?({'title' => 'Not in db', 'start_date' => Time.now}).should == false
       
     end
     

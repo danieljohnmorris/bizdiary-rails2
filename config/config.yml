@@ -1,12 +1,6 @@
 common:
   days_before_event_to_remind: 3
   hour_age_of_started_events_counted_as_upcoming: 6
-  event_filters:
-    :organisation: :id
-    :topic: :text
-    :type: :text
-    :industry: :text
-    :starred: :text
   event_filter_verbalise_setup:
     :type: 'Found %2$d upcoming %1$s'
     :organisation: 'organised by %s'
