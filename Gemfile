@@ -7,6 +7,9 @@ gem 'sqlite3-ruby', '1.2.5'
 
 gem 'thinking-sphinx', '1.3.11', :require => 'thinking_sphinx'
 
+# seo
+gem "friendly_id", "~> 3.0"
+
 # auth
 gem 'warden'
 gem 'devise', '1.0.7'
