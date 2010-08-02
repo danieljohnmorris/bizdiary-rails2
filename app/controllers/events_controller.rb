@@ -15,8 +15,6 @@ class EventsController < ApplicationController
 
     #return render :text => [params, SearchFilter.filter_index[:event_filter].prepare_filters(params), AppConfig.event_filters].inspect
     @events = Event.filtered(params, current_person || nil).paginate :page => params[:page]
-
-    render :template => 'home/index'
   end
   
   # GET /events/1
@@ -40,7 +38,7 @@ class EventsController < ApplicationController
     end
         
     @events = Event.search(@q)
-    render "home/index"
+    render "events/filter"
   end
   
   ###### STARRING CONTROLLER METHODS

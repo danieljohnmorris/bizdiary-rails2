@@ -12,7 +12,7 @@
 	  <% end %>
 	</div>
 	<div class="filters">
-	  <% unless @q or params[:topic] or params[:type] or params[:industry] %>
+	  <% unless searched? %>
 		<div class="prompt">
 			Or filter by topic, event type and industry:
 		</div>

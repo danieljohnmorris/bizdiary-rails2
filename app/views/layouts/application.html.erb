@@ -33,7 +33,7 @@
 						<img class="logo" alt="The Business Diary" src="/images/logo7.png">
 					</a>
 				</h1>
-				<p id="strapline">Meet. Connect. Learn.</p>
+				<p id="strapline">Meet new people, learn new skills.</p>
            </div>
            <div class="yui-u" id="user">
 				<%= render :partial => "people/auth_person" %>
@@ -84,18 +84,9 @@
 
    <div id="ft" role="contentinfo"><p>Copyright <%= link_to "Cothink", "http://cothink.co.uk", :rel => "me" %> 2010</p></div>
 </div>
+
 <%= render :partial => 'layouts/uservoice' %>
 <%= render :partial => 'layouts/google_analytics' %>
-
-<script type="text/javascript">
-  var rpxJsHost = (("https:" == document.location.protocol) ? "https://" : "http://static.");
-  document.write(unescape("%3Cscript src='" + rpxJsHost +
-"rpxnow.com/js/lib/rpx.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-  RPXNOW.overlay = true;
-  RPXNOW.language_preference = 'en';
-  RPXNOW.init({appId: 'llmkkabailmhopcajpmc', xdReceiver: '/rpx_xdcomm.html'});
-</script>
+<%= render :partial => 'layouts/rpx' %>
 </body>
 </html>
