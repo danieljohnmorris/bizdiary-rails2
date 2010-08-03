@@ -37,7 +37,7 @@ class EventsController < ApplicationController
       return
     end
         
-    @events = Event.search(@q)
+    @events = Event.future_search_results_ordered.search(@q)
     render "events/filter"
   end
   

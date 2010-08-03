@@ -1,4 +1,4 @@
-namespace :biz_diary do
+namespace :bizdiary do
   
   desc "Send email reminders"
   task :send_reminders => :environment do

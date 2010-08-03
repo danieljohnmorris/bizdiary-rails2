@@ -41,7 +41,7 @@ class Event < ActiveRecord::Base
   # Takes a hash of filters and turns returns them as a scope, which can then be paginated etc
   def self.filtered(filters, person = nil)
     filters = SearchFilter.filter_index[EVENT_FILTER_KEY].prepare_filters(filters)
-    scope = in_the_future
+    scope = in_the_future.by_start_date_forward
     filters.each_pair do |filter_name, filter_args|
       # if you add a condition, make sure you put in in the list above too
       # Keep chaining up scope - scope can take extra scopes, and acts_as_taggable tagged_with
@@ -201,7 +201,13 @@ class Event < ActiveRecord::Base
       :location       => 4,
       :organisation   => 4
     }
+    
+    has start_date
   end
+  
+  sphinx_scope(:future_search_results_ordered) {
+    { :conditions => { :start_date => (Time.now - AppConfig.hour_age_of_started_events_counted_as_upcoming.to_i.hours)..Time.parse('01/01/2038')}, :order => :start_date}
+  }
 
 
   # load in our tag data, and store them in class variables
