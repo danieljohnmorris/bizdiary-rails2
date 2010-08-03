@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'spork'
 
+TEST_DATA_DIR = File.dirname(__FILE__) + '/test_data'
+
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))

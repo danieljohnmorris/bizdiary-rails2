@@ -23,7 +23,7 @@ describe Organisation do
       
       pre = Organisation.all.length
       Organisation.create_or_retrieve_if_dupe({'name' => 'Not in db'})
-      (pre < Organisation.all.length).should == true
+      (Organisation.all.length > pre).should == true
     end
     
   end

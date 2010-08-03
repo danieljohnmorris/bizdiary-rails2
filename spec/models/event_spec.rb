@@ -55,8 +55,8 @@ describe Event do
     
     it "should expose a predicate to check whether a hash of event attributes is the dupe of one in the db" do
       
-      Event.is_duped?(events(:moonies_meetup).attributes).should == true
-      Event.is_duped?({'title' => 'Not in db', 'start_date' => Time.now}).should == false
+      Event.is_dupe?(events(:moonies_meetup).attributes).should == true
+      Event.is_dupe?({'title' => 'Not in db', 'start_date' => Time.now}).should == false
       
     end
     

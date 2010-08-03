@@ -1,0 +1,88 @@
+:all_unique:
+  - :type: :Event
+    :related_to: 
+    - :type: :Organiser
+      :related_to: []
+
+      :fields: 
+        :name: HM Revenue &amp; Customs
+    :fields: 
+      :location: London Road, Twickenham
+      :uuid: 1781aeb0-806c-012d-bbd6-00254bc7974c
+      :title: Becoming an Employer - What You Need to Know
+      :start_date: 23 Aug 2010
+  - :type: :Event
+    :related_to: 
+    - :type: :Organiser
+      :related_to: []
+
+      :fields: 
+        :name: Magical mystery tour
+    :fields: 
+      :location: London Road, Twickenham
+      :uuid: 1782e040-806c-012d-bbd6-00254bc7974c
+      :title: Becoming an Employer - What You Need to Know
+      :start_date: 13 Sep 2010
+:yaml_import: |
+  - :type: :Event
+    :related_to: 
+    - :type: :Organiser
+      :related_to: []
+
+      :fields: 
+        :name: HM Revenue &amp; Customs
+    :fields: 
+      :location: London Road, Twickenham
+      :uuid: 1781aeb0-806c-012d-bbd6-00254bc7974c
+      :title: Becoming an Employer - What You Need to Know
+      :start_date: 23 Aug 2010
+  - :type: :Event
+    :related_to: 
+    - :type: :Organiser
+      :related_to: []
+
+      :fields: 
+        :name: Magical mystery tour
+    :fields: 
+      :location: London Road, Twickenham
+      :uuid: 1782e040-806c-012d-bbd6-00254bc7974c
+      :title: Becoming an Employer - What You Need to Know
+      :start_date: 13 Sep 2010
+:organisation_duped:
+  - :type: :Event
+    :related_to: 
+    - :type: :Organiser
+      :related_to: []
+
+      :fields: 
+        :name: HM Revenue &amp; Customs
+    :fields: 
+      :location: London Road, Twickenham
+      :uuid: 1781aeb0-806c-012d-bbd6-00254bc7974c
+      :title: Becoming an Employer - What You Need to Know
+      :start_date: 23 Aug 2010
+  - :type: :Event
+    :related_to: 
+    - :type: :Organiser
+      :related_to: []
+
+      :fields: 
+        :name: HM Revenue &amp; Customs
+    :fields: 
+      :location: London Road, Twickenham
+      :uuid: 1782e040-806c-012d-bbd6-00254bc7974c
+      :title: Becoming an Employer - What You Need to Know
+      :start_date: 13 Sep 2010
+:events_duped:
+  - :type: :Event
+    :fields: 
+      :location: London Road, Twickenham
+      :uuid: 1781aeb0-806c-012d-bbd6-00254bc7974c
+      :title: Becoming an Employer - What You Need to Know
+      :start_date: 23 Aug 2010
+  - :type: :Event
+    :fields: 
+      :location: London Road, Twickenham
+      :uuid: 1782e040-806c-012d-bbd6-00254bc7974c
+      :title: Becoming an Employer - What You Need to Know
+      :start_date: 23 Aug 2010

@@ -29,4 +29,9 @@ class Organisation < ActiveRecord::Base
   def unstar(person)
     person.tag(self, :with => "", :on => :saves)
   end
+  
+  def self.create_or_retrieve_if_dupe attrs
+    Organisation.find_or_create_by_name(attrs['name'])
+  end
+    
 end

@@ -153,15 +153,12 @@ class Event < ActiveRecord::Base
     # everything starred, that isn't past and is happening less than N days in the future
     Event.tagged_with(STAR_TAG, :on => :saves).all(:conditions => {:start_date => Time.now..(Time.now + days_before.days)}).each do |event|
       
-            event.taggings.each do |tagging|
-        
-              next if tagging.context != 'saves' || tagging.reminder_sent_on
-        
-              remindee = tagging.tagger_type.classify.constantize.find(tagging.tagger_id)
-        
-              event_user_remind_pairs << [event, remindee]
-         
-            end
+        event.taggings.each do |tagging|
+          next if tagging.context != 'saves' || tagging.reminder_sent_on
+    
+          remindee = tagging.tagger_type.classify.constantize.find(tagging.tagger_id)
+          event_user_remind_pairs << [event, remindee]
+        end
             
     end
     
@@ -169,7 +166,7 @@ class Event < ActiveRecord::Base
     
   end
   
-  def self.is_duped? attrs
+  def self.is_dupe? attrs
     Event.find_by_title_and_start_date(attrs['title'], attrs['start_date']) == nil ? false : true
   end
   
