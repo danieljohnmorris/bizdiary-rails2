@@ -32,7 +32,7 @@ class Organisation < ActiveRecord::Base
   end
   
   def self.create_or_retrieve_if_dupe attrs
-    Organisation.find_or_create_by_name(attrs['name'])
+    Organisation.find_or_create_by_name(attrs['name'], attrs)
   end
     
 end
