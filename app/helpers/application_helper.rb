@@ -1,7 +1,27 @@
 module ApplicationHelper
   
   def searched?
-    @q or params[:topic] or params[:type] or params[:industry]
+    if (searched_with_keywords? or searched_with_tags?)
+      true
+    else
+      false
+    end
+  end
+
+  def searched_with_keywords?
+    if (@q)
+      true
+    else
+      false
+    end
+  end
+
+  def searched_with_tags?
+    if (params[:topic] or params[:type] or params[:industry] or params[:organisation])
+      true
+    else
+      false
+    end
   end
 
  # assets version

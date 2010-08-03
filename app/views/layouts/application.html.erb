@@ -18,19 +18,6 @@
 	<script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
 	<link rel="stylesheet" href="/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen" />
 
-	<script type="text/javascript">
-	  //RPXNOW.loadAndRun(['Social'], function () {
-	  //  var activity = new RPXNOW.Social.Activity(
-	  //     "Share your comment",
-	  //     "commented on 'Like My New Perfume?' on cuteoverload.com",
-	  //     "http://cuteoverload.com/2009/10/26/like-my-new-perfume/");
-	  //  RPXNOW.Social.publishActivity(activity);
-	  //});
-	</script>
-		
- 	<%
-	#= csrf_meta_tag 
-	%>
 	<%= yield :head %>
 </head>
 <body>
@@ -46,7 +33,7 @@
 						<img class="logo" alt="The Business Diary" src="/images/logo7.png">
 					</a>
 				</h1>
-				<p id="strapline">Meet. Connect. Learn.</p>
+				<p id="strapline">Meet new people, learn new skills.</p>
            </div>
            <div class="yui-u" id="user">
 				<%= render :partial => "layouts/auth_person" %>
@@ -55,7 +42,7 @@
 	</div>
    	<div id="bd" role="main">
 		<div class="yui-g">
-	        <div id="messages">
+	        <div class="messages">
 				
 				<%
 				# DEVISE MESSAGES

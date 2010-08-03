@@ -23,3 +23,84 @@ rake thinking_sphinx:start
 
 Thinking Sphinx Indexing
 Email reminder sender
+
+
+
+###################################
+## Run cucumber faster - use spork!
+
+spork cucumber --port 12345 &
+cucumber --drb --port 12345
+
+###################################
+## Remove previous associated gems before switching between different rails beta versions
+
+gem uninstall rails railties actionmailer actionpack activemodel activerecord activeresource activesupport
+
+###################################
+## Install new gems and relock bundle (need to lock for deploy, so gets versioned)
+
+bundle install --relock
+
+###################################
+## libxml2 install for nokogiri gem
+
+sudo apt-get install libxslt-dev libxml2-dev
+
+###################################
+## Github remote branch commands
+
+TROUBLESHOOT SSH KEY AUTH
+    http://github.com/guides/addressing-authentication-problems-with-ssh
+
+DELETE REMOVE BRANCH
+    git push origin :sometag
+    http://github.com/guides/remove-a-remote-branch
+
+CHECKOUT REMOTE BRANCH (NOT MASTER)
+    git checkout --track -b name_of_local_branch origin/name_of_remote_branch
+    http://github.com/guides/showing-and-tracking-remote-branches
+
+FOR TRACKING DEV BRANCH!!!
+  git checkout --track -b dev origin/dev
+
+
+
+
+###################################
+## Run cucumber faster - use spork!
+
+spork cucumber --port 12345 &
+cucumber --drb --port 12345
+
+###################################
+## Remove previous associated gems before switching between different rails beta versions
+
+gem uninstall rails railties actionmailer actionpack activemodel activerecord activeresource activesupport
+
+###################################
+## Install new gems and relock bundle (need to lock for deploy, so gets versioned)
+
+bundle install --relock
+
+###################################
+## libxml2 install for nokogiri gem
+
+sudo apt-get install libxslt-dev libxml2-dev
+
+###################################
+## Github remote branch commands
+
+TROUBLESHOOT SSH KEY AUTH
+    http://github.com/guides/addressing-authentication-problems-with-ssh
+
+DELETE REMOVE BRANCH
+    git push origin :sometag
+    http://github.com/guides/remove-a-remote-branch
+
+CHECKOUT REMOTE BRANCH (NOT MASTER)
+    git checkout --track -b name_of_local_branch origin/name_of_remote_branch
+    http://github.com/guides/showing-and-tracking-remote-branches
+
+FOR TRACKING DEV BRANCH!!!
+  git checkout --track -b dev origin/dev

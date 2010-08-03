@@ -12,6 +12,7 @@ gem 'warden'
 gem 'devise', '1.0.7'
 gem "rpx_now"
 gem 'devise_rpx_connectable'
+gem 'devise_invitable' # http://github.com/scambra/devise_invitable
 
 #testage
 gem 'rspec',        '1.3.0'

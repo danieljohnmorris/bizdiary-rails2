@@ -1,2 +1,18 @@
+<div class="messages">
+	<div class="highlight bigtext semi float left">
+		<p><strong>The Business Diary</strong> is a easy place to find business events, from <strong>networking</strong> to <strong>training courses</strong>.</p>
+		<p>We want to help you meet new people and learn new skills.</p>		
+		<a href="mailto:team@cothink.co.uk?subject=Business Diary - Site Feedback" class="large-b white awesome">Tell us about an event</a>
+	</div>
+	<div class="message highlight bigtext semi float right">
+		<h3>Give us feedback!</h3>
+		<p>We'd love to hear about <strong>your experiences</strong> of going to business events, how you find them and what would <strong>help you</strong> get more out of them.</p>
+		<a href="http://spreadsheets0.google.com/viewform?hl=en_GB&formkey=dHBnbUQtTXpkaVBRbUxKV2lCeDhOREE6MQ" class="large-b white awesome">Feedback on the site</a>
+	</div>
+	<br class="clearboth" />
+</div>
+
+
 <%= render :partial => 'events/search' %>
 <%= render :partial => 'events/events_list', :locals => { :events => @events } %>
+<%= render :partial => 'organisations/banner' %>
