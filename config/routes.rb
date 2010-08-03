@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.devise_for :people
   map.devise_for :organisations
 
-  map.org_claim '/organisations/claim', :controller => 'organisations', :action => 'claim'
+  map.claim_org '/organisations/claim', :controller => 'organisations', :action => 'claim'
   map.connect '/admin/events/ingest', :controller => 'admin/events', :action => 'ingest'
 
   map.resources :organisations, 

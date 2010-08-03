@@ -37,6 +37,25 @@ img.logo {
 		text-align: justify;
 	}
 
+#user p, #org p {
+	margin: 0;
+	padding: 0;
+}	
+
+#org {
+	margin: 10px 0 0 0;
+	text-align: right;
+}
+
+#org a {
+	color: #bbb;
+}
+#org a:hover {
+	color: #777;
+}
+#user {
+}
+
 #user p {
 	text-align: right;
 	font-size: 1.2em;
@@ -50,6 +69,7 @@ img.logo {
 
 .events, #messages {
 	padding: 0 20px 0 20px;
+	overflow: auto;
 }
 
 #messages .error, #messages .info, #messages .highlight, #messages .success {
@@ -57,6 +77,7 @@ img.logo {
 	padding: 10px;
 	border: 3px solid;	
 	position: relative;
+	overflow: auto;
 }
 	#messages .error p, #messages .info p, #messages .highlight p, #messages .success p {
 		margin: 0;
@@ -66,8 +87,8 @@ img.logo {
 		margin: 0 0 15px 0;
 	}
 	#messages .info {
-		background: #eee;
-		border-color: #ccc;
+		background: #fff;
+		border-color: #ddd;
 	}
 	#messages .highlight {
 		background: #FFFEEB;
@@ -165,9 +186,9 @@ img.logo {
 
 .pagination {
 	text-align: center;
-	border: 2px solid #DFEDFF;
+	border: 3px solid #DFEDFF;
 	background-color: #EFF6FF;
-	margin: 25px 0 25px 0;
+	margin: 25px 20px 25px 20px;
 	padding: 10px;
 	font-size: 1.3em;
 }
@@ -224,7 +245,8 @@ img.logo {
 		font-weight: bold;
 	}
 	.bigtext h3,
-	.bigtext p {
+	.bigtext p,
+	p.bigtext {
 		font-size: 1.5em;
 	}
 	
@@ -243,7 +265,7 @@ h3.list-hd {
 /* Awesome buttons
 ************************/
 
-.awesome, .awesome:visited {
+.awesome, .awesome:visited, #user a {
 	background: #222 url(/images/buttons/alert-overlay.png) repeat-x; 
 	display: inline-block; 
 	padding: 5px 10px 6px; 
@@ -259,8 +281,8 @@ h3.list-hd {
 	cursor: pointer;
 }
 
-.awesome:hover									{ background-color: #111; color: #fff; }
-.awesome:active									{ top: 1px; }
+.awesome:hover, #user a:hover					{ background-color: #111; color: #fff; }
+.awesome:active, #user a:active					{ top: 1px; }
 
 .small-b.awesome, .small-b.awesome:visited 		{ font-size: 11px; margin: 0 0 .5em 0; }
 .awesome, .awesome:visited,
@@ -278,7 +300,9 @@ h3.list-hd {
 .red.awesome:hover								{ background-color: #872300; }
 .magenta.awesome, .magenta.awesome:visited		{ background-color: #a9014b; }
 .magenta.awesome:hover							{ background-color: #630030; }
+#user a, 
 .orange.awesome, .orange.awesome:visited		{ background-color: #ff5c00; }
+#user a:hover,
 .orange.awesome:hover							{ background-color: #d45500; }
 .light-orange.awesome, .orange.awesome:visited	{ background-color: #fca961; }
 .light-orange.awesome:hover						{ background-color: #ff5c00; }
@@ -309,3 +333,12 @@ button {
 	bottom: 10px;
 	right: 10px;
 }
+
+.centred {
+	text-align: center;
+}
+
+.bump {
+	margin-left: 1em;
+}
+

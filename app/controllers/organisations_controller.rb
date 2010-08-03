@@ -1,5 +1,5 @@
 class OrganisationsController < ApplicationController
-  
+      
   def claim
   end
   

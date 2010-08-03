@@ -1,0 +1,24 @@
+<h2>Organiser - Sign in</h2>
+
+<%= link_to_rpx "Sign in with Facebook / Twitter / LinkedIn", session_url(resource_name) %>
+
+<% form_for resource_name, resource, :url => session_path(resource_name) do |f| -%>
+  
+	<p>
+		<%= f.label :email %><br />
+		<%= f.text_field :email %>
+	</p>
+
+	<p>
+		<%= f.label :password %><br/>
+		<%= f.password_field :password %>
+	</p>
+
+	<% if devise_mapping.rememberable? -%>
+	  <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+	<% end -%>
+
+	<p><%= f.submit "Sign in", :class => "awesome large-b orange" %></p>
+<% end -%>
+
+<%= render :partial => "shared/devise_links" %>

@@ -35,8 +35,11 @@
 				</h1>
 				<p id="strapline">Meet new people, learn new skills.</p>
            </div>
-           <div class="yui-u" id="user">
-				<%= render :partial => "people/auth_person" %>
+           <div class="yui-u">
+				<% unless organisation_signed_in? %>
+					<div id="user"><%= render :partial => "people/auth" %></div>
+				<% end %>
+				<div id="org"><%= render :partial => "organisations/auth" %></div>
            </div>
         </div>
 	</div>

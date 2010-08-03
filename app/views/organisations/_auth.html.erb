@@ -1,0 +1,6 @@
+<% unless organisation_signed_in? %>
+	<p><%= link_to_rpx "Login / signup as organiser", organisation_session_url %> <span class="hide">(<%= link_to "retro org sign in", new_organisation_session_url %> or <%= link_to "create an org account", new_organisation_registration_url %>)</span></p>
+<% else %>
+	<p><span>Organisation: </span><strong><%= link_to current_organisation.name || current_organisation.email, organisation_path(current_organisation) %></strong><br />
+	<%= link_to "Sign out?", destroy_organisation_session_url %></p>
+<% end %>
