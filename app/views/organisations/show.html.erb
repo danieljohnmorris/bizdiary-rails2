@@ -1,14 +1,13 @@
-
-<p>
-  <b>Name:</b>
-  <%= @organisation.name %>
-</p>
+<h1><%= @organisation.name %></h1>
 
 <p>
   <b>Url:</b>
   <%= @organisation.url %>
 </p>
 
+<% if current_organisation == @organisation %>
+<%= link_to "Edit", edit_organisation_registration_path %>
+<% end %>
 
-<%= link_to 'Edit', edit_admin_organisation_path(@organisation) %> |
-<%= link_to 'Back', admin_organisations_path %>
+
+<%= render :partial => 'events/events_list', :locals => { :events => @events } %>
