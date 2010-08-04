@@ -8,11 +8,19 @@
 	</span>
 	
 	<!-- title -->
-	<h3 class="grid9col left marginleft title" title="Show more info">
-		<%= event.title %>
-		<%
-		#= link_to event.title, event_path(event) 
-		%>
+	<h3 class="grid9col left marginleft" title="Show more info">
+		<%= link_to event.title, event_path(event) %>
+
+		<% if event.organisation and organisation_signed_in? and event.organisation == current_organisation %>
+			(<%= link_to "edit", edit_organisation_event_path(event.organisation, event) %>)
+			<div id="pubstate-<%= event.id %>">
+				<% if event.published? %>
+					<%= render :partial => 'events/link_hide', :locals => { :organisation => event.organisation, :event => event } %>
+				<% else %>
+					<%= render :partial => 'events/link_publish', :locals => { :organisation => event.organisation, :event => event } %>
+				<% end %>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+		  	</div>
+		<% end %>
 	</h3>
 	
 	<!-- tags -->

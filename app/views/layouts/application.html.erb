@@ -35,23 +35,20 @@
 				</h1>
 				<p id="strapline">Meet new people, learn new skills.</p>
            </div>
-           <div class="yui-u" id="user">
-				<%= render :partial => "layouts/auth_person" %>
+           <div class="yui-u">
+				<% unless organisation_signed_in? %>
+					<div id="user"><%= render :partial => "people/auth" %></div>
+				<% end %>
+
+				<% unless person_signed_in? %>
+					<div id="org"><%= render :partial => "organisations/auth" %></div>
+				<% end %>
            </div>
         </div>
 	</div>
    	<div id="bd" role="main">
 		<div class="yui-g">
-	        <div class="messages">
-				
-				<%
-				# DEVISE MESSAGES
-
-				#<p class='info'>This is an info message</p>
-				#<p class='error'>This is an error message</p>
-				#<p class='success'>This is an success message</p>
-				%>
-																
+	        <div id="messages">																
 	          <% if defined?(notice) -%>
 	          <p class='success'>
 	            <%=h notice %>

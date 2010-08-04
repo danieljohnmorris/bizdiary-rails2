@@ -1,2 +1,7 @@
-<%= link_to "Sign in", new_organisation_session_url, :class => "large-b white awesome" %>
-<%= link_to "Create an account", new_organisation_registration_url, :class => "large-b white awesome" %>
+<h2>Claim</h2>
+
+<ul>
+	<li><%= link_to "invite", new_organisation_invitation_path %></li>
+	<li><%= link_to "register", new_organisation_registration_path %></li>
+	<li><%= link_to "sign in", new_organisation_session_path %></li>
+</ul>
