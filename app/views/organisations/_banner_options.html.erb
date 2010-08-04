@@ -1,0 +1,7 @@
+<% if organisation_signed_in? %>
+<div id="messages">
+	<p class='info bigtext centred'>
+		<%= link_to "Create new event", new_organisation_event_path(current_organisation), :class => "awesome scheme-2 medium-b bump" %>
+	</p>
+</div>
+<% end %>
