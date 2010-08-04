@@ -39,7 +39,10 @@
 				<% unless organisation_signed_in? %>
 					<div id="user"><%= render :partial => "people/auth" %></div>
 				<% end %>
-				<div id="org"><%= render :partial => "organisations/auth" %></div>
+
+				<% unless person_signed_in? %>
+					<div id="org"><%= render :partial => "organisations/auth" %></div>
+				<% end %>
            </div>
         </div>
 	</div>
