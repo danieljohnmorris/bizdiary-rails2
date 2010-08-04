@@ -1,13 +1,13 @@
 <h1><%= @organisation.name %></h1>
-
+<p class="help">This is your events page. You can see your events listed below, and create new ones.</p>
 <p>
   <b>Url:</b>
   <%= @organisation.url %>
 </p>
 
 <% if current_organisation == @organisation %>
-<%= link_to "Edit", edit_organisation_registration_path %>
+<%= link_to "Edit your profile", edit_organisation_registration_path, :class => 'awesome red small' %>
 <% end %>
 
 
-<%= render :partial => 'events/events_list', :locals => { :events => @events } %>
+<%= render :partial => 'events/events_list', :locals => { :events => @events, :title => 'Your upcoming events' } %>

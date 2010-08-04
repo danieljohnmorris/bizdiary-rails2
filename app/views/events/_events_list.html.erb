@@ -12,7 +12,7 @@
 			<% end %>
 		</h1>
 	<% else %>
-		<h1 class="list-hd">Upcoming events in london</h1>
+		<h1 class="list-hd"><%= title rescue "Upcoming events in london" %></h1>
 	<% end %>
 
   <% unless events.empty? %>

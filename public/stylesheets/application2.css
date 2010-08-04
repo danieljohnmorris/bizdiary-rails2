@@ -47,12 +47,6 @@ img.logo {
 	text-align: right;
 }
 
-#org a {
-	color: #bbb;
-}
-#org a:hover {
-	color: #777;
-}
 #user {
 }
 
@@ -106,6 +100,11 @@ img.logo {
 		margin: 5px 0 10px 0;
 	}
 
+.help {
+  padding:1em;
+  background:#ECF2FF;
+  border:1px solid #5C8FFF;
+}
 .events h1 {
 	color: #aaa;
 }
@@ -261,7 +260,15 @@ h3.list-hd {
 #search .hint {
 	color: #aaa;
 }
-	
+/* Organisations
+************************/
+form.organisation {}
+  form.organisation textarea {
+    height:150px;
+    width:400px;
+  }
+
+
 /* Awesome buttons
 ************************/
 
