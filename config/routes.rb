@@ -3,7 +3,6 @@ ActionController::Routing::Routes.draw do |map|
   map.devise_for :people
   map.devise_for :organisations
 
-  map.claim_org '/organisations/claim', :controller => 'organisations', :action => 'claim'
   map.connect '/admin/events/ingest', :controller => 'admin/events', :action => 'ingest'
 
   map.resources :organisations, 
@@ -11,7 +10,16 @@ ActionController::Routing::Routes.draw do |map|
       :star => :get, 
       :unstar => :get 
     }, 
-    :collection => { :starred => :get }
+    :collection => { :starred => :get } do |org|      
+    org.resources :events, 
+      :member => { 
+        :publish => :get, 
+        :hide => :get
+      },
+      :collection => { 
+        :bulk_publish => :get
+      }
+  end
 
   map.namespace :admin do |admin|
     admin.index '/', :controller => 'index', :action => 'index'
@@ -27,12 +35,13 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :events, 
-      :only => [:index, :show], 
+      :only => [:index, :show],
       :member => { 
         :star => :get, 
         :unstar => :get 
       }, 
       :collection => { :starred => :get, :search => :get, :filter => :get}
+
   
   # map.root            :controller => 'home'
   # map.about '/about', :controller => 'about'
