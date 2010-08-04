@@ -1,3 +1,5 @@
+<%= render :partial => "organisations/banner_options" %>
+
 <div class="events">
 	<% if searched_with_keywords? %>
 		<h1 class="list-hd">Found <%= events.length %> events for keywords "<%= @q %>"</h1>
@@ -20,14 +22,19 @@
 		<% end %>
   	</ul>
   <% else %>
-  	<div class="page-message">
-  		<a href="http://www.flickr.com/photos/ericbvd/4324724233/" title="View photo @ Flickr.com">
-			<img src="http://farm5.static.flickr.com/4042/4324724233_df6f858e60.jpg" alt="Photo of empty theatre by Eric Broder Van Dyke">
-		</a>
-		<p>Sorry, we couldn't find any events for your query! Try broadening your search.</p>
-  	</div> 
+  	<% if @organisation %>
+		no events!
+  	<% else %>
+		<div class="page-message">
+	  		<a href="http://www.flickr.com/photos/ericbvd/4324724233/" title="View photo @ Flickr.com">
+				<img src="http://farm5.static.flickr.com/4042/4324724233_df6f858e60.jpg" alt="Photo of empty theatre by Eric Broder Van Dyke">
+			</a>
+			<p>Sorry, we couldn't find any events for your query! Try broadening your search.</p>
+	  	</div> 
+  	<% end %>
   <% end %>
 </div>	
 <%= will_paginate events %>
 
-<%= render :partial => "organisations/claim_banner" %>
+<%= render :partial => "organisations/banner_options" %>
+<%= render :partial => "organisations/banner_claim" %>
