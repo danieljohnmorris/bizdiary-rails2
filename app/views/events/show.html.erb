@@ -1,3 +1,14 @@
+<% if organisation_signed_in? %>
+	(<%= link_to "edit", edit_organisation_event_path(@event.organisation, @event) %>)
+	<div id="pubstate-<%= @event.id %>">
+		<% if @event.published? %>
+			<%= render :partial => 'events/link_hide', :locals => { :organisation => @event.organisation, :event => @event } %>
+		<% else %>
+			<%= render :partial => 'events/link_publish', :locals => { :organisation => @event.organisation, :event => @event } %>
+		<% end %>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+  	</div>
+<% end %>
+
 <h1><%= @event.title %></h1>
 
 <p><%= @event.description %></p>
@@ -51,11 +62,3 @@
   <b>People:</b>
   <%= @event.people %>
 </p>
-
-<p>
-  <b>Notes:</b>
-  <%= @event.notes %>
-</p>
-
-
-<%= link_to 'Back', root_path %>
