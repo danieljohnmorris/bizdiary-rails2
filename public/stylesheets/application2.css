@@ -80,14 +80,9 @@ img.logo {
 	.messages .highlight p {
 		margin: 0 0 15px 0;
 	}
-<<<<<<< HEAD:public/stylesheets/application2.css
-	.messages .info {
-		border-color: #eee;
-=======
 	#messages .info {
 		background: #fff;
 		border-color: #ddd;
->>>>>>> org:public/stylesheets/application2.css
 	}
 	.messages .highlight {
 		background: #FFFEEB;
