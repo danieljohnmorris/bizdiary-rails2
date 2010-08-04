@@ -1,24 +1,24 @@
 <h2>Organiser - Sign up</h2>
 
-<%= link_to_rpx "Sign up with Facebook / Twitter / LinkedIn", session_url(resource_name) %>
-
 <% form_for resource_name, resource, :url => registration_path(resource_name) do |f| -%>
   <%= f.error_messages %>
 
-	<p>
-		<%= f.label :email %><br />
-		<%= f.text_field :email %>
-	</p>
+  	<p><%= f.label :name, "Organisation Name" %></p>
+	<p><%= f.text_field :name %></p>
 
-	<p>
-		<%= f.label :password %><br />
-		<%= f.password_field :password %>
-	</p>
+  	<p><%= f.label :url, "Website URL" %></p>
+  	<p><%= f.text_field :url %></p>
 
-	<p>
-		<%= f.label :password_confirmation %><br />
-		<%= f.password_field :password_confirmation %>
-	</p>
+	<p><%= f.label :email %></p>
+	<p><%= f.text_field :email %></p>
+
+	<hr/>
+
+	<p><%= f.label :password %></p>
+	<p><%= f.password_field :password %></p>
+
+	<p><%= f.label :password_confirmation %></p>
+	<p><%= f.password_field :password_confirmation %></p>
 
   <p><%= f.submit "Sign up", :class => "awesome large-b orange" %></p>
 <% end -%>
