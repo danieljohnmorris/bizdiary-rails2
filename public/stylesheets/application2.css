@@ -281,8 +281,8 @@ h3.list-hd {
 	cursor: pointer;
 }
 
-.awesome:hover, #user a:hover					{ background-color: #111; color: #fff; }
-.awesome:active, #user a:active					{ top: 1px; }
+.awesome:hover, #user p.visitor a:hover			{ background-color: #111; color: #fff; }
+.awesome:active, #user p.visitor a:active		{ top: 1px; }
 
 .small-b.awesome, .small-b.awesome:visited 		{ font-size: 11px; margin: 0 0 .5em 0; }
 .awesome, .awesome:visited,
@@ -300,9 +300,9 @@ h3.list-hd {
 .red.awesome:hover								{ background-color: #872300; }
 .magenta.awesome, .magenta.awesome:visited		{ background-color: #a9014b; }
 .magenta.awesome:hover							{ background-color: #630030; }
-#user a, 
+#user p.visitor a, 
 .orange.awesome, .orange.awesome:visited		{ background-color: #ff5c00; }
-#user a:hover,
+#user p.visitor a:hover,
 .orange.awesome:hover							{ background-color: #d45500; }
 .light-orange.awesome, .orange.awesome:visited	{ background-color: #fca961; }
 .light-orange.awesome:hover						{ background-color: #ff5c00; }
