@@ -1,0 +1,8 @@
+<%
+org_candidate = @organisation || @event.organisation rescue nil
+claim_org = (org_candidate && org_candidate.id != nil) ? org_candidate : nil
+%>
+<%= mail_to 'verification@cothink.co.uk', "Claim your events", 
+            :encode => "hex", :subject => 'Organiser claim', 
+            :body => (claim_org ? "Claiming: #{claim_org.name}" : "Claiming: <enter organisation name here>") + "\n\nWe'll get in touch shortly. Please provide a phone number if you'd prefer us to ring you.", 
+            :class => "awesome scheme-2 medium-b bump" %>

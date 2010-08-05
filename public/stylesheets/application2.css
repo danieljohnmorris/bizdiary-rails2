@@ -49,7 +49,9 @@ img.logo {
 
 #user {
 }
-
+#user .login, #org .login {
+  margin-top:0.5em;
+}
 #user p {
 	text-align: right;
 	font-size: 1.2em;
