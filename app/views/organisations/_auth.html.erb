@@ -1,5 +1,6 @@
 <% unless organisation_signed_in? %>
-	<p class="visitor"><%= link_to "Claim organiser account", new_organisation_registration_url %> / <%= link_to "organiser sign in", new_organisation_session_url %></p>
+	<%= render :partial => 'organisations/claim' %>
+	<p class="login"><%= link_to "Event organiser login", organisation_session_url %></p>
 <% else %>
 	<p><%= link_to 'My Events' || current_organisation.email, organisation_path(current_organisation), :class => 'awesome blue small' %></p>
 	<%= link_to "Sign out?", destroy_organisation_session_url %></p>
