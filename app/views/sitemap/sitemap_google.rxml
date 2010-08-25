@@ -1,0 +1,54 @@
+xml.instruct!
+xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
+  # /
+  xml.url do
+    xml.loc             url_for(
+                          :controller => 'home', 
+                          :action     => 'index',
+                          :only_path  => false
+                        )
+    xml.lastmod         w3c_date(Time.now)
+    xml.changefreq      "always"
+  end
+
+  # /
+  xml.url do
+    xml.loc             url_for(
+                          :controller => 'home', 
+                          :action     => 'index',
+                          :only_path  => false
+                        )
+    xml.lastmod         w3c_date(Time.now)
+    xml.changefreq      "always"
+  end
+  
+  # /events/*
+  @events.each do |event|
+    xml.url do
+      xml.loc           url_for(
+                          :controller   => 'events', 
+                          :action       => 'show', 
+                          :id           => event.id,
+                          :only_path    => false
+                        )
+      xml.lastmod       w3c_date(event.updated_at)
+      xml.changefreq    "daily"
+      xml.priority      0.8
+    end
+  end
+
+  # /organisations/*
+  @organisations.each do |org|
+    xml.url do
+      xml.loc           url_for(
+                          :controller   => 'organisations', 
+                          :action       => 'show', 
+                          :id           => org.id,
+                          :only_path    => false
+                        )
+      xml.lastmod       w3c_date(org.updated_at)
+      xml.changefreq    "daily"
+      xml.priority      0.7
+    end
+  end
+end
